@@ -11,10 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="admin">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -75,6 +75,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/admin.js') }}"></script>
+    @if (getenv('APP_ENV') === 'local')
+        <script id="__bs_script__">//<![CDATA[
+            document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.6'><\/script>".replace("HOST", location.hostname));
+            //]]></script>
+    @endif
 </body>
 </html>
