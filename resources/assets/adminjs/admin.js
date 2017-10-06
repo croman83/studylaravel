@@ -14,12 +14,14 @@ Vue.config.productionTip = false;
 // Vue.component('App', require('./components/App.vue'));
 // import App from './components/App.vue'
 
-const app = new Vue({
-    el: '#admin',
-    components:{
-        // 'apps':App,
-    },
-    mounted(){
-        console.log('app mounted')
-    }
-});
+if( document.getElementById('admin') ){
+    const app = new Vue({
+        el: '#admin',
+        components:{
+            // 'apps':App,
+        },
+        mounted(){
+            console.log('app mounted')
+        }
+    });
+}

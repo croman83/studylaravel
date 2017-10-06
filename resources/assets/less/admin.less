@@ -1,3 +1,66 @@
-body{
-  background-color: antiquewhite;
+@import "styles/normalize.less";
+@import "styles/lesshat.less";
+@import "styles/variables.less";
+@import "styles/helpers.less";
+
+
+
+.login{
+  height:100vh;
+  .flex(row,nowrap,center,center);
+  background-color: #efefef;
+  &-plate{
+    background-color: #fff;
+    padding:25px;
+    box-shadow:0px 0px 20px -10px black;
+    margin-bottom:25px;
+  }
+  &-wrapper{
+    margin-bottom:10px;
+    label{
+      display: inline-block;
+      font-size:14px;
+      margin-bottom:5px;
+    }
+    input{
+      width:100%;
+      border:1px solid #efefef;
+      background-color: #fff;
+      height:35px;
+      padding:0 15px;
+    }
+    span.error{
+      color:darkred;
+      font-size:13px;
+    }
+  }
+  .checkbox{
+    margin-bottom:10px;
+    label{
+      font-size:14px;
+      .flex(row,nowrap,flex-start,center);
+      cursor: pointer;
+      display: block;
+      input{
+        margin-right:10px;
+        outline: none;
+        
+      }
+    }
+  }
+  .submit{
+    button{
+      background-color: lightsteelblue;
+      height:35px;
+      padding:0 15px;
+      font-size:14px;
+      color:#fff;
+      border:0;
+      margin-right:10px;
+    }
+    a{
+      color:black;
+      font-size:14px;
+    }
+  }
 }

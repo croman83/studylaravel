@@ -18,6 +18,15 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        head:{
+            title:{
+                inner: 'It will be a pleasure',
+                separator:' ',
+            },
+            meta: [
+                { name: 'application-name', content: 'Name of my application' }
+                ]
         }
     }
 </script>

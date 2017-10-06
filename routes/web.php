@@ -10,14 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
+    Route::get('/', 'ViewController@index')->name('main');
+    Route::get( 'set-language', [ 'as' => 'set-language', 'uses' => 'ViewController@setLocale' ] );
 
-Route::get('/', 'ViewController@index')->name('main');
 
+// Authentication Routes...
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+// Registration Routes...
+    Route::match(['get', 'post'], 'register', function () {
+        return redirect('/');
+    });
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('authenticated');
+//Route::post('register', 'Auth\RegisterController@register')->middleware('authenticated');
 
+// Password Reset Routes...
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 // admin routes
-Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('admin');
+    Route::get('/admin', 'HomeController@index')->name('admin');
+
+    Route::get('/{vue?}', function () {
+        return view('welcome');
+    })->where('vue', '[\/\w\.-]*');
+});

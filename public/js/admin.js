@@ -41849,15 +41849,17 @@ Vue.config.productionTip = false;
 // Vue.component('App', require('./components/App.vue'));
 // import App from './components/App.vue'
 
-var app = new Vue({
-    el: '#admin',
-    components: {
-        // 'apps':App,
-    },
-    mounted: function mounted() {
-        console.log('app mounted');
-    }
-});
+if (document.getElementById('admin')) {
+    var app = new Vue({
+        el: '#admin',
+        components: {
+            // 'apps':App,
+        },
+        mounted: function mounted() {
+            console.log('app mounted');
+        }
+    });
+}
 
 /***/ }),
 
