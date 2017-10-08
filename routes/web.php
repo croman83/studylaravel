@@ -24,8 +24,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::match(['get', 'post'], 'register', function () {
         return redirect('/');
     });
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('authenticated');
-//Route::post('register', 'Auth\RegisterController@register')->middleware('authenticated');
+//    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//    Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -36,7 +36,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
 // admin routes
 
-    Route::get('/admin', 'HomeController@index')->name('admin');
+//    Route::get('/admin', 'HomeController@index')->name('admin');
+    Route::get('/admin/{vue?}','HomeController@index' )->where('vue', '[\/\w\.-]*')->name('admin');
 
     Route::get('/{vue?}', function () {
         return view('welcome');
