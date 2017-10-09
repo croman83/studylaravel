@@ -1,0 +1,126 @@
+@import "styles/normalize.less";
+@import "styles/lesshat.less";
+@import "styles/awesome/font-awesome.less";
+@import "styles/variables.less";
+@import "styles/helpers.less";
+[class^="el-icon-my"], [class*=" el-icon-my"] {
+  font-family:"your-font-family" !important;
+
+  /* The following is based on original CSS rules of third-party library */
+  font-size: inherit;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.login{
+  height:100vh;
+  .flex(row,nowrap,center,center);
+  background-color: #efefef;
+  &-plate{
+    background-color: #fff;
+    padding:25px;
+    box-shadow:0px 0px 20px -10px black;
+    margin-bottom:25px;
+  }
+  &-wrapper{
+    margin-bottom:10px;
+    label{
+      display: inline-block;
+      font-size:14px;
+      margin-bottom:5px;
+    }
+    input{
+      width:100%;
+      border:1px solid #efefef;
+      background-color: #fff;
+      height:35px;
+      padding:0 15px;
+    }
+    span.error{
+      color:darkred;
+      font-size:13px;
+    }
+  }
+  .checkbox{
+    margin-bottom:10px;
+    label{
+      font-size:14px;
+      .flex(row,nowrap,flex-start,center);
+      cursor: pointer;
+      display: block;
+      input{
+        margin-right:10px;
+        outline: none;
+        
+      }
+    }
+  }
+  .submit{
+    button{
+      background-color: lightsteelblue;
+      height:35px;
+      padding:0 15px;
+      font-size:14px;
+      color:#fff;
+      border:0;
+      margin-right:10px;
+    }
+    a{
+      color:black;
+      font-size:14px;
+    }
+  }
+}
+.admin{
+  &-wrapper{
+    .flex(row,nowrap,space-between,flex-start);
+    padding:25px;
+  }
+  &-sidebar{
+    width:20%;
+    background-color: whitesmoke;
+    min-height:50vh;
+  }
+  &-content{
+    width:~'calc(80% - 25px)';
+    min-height:50vh;
+    background-color: lightgoldenrodyellow;
+    padding:15px;
+  }
+  &-menu{
+    .reset-around;
+    list-style:none;
+    a{
+      .flex(row,nowrap,flex-start,center);
+      i{
+        margin-right:5px;
+      }
+    }
+  }
+}
+.header{
+  background-color: #4b4b4b;
+  padding:25px 15px;
+  .flex(row,nowrap,space-between,center);
+  &-logout{
+    color:white;
+    cursor: pointer;
+    img{
+      .size(25px);
+    }
+  }
+  &-right{
+    .flex(row,nowrap,flex-start,center);
+  }
+  &-user{
+    color:#fff;
+    margin-right:15px;
+  }
+  &-icon{
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+  }
+}
