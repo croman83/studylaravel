@@ -18,7 +18,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
         proxy: 'studylaravel.dev'
     });
 
-mix.js('resources/assets/adminjs/admin.js', 'public/js')
+mix.js('resources/assets/adminjs/index.js', 'public/js')
     .version()
     .less('resources/assets/less/admin.less', 'public/css')
     .version();
