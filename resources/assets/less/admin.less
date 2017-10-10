@@ -72,7 +72,22 @@
     }
   }
 }
-
+.admin{
+  &-wrapper{
+    .flex(row,nowrap,space-between,flex-start);
+    padding:25px;
+  }
+  &-sidebar{
+    width:20%;
+    min-height:50vh;
+    background-color: whitesmoke;
+  }
+  &-main{
+    width:~'calc(80% - 25px)';
+    min-height:70vh;
+    background-color: antiquewhite;
+  }
+}
 .header{
   background-color: #4b4b4b;
   padding:25px 15px;

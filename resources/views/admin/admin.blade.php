@@ -19,7 +19,11 @@
         {{--</div>--}}
     {{--</div>--}}
 {{--</div>--}}
+    <app-loading></app-loading>
     <app-header name="{{ Auth::user()->name }}"></app-header>
-    <router-view></router-view>
+    <div class="admin-wrapper">
+        <side-bar></side-bar>
+        <router-view></router-view>
+    </div>
 
 @endsection
