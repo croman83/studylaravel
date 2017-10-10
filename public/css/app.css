@@ -523,6 +523,32 @@ a:focus {
           transform: translateY(10px);
   opacity: 0;
 }
+.faderouterfront-enter-active,
+.faderouterfront-leave-active {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  opacity: 1;
+}
+.faderouterfront-enter,
+.faderouterfront-leave-to,
+.faderouterfront-leave-active {
+  opacity: 0;
+}
+.fadeup-enter-active,
+.fadeup-leave-active {
+  -webkit-transition: all .7s;
+  transition: all .7s;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.fadeup-enter,
+.fadeup-leave-to,
+.fadeup-leave-active {
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
 .editor {
   font-size: 16px;
   color: black;
@@ -602,8 +628,137 @@ a:focus {
     transform: rotate(360deg);
   }
 }
-body {
-  background-color: whitesmoke;
-  font-family: 'Open Sans', sans-serif;
+.header {
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+@media (min-width: 2px) and (max-width: 1269px) {
+  .header {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 320px;
+  }
+}
+@media (min-width: 1270px) and (max-width: 8999999px) {
+  .header {
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.header-logo a {
   color: black;
+  font-family: 'Gabriela', serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+}
+.header-logo a span {
+  margin-left: 15px;
+}
+.header-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header-lang ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+.header-lang ul li.active a {
+  color: #ff99cc;
+}
+.header-lang ul a {
+  margin: 2px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 300;
+}
+.header-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  padding: 10px;
+}
+.header-menu span {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.header-menu svg {
+  display: block;
+}
+.header-fix {
+  position: absolute;
+  width: 100%;
+  min-height: 60px;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 10;
+  background-color: #fff;
 }

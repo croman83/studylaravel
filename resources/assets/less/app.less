@@ -6,8 +6,65 @@
 
 
 
-body{
-  background-color:whitesmoke;
-  font-family: 'Open Sans', sans-serif;
-  color:black;
+.header{
+  .container;
+  .flex(row,nowrap,space-between,center);
+  position: relative;
+  &-logo{
+    a{
+      color:@black;
+      font-family: @font-gabriela;
+      .flex(row,nowrap,flex-start,center);
+      font-size:30px;
+      span{
+        margin-left:15px;
+      }
+    }
+  }
+  &-right{
+    .flex(row,nowrap,flex-start,center);
+  }
+  &-lang{
+    ul{
+      .reset-around;
+      list-style: none;
+      .flex();
+      li.active{
+        a{
+          color:@color-pink;
+        }
+      }
+      a{
+        margin:2px;
+        font-size:15px;
+        text-transform: uppercase;
+        color:@black;
+        font-weight:300;
+      }
+    }
+  }
+  &-menu{
+    .flex(row,nowrap,flex-start,center);
+    cursor: pointer;
+    padding:10px;
+    span{
+      font-size:18px;
+      font-weight:300;
+      text-transform: uppercase;
+    }
+    svg{
+      display: block;
+    }
+  }
+  &-fix{
+    position: absolute;
+    width:100%;
+    min-height: 60px;
+    top:0;
+    left:0;
+    box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.15);
+    padding:20px;
+    z-index:10;
+    background-color: #fff;
+  }
 }

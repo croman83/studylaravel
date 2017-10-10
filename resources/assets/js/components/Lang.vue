@@ -1,14 +1,20 @@
 <template>
-    <div>
+    <div class="header-lang">
         <ul>
-            <li><a href="/ru/set-language">RU</a></li>
-            <li><a href="/en/set-language">EN</a></li>
-            <li><a href="/ro/set-language">RO</a></li>
+            <li v-for="item in langset"
+                :class="{active:item === lang}">
+                <a :href="'/'+item+'/set-language'">{{item}}</a>
+            </li>
         </ul>
     </div>
 </template>
 <script>
     export default {
-
+        data(){
+            return {
+                lang: window.config.locale,
+                langset:['ru','en','ro']
+            }
+        }
     }
 </script>

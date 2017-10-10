@@ -1,4 +1,4 @@
-html{
+ html{
 	box-sizing: border-box;
 	& body{
 		min-height: 100%;
@@ -311,6 +311,24 @@ a{
 	transform:translateY(10px);
 	opacity:0;
 }
+
+ .faderouterfront-enter-active, .faderouterfront-leave-active {
+	 transition: all .5s;
+	 opacity:1;
+ }
+ .faderouterfront-enter, .faderouterfront-leave-to, .faderouterfront-leave-active  {
+	 opacity:0;
+ }
+
+ .fadeup-enter-active, .fadeup-leave-active {
+	 transition: all .7s;
+	 opacity:1;
+	 transform:translateY(0);
+ }
+ .fadeup-enter, .fadeup-leave-to, .fadeup-leave-active  {
+	 opacity:0;
+	 transform:translateY(-50%);
+ }
 
 .editor{
 	font-size: 16px;

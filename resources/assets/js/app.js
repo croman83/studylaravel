@@ -37,6 +37,7 @@ Vue.config.productionTip = false;
 import Main from './components/Main.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Loading from './components/Loading.vue'
 import PageNotFound from './components/PageNotFound.vue'
 
 
@@ -69,5 +70,52 @@ const app = new Vue({
     components:{
         appHeader:Header,
         appFooter:Footer,
+        loading:Loading,
+    },
+    mounted(){
+        this.$loading = this.$refs.loading;
     }
     }).$mount('#app');
+
+
+router.beforeEach((to, from, next) => {
+    router.app.$loading.start();
+    next()
+});
+router.afterEach((to, from) => {
+    router.app.$loading.finish()
+});
+
+
+
+
+window.Vue.directive('Clickoutside',{
+    bind: function(el, binding, vNode) {
+        // Provided expression must evaluate to a function.
+        if (typeof binding.value !== 'function') {
+            const compName = vNode.context.name
+            let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
+            if (compName) { warn += `Found in component '${compName}'` }
+
+            console.warn(warn)
+        }
+        // Define Handler and cache it on the element
+        const bubble = binding.modifiers.bubble
+        const handler = (e) => {
+            if (bubble || (!el.contains(e.target) && el !== e.target)) {
+                binding.value(e)
+            }
+        }
+        el.__vueClickOutside__ = handler
+
+        // add Event Listeners
+        document.addEventListener('click', handler)
+    },
+
+    unbind: function(el, binding) {
+        // Remove Event Listeners
+        document.removeEventListener('click', el.__vueClickOutside__)
+        el.__vueClickOutside__ = null
+
+    }
+});
