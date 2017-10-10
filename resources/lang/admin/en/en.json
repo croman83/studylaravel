@@ -1,3 +1,1 @@
-{
-  "header":"This is header"
-}
+{"header":"This is header","menu":{"dashboard":"Dashboard","settings":"Settings","translate":"Translate"},"title":{"translator":"Translator!"},"notification":{"success":"This is success"}}

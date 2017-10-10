@@ -1,16 +1,24 @@
 @import "styles/normalize.less";
 @import "styles/lesshat.less";
+@import "styles/awesome/font-awesome.less";
 @import "styles/variables.less";
 @import "styles/helpers.less";
-[class^="el-icon-my"], [class*=" el-icon-my"] {
-  font-family:"your-font-family" !important;
+@fa-css-prefix: el-icon-fa;
 
-  /* The following is based on original CSS rules of third-party library */
+#admin [class^="el-icon-fa"], #admin  [class*=" el-icon-fa"] {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome!important;
+  font-family:FontAwesome!important;
   font-size: inherit;
-  font-style:normal;
+  text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  &:before{
+    font-size:17px;
+  }
+};
+
+
 
 
 .login{
@@ -78,19 +86,30 @@
     padding:25px;
   }
   &-sidebar{
-    width:20%;
-    min-height:50vh;
-    background-color: whitesmoke;
+    margin-right:25px;
+    .el-menu{
+      &-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+      }
+      &-item{
+        a{
+          color:@color-base;
+        }
+      }
+    }
   }
-  &-main{
-    width:~'calc(80% - 25px)';
-    min-height:70vh;
-    background-color: antiquewhite;
+  &-content{
+    width:100%;
+    min-height:50vh;
+  }
+  &-title{
+    margin:0;
+    line-height:1;
   }
 }
 .header{
-  background-color: #4b4b4b;
-  padding:25px 15px;
+  background-color: @color-blue;
+  padding:25px 25px;
   .flex(row,nowrap,space-between,center);
   &-logout{
     color:white;

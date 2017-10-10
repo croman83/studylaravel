@@ -224,13 +224,13 @@ body {
   min-height: 100%;
   width: 100%;
   background-color: white;
-  color: #292929;
+  color: black;
 }
 body,
 select,
 input,
 textarea {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.3em;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
@@ -508,9 +508,24 @@ a:focus {
   -webkit-transform: translateY(25px);
           transform: translateY(25px);
 }
+.faderouter-enter-active,
+.faderouter-leave-active {
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+.faderouter-enter,
+.faderouter-leave-to,
+.faderouter-leave-active {
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+  opacity: 0;
+}
 .editor {
   font-size: 16px;
-  color: #292929;
+  color: black;
   line-height: 22px;
 }
 .editor a {

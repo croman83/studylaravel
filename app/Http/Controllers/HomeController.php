@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -25,4 +27,21 @@ class HomeController extends Controller
     {
         return view('admin.admin');
     }
+
+    public function translateSave(Request $request)
+    {
+        $input = $request->all();
+        $newJsonString = json_encode($input['trans']);
+        $locales = $input['locales'];
+        $resources = resource_path();
+        $file = $resources.'/lang/admin/'.$locales.'/'.$locales.'.json';
+        $resp = file_put_contents($file, $newJsonString);
+        if($resp){
+            return ['success'=>true];
+        }else{
+            return ['success'=>false];
+        }
+    }
+
+
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-main"></div>
+    <div>main</div>
 </template>
 <script>
     export default {
