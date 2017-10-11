@@ -38,6 +38,7 @@ import Main from './components/Pages/Main.vue'
 import Header from './components/Base/Header.vue'
 import Footer from './components/Base/Footer.vue'
 import Loading from './components/Elements/Loading.vue'
+import Dots from './components/Elements/Dots.vue'
 import PageNotFound from './components/Pages/PageNotFound.vue'
 
 
@@ -71,6 +72,7 @@ const app = new Vue({
         appHeader:Header,
         appFooter:Footer,
         loading:Loading,
+        appDots:Dots,
     },
     mounted(){
         this.$loading = this.$refs.loading;

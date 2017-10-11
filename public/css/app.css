@@ -536,18 +536,18 @@ a:focus {
 }
 .fadeup-enter-active,
 .fadeup-leave-active {
-  -webkit-transition: all .7s;
-  transition: all .7s;
+  -webkit-transition: all .4s;
+  transition: all .4s;
   opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translateY(0) scale(1);
+          transform: translateY(0) scale(1);
 }
 .fadeup-enter,
 .fadeup-leave-to,
 .fadeup-leave-active {
   opacity: 0;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translateY(-50%) scale(0);
+          transform: translateY(-50%) scale(0);
 }
 .editor {
   font-size: 16px;

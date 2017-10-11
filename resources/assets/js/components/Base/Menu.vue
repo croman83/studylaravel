@@ -21,7 +21,7 @@
         <div class="header-fix_down">
             <ul>
                 <li>
-                    <router-link to="">{{ $t('menu.main') }}</router-link>
+                    <router-link to="/">{{ $t('menu.main') }}</router-link>
                 </li>
                 <li>
                     <router-link to="/catalog">{{ $t('menu.catalog') }}</router-link>

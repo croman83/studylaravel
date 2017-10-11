@@ -15,11 +15,12 @@
 <style lang="less" scoped>
     .ramka{
         position: relative;
-        padding:15px;
+        padding:16px;
         &-out{
             position: relative;
             top:15px;
             left:15px;
+            pointer-events: none;
             &:before{
                 content:'';
                 position: absolute;
@@ -29,6 +30,7 @@
                 left:-15px;
                 top:-15px;
                 border:1px solid black;
+                z-index:1;
             }
         }
         &-in{
@@ -51,8 +53,8 @@
                 height:25px;
                 display: block;
                 position: absolute;
-                bottom:0;
-                right:0;
+                bottom:1px;
+                right:1px;
                 background-color: #ff99cc;
             }
         }

@@ -1,24 +1,21 @@
 <template>
     <div class="base">
         <div class="sliderMain-menu">
-            <ul>
-                <li>test1</li>
-                <li>test2</li>
+            <el-title><h4 class="title">{{ $t('we_done') }}</h4></el-title>
+            <ul class="ul">
+                <li v-for="(item,index) in slider"
+                    :class="{active:index === slider_index}"
+                    @click="changeSlide(index)">
+                    <span>{{ item.name }}</span>
+                </li>
             </ul>
         </div>
         <div class="sliderMain-wrapper">
             <div class="sliderMain">
-                <el-ramka>
-                    <div style="background-image: url(/images/1.jpg)" class="sliderMain-slide"></div>
-                </el-ramka>
-                <el-ramka>
-                    <div style="background-image: url(/images/2.jpg)" class="sliderMain-slide"></div>
-                </el-ramka>
-                <el-ramka>
-                    <div style="background-image: url(/images/3.jpg)" class="sliderMain-slide"></div>
-                </el-ramka>
-                <el-ramka>
-                    <div style="background-image: url(/images/4.jpg)" class="sliderMain-slide"></div>
+                <el-ramka v-for="(item,index) in slider" :key="'slide' + index">
+                    <div :style="{backgroundImage : 'url(/images/' + item.img + ')'}" class="sliderMain-slide">
+                        <router-link to="" class="sliderMain-title">{{ item.title }}</router-link>
+                    </div>
                 </el-ramka>
             </div>
         </div>
@@ -27,30 +24,70 @@
 <script>
     import { tns } from 'tiny-slider/src/tiny-slider.module';
     import ramka from './Ramka';
+    import titl from './Title';
+    var sliderMain;
     export default {
+        data(){
+            return {
+                slider:[
+                    {
+                        title:'This is the best wedding',
+                        img:'1.jpg',
+                        link:'#',
+                        name:'Wedding'
+                    },
+                    {
+                        title:'This is the best event',
+                        img:'2.jpg',
+                        link:'#',
+                        name:'Events'
+                    },
+                    {
+                        title:'This is the best decor',
+                        img:'3.jpg',
+                        link:'#',
+                        name:'Decor'
+                    }
+                ],
+                slider_index:0,
+            }
+        },
         methods:{
             initSlider(){
-                var slider = tns({
+                sliderMain = tns({
                     "container": '.sliderMain',
                     "items": 1,
                     "slideBy": 'page',
                     "autoplay": false,
-//                    "axis":'vertical',
-//                    "mode":'gallery',
                     "controls":false,
-                    "mouseDrag":true,
                     "nav":false,
                     "gutter":30,
+                    "loop":false,
 //                    "animateOut": "rollOut",
 //                    "speed": 1000,
                 });
-            }
+            },
+            changeSlide(index){
+                sliderMain.goTo(index);
+            },
+            currentIndex(){
+                var _self = this;
+                sliderMain.events.on('indexChanged', function (info) {
+                    _self.slider_index = info.index;
+                    console.log(info)
+
+                });
+            },
+            
         },
         components:{
             elRamka:ramka,
+            elTitle:titl,
         },
         mounted(){
             this.initSlider();
+
+            this.currentIndex();
         }
     }
 </script>
@@ -153,8 +190,8 @@
         justify-content: space-between;
         align-items: center;
         width:90%;
-        max-width:1520px;
-        margin:25px auto;
+        max-width:1480px;
+        margin:50px auto;
     }
     .sliderMain{
         &-wrapper{
@@ -165,6 +202,49 @@
             background-position: center;
             background-repeat:no-repeat;
             background-size:cover;
+            position: relative;
+            pointer-events: all;
+        }
+        &-menu{
+            .title{
+                font-size:18px;
+                text-transform:uppercase;
+                font-weight:300;
+                margin:0;
+                line-height:1;
+            }
+            .ul{
+                margin:25px 0;
+                padding:0;
+                list-style:none;
+                li{
+                    font-size:18px;
+                    font-weight:300;
+                    margin:12px 0;
+                    cursor:pointer;
+                    &.active{
+                        span{
+                            background-color: #ff99cc;
+                        }
+                    }
+                }
+            }
+        }
+        &-title{
+            font-family:'Gabriela', serif;
+            font-size:40px;
+            line-height:1.2;
+            padding:3px 10px;
+            background-color: #fff;
+            position: absolute;
+            top:20%;
+            right:0;
+            color:black;
+            text-align: center;
+            z-index:2;
+            &:before{
+                content:'-';
+            }
         }
     }
 </style>
