@@ -1,3 +1,13 @@
 {
-  "header":"This is header"
+  "header":"This is header",
+  "menu":{
+    "menu":"Menu",
+    "main":"Home",
+    "shop":"Our shop",
+    "catalog":"Catalog",
+    "works":"Works",
+    "about":"About",
+    "contacts":"Contacts",
+    "partners":"Our partners"
+  }
 }
