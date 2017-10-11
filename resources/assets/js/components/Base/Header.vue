@@ -23,7 +23,6 @@
                 </g>
             </svg>
             </div>
-            <app-lang></app-lang>
         </div>
         <transition name="fadeup" mode="out-in" >
             <app-menu v-if="showmenu"

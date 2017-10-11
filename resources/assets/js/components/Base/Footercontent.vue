@@ -1,5 +1,7 @@
 <template>
-    <h2>footer</h2>
+    <div class="footer-content">
+
+    </div>
 </template>
 <script>
     export default {

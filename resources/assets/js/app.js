@@ -34,11 +34,11 @@ Vue.config.productionTip = false;
  */
 
 // Vue.component('App', require('./components/App.vue'));
-import Main from './components/Main.vue'
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-import Loading from './components/Loading.vue'
-import PageNotFound from './components/PageNotFound.vue'
+import Main from './components/Pages/Main.vue'
+import Header from './components/Base/Header.vue'
+import Footer from './components/Base/Footer.vue'
+import Loading from './components/Elements/Loading.vue'
+import PageNotFound from './components/Pages/PageNotFound.vue'
 
 
 

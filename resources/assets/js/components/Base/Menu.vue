@@ -1,6 +1,7 @@
 <template>
     <div class="header-fix">
         <div class="header-fix_up">
+            <app-lang></app-lang>
             <div class="close" @click="closemenu">
                 <span>{{ $t('menu.close') }}</span>
                 <svg version="1.1" width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -23,33 +24,37 @@
                     <router-link to="">{{ $t('menu.main') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.catalog') }}</router-link>
+                    <router-link to="/catalog">{{ $t('menu.catalog') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.shop') }}</router-link>
+                    <router-link to="/shop">{{ $t('menu.shop') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.works') }}</router-link>
+                    <router-link to="/works">{{ $t('menu.works') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.about') }}</router-link>
+                    <router-link to="/about">{{ $t('menu.about') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.contacts') }}</router-link>
+                    <router-link to="/contacts">{{ $t('menu.contacts') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="">{{ $t('menu.partners') }}</router-link>
+                    <router-link to="/partners">{{ $t('menu.partners') }}</router-link>
                 </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
+    import Lang from './Lang';
     export default {
         methods:{
             closemenu(){
                 this.$emit('closemenu');
             }
-        }
+        },
+        components:{
+            appLang:Lang,
+        },
     }
 </script>
