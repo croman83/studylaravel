@@ -11,7 +11,7 @@
                 <router-view class="app-content"></router-view>
             </transition>
             <app-footer></app-footer>
-            <app-dots></app-dots>
+            <app-dots ref="dots"></app-dots>
         </div>
         @include('scripts')
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8scgyz9ttj1Fs8_tHl9UYA7jRnte_Cw" async defer></script>

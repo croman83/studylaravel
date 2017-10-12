@@ -24,13 +24,13 @@
                     <router-link to="/">{{ $t('menu.main') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/catalog">{{ $t('menu.catalog') }}</router-link>
+                    <router-link to="/foo">{{ $t('menu.catalog') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/shop">{{ $t('menu.shop') }}</router-link>
+                    <router-link to="/bar">{{ $t('menu.shop') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/works">{{ $t('menu.works') }}</router-link>
+                    <router-link to="/test">{{ $t('menu.works') }}</router-link>
                 </li>
                 <li>
                     <router-link to="/about">{{ $t('menu.about') }}</router-link>

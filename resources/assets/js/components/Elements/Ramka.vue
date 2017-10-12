@@ -21,6 +21,7 @@
             top:15px;
             left:15px;
             pointer-events: none;
+            filter:saturate(2);
             &:before{
                 content:'';
                 position: absolute;
@@ -31,6 +32,7 @@
                 top:-15px;
                 border:1px solid black;
                 z-index:1;
+                background-color: rgba(255,255,255,0.25);
             }
         }
         &-in{

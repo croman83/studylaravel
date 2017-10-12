@@ -12,7 +12,8 @@
         },
         methods:{
             makeDots(){
-                this.c = parseInt(this.getDocumentHeight() / 500) * 2;
+                this.c = parseInt(document.body.clientHeight / 500) * 2;
+                console.log(document.body.clientHeight)
             }
         },
         mixins:[

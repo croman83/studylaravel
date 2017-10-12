@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap">
+    <div class="wrap" :class="{'square':square,'center':center}">
         <div class="wrap-in">
             <slot></slot>
         </div>
@@ -7,7 +7,14 @@
 </template>
 <script>
     export default {
-
+        props:{
+            center:{
+                default:false
+            },
+            square:{
+                default:false
+            }
+        }
     }
 </script>
 <style scoped lang="less">
@@ -26,6 +33,15 @@
             z-index:-1;
             top:0;
             left:-1.5em;
+        }
+        &.square:after{
+            content:'';
+            width:15px;
+            height: 15px;
+            background-color: #ff99cc;
+            position: absolute;
+            top:1px;
+            left:~'calc(-1.5em + 1px)';
         }
         &-in{
             display: inline-block;

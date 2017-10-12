@@ -82,10 +82,14 @@ const app = new Vue({
 
 router.beforeEach((to, from, next) => {
     router.app.$loading.start();
-    next()
+    setTimeout(next,300);
 });
 router.afterEach((to, from) => {
-    router.app.$loading.finish()
+    router.app.$loading.finish();
+    setTimeout(function () {
+        router.app.$refs.dots.makeDots();
+        console.log();
+    },500)
 });
 
 
@@ -121,3 +125,4 @@ window.Vue.directive('Clickoutside',{
 
     }
 });
+
