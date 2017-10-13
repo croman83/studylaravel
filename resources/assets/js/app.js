@@ -34,11 +34,14 @@ Vue.config.productionTip = false;
  */
 
 // Vue.component('App', require('./components/App.vue'));
-import Main from './components/Pages/Main.vue'
+
 import Header from './components/Base/Header.vue'
 import Footer from './components/Base/Footer.vue'
 import Loading from './components/Elements/Loading.vue'
 import Dots from './components/Elements/Dots.vue'
+
+import Main from './components/Pages/Main.vue'
+import Categories from './components/Pages/Categories.vue'
 import PageNotFound from './components/Pages/PageNotFound.vue'
 
 
@@ -57,7 +60,7 @@ const router = new VueRouter({
     base: locale,
     routes: [
         { path: `/`, component: Main },
-        { path: '/foo', component: Foo1 },
+        { path: '/category', component: Categories },
         { path: '/bar', component: Bar1 },
         { path: '/test', component: Home1 },
         { path: '/{any}/*', component: PageNotFound },
@@ -88,8 +91,7 @@ router.afterEach((to, from) => {
     router.app.$loading.finish();
     setTimeout(function () {
         router.app.$refs.dots.makeDots();
-        console.log();
-    },500)
+    },700)
 });
 
 
