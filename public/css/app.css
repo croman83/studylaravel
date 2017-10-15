@@ -4221,7 +4221,7 @@ a:focus {
   color: black;
   padding: 5px 20px;
 }
-.header-fix_down ul a.router-link-active,
+.header-fix_down ul a.router-link-exact-active,
 .header-fix_down ul a:hover {
   background-color: black;
   color: #fff;

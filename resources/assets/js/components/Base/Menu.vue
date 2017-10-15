@@ -24,7 +24,7 @@
                     <router-link to="/">{{ $t('menu.main') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/foo">{{ $t('menu.catalog') }}</router-link>
+                    <router-link to="/category">{{ $t('menu.catalog') }}</router-link>
                 </li>
                 <li>
                     <router-link to="/bar">{{ $t('menu.shop') }}</router-link>

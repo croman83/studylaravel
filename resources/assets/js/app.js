@@ -16,6 +16,16 @@ import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
 
+let token = document.head.querySelector('meta[name="csrf-token"]');
+var VueResource = require('vue-resource');
+Vue.use(VueResource);
+// Vue.http.headers.common['X-CSRF-TOKEN'] = token;
+Vue.http.interceptors.push(function(request, next) {
+    request.headers.set('X-CSRF-TOKEN', token.content);
+    next();
+});
+Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
+
 const { locale, translations } = window.config
 
 const i18n = new VueI18n({
@@ -34,12 +44,16 @@ Vue.config.productionTip = false;
  */
 
 // Vue.component('App', require('./components/App.vue'));
-import Main from './components/Pages/Main.vue'
+
 import Header from './components/Base/Header.vue'
 import Footer from './components/Base/Footer.vue'
 import Loading from './components/Elements/Loading.vue'
 import Dots from './components/Elements/Dots.vue'
+
+import Main from './components/Pages/Main.vue'
+import Categories from './components/Pages/Categories.vue'
 import PageNotFound from './components/Pages/PageNotFound.vue'
+import OneCategory from './components/Pages/OneCategory.vue'
 
 
 
@@ -57,8 +71,8 @@ const router = new VueRouter({
     base: locale,
     routes: [
         { path: `/`, component: Main },
-        { path: '/foo', component: Foo1 },
-        { path: '/bar', component: Bar1 },
+        { path: '/category', component: Categories },
+        { path: '/category/:slug', component: OneCategory, props:true , name:'category' },
         { path: '/test', component: Home1 },
         { path: '/{any}/*', component: PageNotFound },
     ]
@@ -82,14 +96,14 @@ const app = new Vue({
 
 router.beforeEach((to, from, next) => {
     router.app.$loading.start();
+    router.app.$refs.header.hide();
     setTimeout(next,300);
 });
 router.afterEach((to, from) => {
     router.app.$loading.finish();
     setTimeout(function () {
         router.app.$refs.dots.makeDots();
-        console.log();
-    },500)
+    },700)
 });
 
 

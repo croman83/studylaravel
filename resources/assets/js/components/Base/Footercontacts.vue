@@ -7,7 +7,7 @@
                 <li>069000000</li>
             </ul>
         </address>
-        <div id="footer-map"></div>
+        <!--<div id="footer-map"></div>-->
     </div>
 </template>
 <script>
