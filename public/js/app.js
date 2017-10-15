@@ -22858,7 +22858,7 @@ router.afterEach(function (to, from) {
     setTimeout(function () {
         router.app.$refs.dots.makeDots();
         console.log();
-    }, 1000);
+    }, 500);
 });
 
 window.Vue.directive('Clickoutside', {
