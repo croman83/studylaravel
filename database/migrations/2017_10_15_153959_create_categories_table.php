@@ -11,13 +11,20 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
+
+    public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+
+
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('name_ru');
-            $table->mediumText('name_ro');
-            $table->mediumText('name_en');
+            $table->text('name_ru');
+            $table->text('name_ro');
+            $table->text('name_en');
             $table->string('slug')->nullable()->index();
             $table->string('image', 100);
             $table->boolean('status');

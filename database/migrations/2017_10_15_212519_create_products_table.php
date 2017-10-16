@@ -11,21 +11,27 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
+
+    public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('name_ru');
-            $table->mediumText('name_ro');
-            $table->mediumText('name_en');
+            $table->string('name_ru');
+            $table->string('name_ro');
+            $table->string('name_en');
             $table->string('slug')->nullable()->index();
             $table->text('description_ru');
             $table->text('description_ro');
             $table->text('description_en');
-            $table->string('category_id')->nullable()->index();
+            $table->string('category_id');
             $table->string('images');
             $table->float('price',8,2);
-            $table->json('similar_products');
+            $table->text('similar_products');
             $table->boolean('status');
             $table->timestamps();
         });
