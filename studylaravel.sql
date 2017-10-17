@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2017 at 02:15 AM
+-- Generation Time: Oct 18, 2017 at 12:23 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -85,6 +85,38 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `productimages`
+--
+
+CREATE TABLE `productimages` (
+  `id` int(11) NOT NULL,
+  `image` text,
+  `product_id` int(255) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `productimages`
+--
+
+INSERT INTO `productimages` (`id`, `image`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, '2.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(2, '2.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(3, '3.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(4, '4.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(5, '1.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(6, '3.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(7, '2.jpg', 3, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(8, '1.jpg', 3, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(9, '4.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(10, '2.jpg', 5, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(11, '3.jpg', 6, '2017-10-17 17:55:45', '2017-10-17 17:55:48'),
+(12, '4.jpg', 7, '2017-10-17 17:55:45', '2017-10-17 17:55:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -111,9 +143,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `description_ru`, `description_ro`, `description_en`, `images`, `price`, `similar_products`, `status`, `created_at`, `updated_at`, `category_id`) VALUES
-(2, 'product1_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
-(3, 'product2_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 3),
-(4, 'product3_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1);
+(2, 'product1_ru', 'product1_ro', 'Balloon for decor', 'product2_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(3, 'product2_ru', 'product1_ro', 'product1_en', 'product3_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 3),
+(4, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(5, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(6, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(7, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(8, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(9, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(10, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
+(11, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1);
 
 -- --------------------------------------------------------
 
@@ -163,6 +202,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `productimages`
+--
+ALTER TABLE `productimages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -184,17 +229,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `productimages`
+--
+ALTER TABLE `productimages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --

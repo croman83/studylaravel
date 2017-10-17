@@ -15,6 +15,8 @@ Vue.use(VueHead);
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
+import {Pagination, PaginationEvent} from 'vue-pagination-2';
+Vue.component('pagination', Pagination);
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 var VueResource = require('vue-resource');
@@ -73,6 +75,7 @@ const router = new VueRouter({
         { path: `/`, component: Main },
         { path: '/category', component: Categories },
         { path: '/category/:slug', component: OneCategory, props:true , name:'category' },
+        { path: '/product/:slug', component: OneCategory, props:true , name:'product' },
         { path: '/test', component: Home1 },
         { path: '/{any}/*', component: PageNotFound },
     ]

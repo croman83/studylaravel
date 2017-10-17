@@ -23,16 +23,33 @@ class ApiController extends Controller
             $name = $item->name;
             $id = $item->id;
         }
-        $pr = DB::table('products')->where('category_id',$id)->select(
+        $pr = DB::table('products')->
+        where('category_id',$id)->
+        select(
             'name_'.$loc.' as name',
-            'images',
             'price',
             'description_'.$loc.' as description',
             'slug',
-            'id')->get();
-        $data['products'] = $pr;
+            'id')->
+            orderBy('created_at','asc')->skip( $input['page'] * 5 - 5 )->take(5)->
+        get();
+        $product_total = DB::table('products')->
+        where('category_id',$id)->count();
+        $product = [];
+        $i = 0;
+        foreach ($pr as $item){
+            $base = DB::table('productimages')->
+                where('product_id',$item->id)->
+                select('image')->
+            get();
+            $product[$i]['images'] = $base;
+            $product[$i]['info'] = $item;
+            $i++;
+        }
+        $data['products'] = $product;
         $data['name'] = $name;
         $data['locale'] = $loc;
+        $data['product_total'] = $product_total;
         return  $data;
     }
 
