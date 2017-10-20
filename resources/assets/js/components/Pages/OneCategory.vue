@@ -21,6 +21,7 @@
                 <div class="cat-pagination">
                     <pagination for="category"
                                 :chunk="10"
+                                class="pagination-block"
                                 :records="parseInt(data.product_total)"
                                 :count-text="'Showing {from} to {to} of {count} records| | '"
                                 :per-page="5"></pagination>
@@ -46,6 +47,9 @@
             test(e){
                 console.log('test: ' + e)
             },
+            animateScroll(){
+                Velocity(document.body, "scroll", {offset: "0", mobileHA: false});
+            },
             getData(page = 1){
                 var data = {
                     slug:this.$route.params.slug,
@@ -64,6 +68,7 @@
             var _self = this;
             PaginationEvent.$on('vue-pagination::category', function(page) {
                 _self.getData(page);
+                _self.animateScroll();
             });
         }
     }

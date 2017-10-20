@@ -2,6 +2,7 @@
 window.Vue = require('vue');
 require('./bootstrap');
 
+window.Velocity = require('velocity-animate');
 
 import Vuex from 'vuex';
 Vue.use(Vuex);

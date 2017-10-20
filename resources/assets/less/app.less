@@ -172,3 +172,49 @@
     }
   }
 }
+.VuePagination{
+  &__pagination{
+    .flex(row,nowrap,center,center);
+    .reset-around;
+    list-style: none;
+    .page{
+      &-link{
+        display: block;
+        border:1px solid black;
+        .size(30px);
+        cursor: pointer;
+        .flex(row,nowrap,center,center);
+        font-size:15px;
+        font-weight:300;
+        margin:5px;
+        color:black;
+        &:hover{
+          background-color: @color-pink;
+          border-color:@color-pink;
+          color:white;
+        }
+      }
+      &-item{
+        &.active{
+          .page-link{
+            color:white;
+            background-color: @color-pink;
+            border-color:@color-pink;
+          }
+        }
+        &.disabled{
+          .page-link{
+            cursor: default;
+            color:gainsboro;
+            border-color:gainsboro;
+            &:hover{
+              color:gainsboro;
+              border-color:gainsboro;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

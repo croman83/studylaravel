@@ -4308,3 +4308,65 @@ a:focus {
   top: 0;
   right: 0;
 }
+.VuePagination__pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.VuePagination__pagination .page-link {
+  display: block;
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 5px;
+  color: black;
+}
+.VuePagination__pagination .page-link:hover {
+  background-color: #ff99cc;
+  border-color: #ff99cc;
+  color: white;
+}
+.VuePagination__pagination .page-item.active .page-link {
+  color: white;
+  background-color: #ff99cc;
+  border-color: #ff99cc;
+}
+.VuePagination__pagination .page-item.disabled .page-link {
+  cursor: default;
+  color: gainsboro;
+  border-color: gainsboro;
+}
+.VuePagination__pagination .page-item.disabled .page-link:hover {
+  color: gainsboro;
+  border-color: gainsboro;
+  background-color: white;
+}
