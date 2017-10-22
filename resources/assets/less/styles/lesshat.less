@@ -882,5 +882,16 @@
   -ms-user-select: @process;
   user-select: @process;
 }
+.screen(@min, @max, @ruleset) {
+  @media (min-width: @min) and (max-width: (@max - 1)) {
+    @ruleset();
+  }
+}
 
+.flex(@row: row,@wrap: nowrap,@justify: flex-start,@align: stretch) {
+  display: flex;
+  flex-flow:@row @wrap;
+  justify-content: @justify;
+  align-items: @align;
+}
 

@@ -2581,6 +2581,21 @@ textarea {
     min-width: 320px;
   }
 }
+@media (min-width: 2px) and (max-width: 1269px) {
+  .container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 320px;
+  }
+}
+@media (min-width: 1270px) and (max-width: 8999999px) {
+  .container {
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 @media (min-width: 1270px) and (max-width: 8999999px) {
   .container {
     width: 1170px;
@@ -2719,6 +2734,12 @@ a:focus {
     margin-left: 0;
   }
 }
+@media (min-width: 2px) and (max-width: 449px) {
+  .modal-log_remember {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+}
 .modal-log_remember:hover {
   border-color: transparent;
 }
@@ -2800,6 +2821,22 @@ a:focus {
   .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+  }
+}
+@media (min-width: 750px) and (max-width: 89999px) {
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@media (min-width: 2px) and (max-width: 749px) {
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
   }
 }
 @media (min-width: 2px) and (max-width: 749px) {

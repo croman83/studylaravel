@@ -3,7 +3,7 @@
   "menu":{
     "menu":"Menu",
     "main":"Home",
-    "shop":"Our shop",
+    "service":"Services",
     "catalog":"Catalog",
     "works":"Works",
     "about":"About",
@@ -14,5 +14,9 @@
   "we_done":"We made",
   "new_products":"New in categories",
   "our_partners":"Our partners",
-  "price":"lei"
+  "price":"lei",
+  "description":"Description",
+  "price":"Price",
+  "add_to_wish":"Add to wishlist",
+  "added_to_wish":"Added to wishlist"
 }

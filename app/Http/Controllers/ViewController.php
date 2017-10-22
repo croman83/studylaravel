@@ -12,7 +12,7 @@ use Lang;
 use DB;
 use Illuminate\Http\Request;
 use App;
-use App\Categories;
+use App\Category;
 
 class ViewController extends Controller
 {
@@ -26,17 +26,34 @@ class ViewController extends Controller
 
     public function index()
     {
-        return view('welcome');
+        $cat = Category::where([
+            ['status',1],
+        ])
+            ->select([
+                'name_'.App::getLocale().' as name',
+                'parent_category',
+                'slug',
+                'id'
+            ])
+            ->get()->toJson();
+        return view('welcome',compact('cat'));
     }
 
     public function getCategories(Request $request)
     {
+        $category = $request->input('category');
         $data['locale'] = App::getLocale();
-        $cat = DB::table('categories')->select(
+        $cat = DB::table('categories')
+            ->where([
+                ['status',1],
+                ['parent_category',$category]
+            ])
+            ->select(
             'name_'.$data['locale'].' as name',
             'image',
             'id',
             'slug')->get();
+
         return $cat;
     }
 

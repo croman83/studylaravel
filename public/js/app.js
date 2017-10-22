@@ -1788,6 +1788,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1795,16 +1813,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            showmenu: false
+            showmenu: false,
+            favorits: this.$store.state.favorits
         };
     },
 
+    computed: {
+        favoritsLength: function favoritsLength() {
+            return this.favorits.length;
+        }
+    },
     methods: {
         hide: function hide() {
             this.showmenu = false;
         },
         show: function show() {
             this.showmenu = true;
+        },
+        menuEnter: function menuEnter(el, done) {
+            Velocity(el, {
+                translateY: ['0%', '-100%']
+            }, {
+                duration: 300
+            }).then(function () {
+                done();
+            });
+        },
+        menuLeave: function menuLeave(el, done) {
+            Velocity(el, {
+                translateY: ['-100%', '0%']
+            }, {
+                duration: 300
+            }).then(function () {
+                done();
+            });
         }
     },
     components: {
@@ -1816,6 +1858,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.popupItem = this.$el;
+        var _store = this;
+
+        this.$store.watch(function (state) {
+            return state.favorits;
+        }, function () {
+            _store.favorits = _store.$store.state.favorits;
+        }, {
+            deep: true
+        });
     }
 });
 
@@ -1902,17 +1953,85 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            categories: JSON.parse(config.categories)
+        };
+    },
+
     methods: {
         closemenu: function closemenu() {
             this.$emit('closemenu');
+        },
+        showUl: function showUl(event) {
+            var e = event || window.event;
+            var el = e.currentTarget;
+            var ul = el.querySelector('.inner');
+            if (ul) {
+                Velocity(ul, 'slideDown', {
+                    duration: 200
+                });
+            }
+        },
+        hideUl: function hideUl(event) {
+            var e = event || window.event;
+            var el = e.currentTarget;
+            var ul = el.querySelector('.inner');
+            if (ul) {
+                Velocity(ul, 'slideUp', {
+                    duration: 200
+                });
+            }
         }
     },
     components: {
         appLang: __WEBPACK_IMPORTED_MODULE_0__Lang___default.a
     }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/Breadcrumbs.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['itemClass']
 });
 
 /***/ }),
@@ -2213,6 +2332,68 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tiny_slider_src_tiny_slider_module__ = __webpack_require__("./node_modules/tiny-slider/src/tiny-slider.module.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var slider;
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['images'],
+    watch: {
+        images: function images(val) {
+            var _self = this;
+            setTimeout(this.initSlider, 100);
+        }
+    },
+    methods: {
+        initSlider: function initSlider() {
+            slider = Object(__WEBPACK_IMPORTED_MODULE_0_tiny_slider_src_tiny_slider_module__["a" /* tns */])({
+                "container": "#product-slider",
+                "items": 1,
+                "slideBy": 'page',
+                "navContainer": '#product-slider_bottom',
+                "autoplay": false,
+                "controls": false,
+                loop: false
+            });
+            var el = document.querySelector('.product-slider');
+            el.style.opacity = 1;
+            lightGallery(document.getElementById('product-slider'), {
+                download: false
+                //                    fullscreen:false,
+            });
+        }
+    },
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/Ramka.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2398,7 +2579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this = this;
 
-            var data = { lang: 'test lang' };
+            var data = { lang: 'test lang', category: 0 };
             this.$http.post('get-categories', data, { headers: { 'X-CSRF-TOKEN': this.token } }).then(function (response) {
                 _this.categories = response.data;
             }), function (response) {};
@@ -2498,18 +2679,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            data: {}
+            data: {},
+            checkedFilter: []
         };
     },
 
     components: {
         elTitle: __webpack_require__("./resources/assets/js/components/Elements/Title.vue"),
         elProduct: __webpack_require__("./resources/assets/js/components/Elements/ProductShort.vue")
+    },
+    watch: {
+        checkedFilter: function checkedFilter(val) {
+            this.getData();
+        }
     },
     methods: {
         test: function test(e) {
@@ -2526,10 +2727,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = {
                 slug: this.$route.params.slug,
                 locale: config.locale,
-                page: page
+                page: page,
+                filter: this.checkedFilter
             };
             this.$http.post('/list-products', data).then(function (response) {
-                //                        console.log(response.data)
+                console.log(response.data);
                 _this.data = response.data;
             }), function (response) {};
         }
@@ -2559,6 +2761,143 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            slug: this.$route.params.slug,
+            data: {
+                cat: [{
+                    name: '',
+                    slug: 'loading'
+                }],
+                product: {
+                    name: '',
+                    extra_desription: null
+                },
+                images: []
+            },
+            favorits: this.$store.state.favorits
+        };
+    },
+
+    components: {
+        breadcrumbs: __webpack_require__("./resources/assets/js/components/Elements/Breadcrumbs.vue"),
+        slider: __webpack_require__("./resources/assets/js/components/Elements/ProductSlider.vue")
+    },
+    methods: {
+        getData: function getData() {
+            var _this = this;
+
+            var data = {
+                slug: this.slug,
+                locale: config.locale
+            };
+            this.$http.post('/product-details', data).then(function (response) {
+                console.log(response.data);
+                _this.data = response.data;
+            }), function (response) {};
+        },
+        setFavorit: function setFavorit() {
+            var fav = localStorage.getItem('favorits') ? JSON.parse(localStorage.getItem('favorits')) : [];
+            if (fav.indexOf(this.data.product.id) < 0) {
+                fav.push(this.data.product.id);
+                localStorage.setItem('favorits', JSON.stringify(fav));
+            } else {
+                var index = fav.indexOf(this.data.product.id);
+                fav.splice(index, 1);
+                localStorage.setItem('favorits', JSON.stringify(fav));
+            }
+            this.$store.commit('changeFavorits', fav);
+        }
+    },
+    computed: {
+        inFav: function inFav() {
+            var fav = this.favorits;
+            if (fav.indexOf(this.data.product.id) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    mounted: function mounted() {
+        this.getData();
+
+        var _store = this;
+
+        this.$store.watch(function (state) {
+            return state.favorits;
+        }, function () {
+            _store.favorits = _store.$store.state.favorits;
+        }, {
+            deep: true
+        });
+    }
+});
+function f() {}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a48d028\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Elements/Loading.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2583,6 +2922,36 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n.container[data-v-1a58180b] {\n  margin-left: auto;\n  margin-right: auto;\n}\n@media (min-width: 2px) and (max-width: 1269px) {\n.container[data-v-1a58180b] {\n    width: 100%;\n    padding-left: 15px;\n    padding-right: 15px;\n    min-width: 320px;\n}\n}\n@media (min-width: 1270px) and (max-width: 8999999px) {\n.container[data-v-1a58180b] {\n    width: 1170px;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n}\n.cat-wrapper[data-v-1a58180b] {\n  margin-left: auto;\n  margin-right: auto;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  margin-top: 50px;\n  margin-bottom: 50px;\n}\n@media (min-width: 2px) and (max-width: 1269px) {\n.cat-wrapper[data-v-1a58180b] {\n    width: 100%;\n    padding-left: 15px;\n    padding-right: 15px;\n    min-width: 320px;\n}\n}\n@media (min-width: 1270px) and (max-width: 8999999px) {\n.cat-wrapper[data-v-1a58180b] {\n    width: 1170px;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n}\n.cat-block[data-v-1a58180b] {\n  width: calc(100% / 3 - 50px);\n  margin: 25px;\n}\n.cat-block-link[data-v-1a58180b] {\n  display: block;\n  height: 100%;\n  pointer-events: all;\n}\n.cat-block-in[data-v-1a58180b] {\n  height: 230px;\n  position: relative;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n}\n.cat-block-title[data-v-1a58180b] {\n  position: absolute;\n  right: 0;\n  text-align: center;\n  background-color: #fff;\n  color: black;\n  font-family: 'Gabriela', serif;\n  font-size: 25px;\n  line-height: 1.2;\n  font-weight: 400;\n  top: 20%;\n  z-index: 2;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tns-outer {\n  padding: 0 !important;\n}\n.tns-outer [hidden] {\n    display: none !important;\n}\n.tns-outer [aria-controls], .tns-outer [data-action] {\n    cursor: pointer;\n}\n.tns-outer.ms-touch {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    -ms-overflow-style: none;\n    -ms-scroll-chaining: none;\n    -ms-scroll-snap-type: mandatory;\n    -ms-scroll-snap-points-x: snapInterval(0%, 100%);\n}\n.tns-slider {\n  -webkit-transition: all 0s;\n  transition: all 0s;\n}\n.tns-slider > .tns-item {\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.tns-horizontal.tns-subpixel {\n  white-space: nowrap;\n}\n.tns-horizontal.tns-subpixel > .tns-item {\n    display: inline-block;\n    vertical-align: top;\n    white-space: normal;\n}\n.tns-horizontal.tns-no-subpixel:after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.tns-horizontal.tns-no-subpixel > .tns-item {\n  float: left;\n  margin-right: -100%;\n}\n.tns-no-calc {\n  position: relative;\n  left: 0;\n}\n.tns-gallery {\n  position: relative;\n  left: 0;\n}\n.tns-gallery > .tns-item {\n    position: absolute;\n    left: -100%;\n    -webkit-transition: opacity 0s;\n    -webkit-transition: transform 0s, opacity 0s;\n    -webkit-transition: opacity 0s, -webkit-transform 0s;\n    transition: opacity 0s, -webkit-transform 0s;\n    transition: transform 0s, opacity 0s;\n    transition: transform 0s, opacity 0s, -webkit-transform 0s;\n}\n.tns-lazy-img {\n  -webkit-transition: opacity 0.6s;\n  transition: opacity 0.6s;\n  opacity: 0.6;\n}\n.tns-lazy-img.loaded {\n    opacity: 1;\n}\n.tns-ah {\n  -webkit-transition: height 0s;\n  transition: height 0s;\n}\n.tns-ovh {\n  overflow: hidden;\n}\n.tns-hdx {\n  overflow-x: hidden;\n}\n.tns-hdy {\n  overflow-y: hidden;\n}\n.tns-visually-hidden {\n  position: absolute;\n  left: -10000em;\n}\n.tns-transparent {\n  opacity: 0;\n  visibility: hidden;\n}\n.tns-fadeIn {\n  opacity: 1;\n  filter: alpha(opacity=100);\n  z-index: 0;\n}\n.tns-normal, .tns-fadeOut {\n  opacity: 0;\n  filter: alpha(opacity=0);\n  z-index: -1;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.product-slider[data-v-33d4eec8] {\n  opacity: 0;\n  width: 450px;\n  grid-column: 1;\n  grid-row: 2 / span 4;\n  margin-bottom: 50px;\n}\n.product-slider_item[data-v-33d4eec8] {\n  height: 520px;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  cursor: pointer;\n}\n.product-slider_bottom[data-v-33d4eec8] {\n  position: relative;\n}\n.product-slider_bottom[data-v-33d4eec8]:after {\n  content: '';\n  right: -8px;\n  bottom: 1px;\n  background-color: #ff99cc;\n  position: absolute;\n  display: block;\n  width: 15px;\n  height: 15px;\n  z-index: 1;\n}\n#product-slider_bottom[data-v-33d4eec8] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  width: calc(100% + 18px);\n  margin: 0 -9px;\n  position: relative;\n  background-color: #fff;\n  z-index: 1;\n}\n#product-slider_bottom[data-v-33d4eec8]:before {\n  content: '';\n  width: calc(100% - 20px);\n  height: calc(100% - 20px);\n  position: absolute;\n  border: 1px solid black;\n  top: 20px;\n  right: 0;\n  z-index: -1;\n}\n#product-slider_bottom[data-v-33d4eec8]:after {\n  content: '';\n  position: absolute;\n  width: calc(100% - 10px);\n  height: calc(100% - 10px);\n  background-color: #fff;\n  z-index: -1;\n  left: 5px;\n  top: 5px;\n}\n#product-slider_bottom .bottom-slider[data-v-33d4eec8] {\n  width: calc(25% - 18px);\n  height: 100px;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  margin: 9px;\n  outline: none;\n  border: 2px solid #dbdbdb;\n  cursor: pointer;\n}\n#product-slider_bottom .bottom-slider.tns-nav-active[data-v-33d4eec8] {\n  border-color: black;\n}\n", ""]);
 
 // exports
 
@@ -2724,6 +3093,21 @@ exports.push([module.i, "\n.prt[data-v-7ffae439] {\n  margin: 50px auto;\n  padd
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.product[data-v-99016c7e] {\n  margin-left: auto;\n  margin-right: auto;\n  display: grid;\n  grid-template-columns: 1fr 1.5fr;\n  grid-template-rows: auto;\n  -ms-flex-line-pack: start;\n      align-content: flex-start;\n}\n@media (min-width: 2px) and (max-width: 1269px) {\n.product[data-v-99016c7e] {\n    width: 90%;\n    padding-left: 15px;\n    padding-right: 15px;\n    min-width: 270px;\n}\n}\n@media (min-width: 1270px) and (max-width: 8999999px) {\n.product[data-v-99016c7e] {\n    width: 80%;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n}\n.product-title[data-v-99016c7e] {\n  font-family: 'Gabriela', serif;\n  font-size: 35px;\n  grid-column: 2;\n  grid-row: 2;\n  line-height: 1.5;\n  font-weight: normal;\n}\n.product-description[data-v-99016c7e] {\n  grid-column: 2;\n  grid-row: 3;\n  margin-bottom: 50px;\n}\n.product-description .title[data-v-99016c7e] {\n  font-size: 24px;\n  font-weight: 300;\n  line-height: 1.1;\n  display: inline-block;\n  position: relative;\n  margin-bottom: 1em;\n}\n.product-description .title[data-v-99016c7e]:after {\n  content: '';\n  border-bottom: 1px solid #ff99cc;\n  width: 100%;\n  height: 0;\n  bottom: -5px;\n  left: 0.5em;\n  display: block;\n  position: absolute;\n}\n.product-description .text[data-v-99016c7e] {\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 300;\n  margin-bottom: 30px;\n}\n.product-price[data-v-99016c7e] {\n  margin: 15px 0 25px 0;\n  font-family: 'Gabriela', serif;\n  font-weight: normal;\n}\n.product-price b[data-v-99016c7e] {\n  font-size: 30px;\n}\n.product-price span[data-v-99016c7e] {\n  font-size: 20px;\n}\n.product-wish[data-v-99016c7e] {\n  margin: 50px 0;\n}\n.product-wish button[data-v-99016c7e] {\n  background-color: #fff;\n  border: 1px solid #ff99cc;\n  outline: none;\n  padding: 5px 20px;\n  font-size: 17px;\n  font-weight: 400;\n  color: #ff99cc;\n}\n.product-wish button[data-v-99016c7e]:hover {\n  background-color: #ff99cc;\n  color: #fff;\n}\n.product-wish button:hover svg[data-v-99016c7e] {\n  stroke: #fff;\n}\n.product-wish button > div[data-v-99016c7e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.product-wish button svg[data-v-99016c7e] {\n  fill: white;\n  stroke: #ff99cc;\n  stroke-width: 25px;\n  display: block;\n  margin-right: 30px;\n  width: 30px;\n  height: 30px;\n}\n.product-extra[data-v-99016c7e] {\n  grid-column: 1 / span 2;\n  grid-row: 6;\n  margin-bottom: 50px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9d4c50d0\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Base/Footercontacts.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2847,6 +3231,1617 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/lightgallery.js/lib/js/lg-utils.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports !== "undefined") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.lgUtils = mod.exports;
+    }
+})(this, function (exports) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    /*
+     *@todo remove function from window and document. Update on and off functions
+     */
+    window.getAttribute = function (label) {
+        return window[label];
+    };
+
+    window.setAttribute = function (label, value) {
+        window[label] = value;
+    };
+
+    document.getAttribute = function (label) {
+        return document[label];
+    };
+
+    document.setAttribute = function (label, value) {
+        document[label] = value;
+    };
+
+    var utils = {
+        wrap: function wrap(el, className) {
+            if (!el) {
+                return;
+            }
+
+            var wrapper = document.createElement('div');
+            wrapper.className = className;
+            el.parentNode.insertBefore(wrapper, el);
+            el.parentNode.removeChild(el);
+            wrapper.appendChild(el);
+        },
+
+        addClass: function addClass(el, className) {
+            if (!el) {
+                return;
+            }
+
+            if (el.classList) {
+                el.classList.add(className);
+            } else {
+                el.className += ' ' + className;
+            }
+        },
+
+        removeClass: function removeClass(el, className) {
+            if (!el) {
+                return;
+            }
+
+            if (el.classList) {
+                el.classList.remove(className);
+            } else {
+                el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        },
+
+        hasClass: function hasClass(el, className) {
+            if (el.classList) {
+                return el.classList.contains(className);
+            } else {
+                return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+            }
+
+            return false;
+        },
+
+        // ex Transform
+        // ex TransitionTimingFunction
+        setVendor: function setVendor(el, property, value) {
+            if (!el) {
+                return;
+            }
+
+            el.style[property.charAt(0).toLowerCase() + property.slice(1)] = value;
+            el.style['webkit' + property] = value;
+            el.style['moz' + property] = value;
+            el.style['ms' + property] = value;
+            el.style['o' + property] = value;
+        },
+
+        trigger: function trigger(el, event) {
+            var detail = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+            if (!el) {
+                return;
+            }
+
+            var customEvent = new CustomEvent(event, {
+                detail: detail
+            });
+            el.dispatchEvent(customEvent);
+        },
+
+        Listener: {
+            uid: 0
+        },
+        on: function on(el, events, fn) {
+            if (!el) {
+                return;
+            }
+
+            events.split(' ').forEach(function (event) {
+                var _id = el.getAttribute('lg-event-uid') || '';
+                utils.Listener.uid++;
+                _id += '&' + utils.Listener.uid;
+                el.setAttribute('lg-event-uid', _id);
+                utils.Listener[event + utils.Listener.uid] = fn;
+                el.addEventListener(event.split('.')[0], fn, false);
+            });
+        },
+
+        off: function off(el, event) {
+            if (!el) {
+                return;
+            }
+
+            var _id = el.getAttribute('lg-event-uid');
+            if (_id) {
+                _id = _id.split('&');
+                for (var i = 0; i < _id.length; i++) {
+                    if (_id[i]) {
+                        var _event = event + _id[i];
+                        if (_event.substring(0, 1) === '.') {
+                            for (var key in utils.Listener) {
+                                if (utils.Listener.hasOwnProperty(key)) {
+                                    if (key.split('.').indexOf(_event.split('.')[1]) > -1) {
+                                        el.removeEventListener(key.split('.')[0], utils.Listener[key]);
+                                        el.setAttribute('lg-event-uid', el.getAttribute('lg-event-uid').replace('&' + _id[i], ''));
+                                        delete utils.Listener[key];
+                                    }
+                                }
+                            }
+                        } else {
+                            el.removeEventListener(_event.split('.')[0], utils.Listener[_event]);
+                            el.setAttribute('lg-event-uid', el.getAttribute('lg-event-uid').replace('&' + _id[i], ''));
+                            delete utils.Listener[_event];
+                        }
+                    }
+                }
+            }
+        },
+
+        param: function param(obj) {
+            return Object.keys(obj).map(function (k) {
+                return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]);
+            }).join('&');
+        }
+    };
+
+    exports.default = utils;
+});
+
+/***/ }),
+
+/***/ "./node_modules/lightgallery.js/lib/js/lightgallery.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/lightgallery.js/lib/js/lg-utils.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports !== "undefined") {
+        factory(require('./lg-utils'));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(global.lgUtils);
+        global.lightgallery = mod.exports;
+    }
+})(this, function (_lgUtils) {
+    'use strict';
+
+    var _lgUtils2 = _interopRequireDefault(_lgUtils);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i];
+
+            for (var key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    target[key] = source[key];
+                }
+            }
+        }
+
+        return target;
+    };
+
+    /** Polyfill the CustomEvent() constructor functionality in Internet Explorer 9 and higher */
+    (function () {
+
+        if (typeof window.CustomEvent === 'function') {
+            return false;
+        }
+
+        function CustomEvent(event, params) {
+            params = params || {
+                bubbles: false,
+                cancelable: false,
+                detail: undefined
+            };
+            var evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+
+        window.CustomEvent = CustomEvent;
+    })();
+
+    window.utils = _lgUtils2.default;
+    window.lgData = {
+        uid: 0
+    };
+
+    window.lgModules = {};
+    var defaults = {
+
+        mode: 'lg-slide',
+
+        // Ex : 'ease'
+        cssEasing: 'ease',
+
+        //'for jquery animation'
+        easing: 'linear',
+        speed: 600,
+        height: '100%',
+        width: '100%',
+        addClass: '',
+        startClass: 'lg-start-zoom',
+        backdropDuration: 150,
+        hideBarsDelay: 6000,
+
+        useLeft: false,
+
+        closable: true,
+        loop: true,
+        escKey: true,
+        keyPress: true,
+        controls: true,
+        slideEndAnimatoin: true,
+        hideControlOnEnd: false,
+        mousewheel: false,
+
+        getCaptionFromTitleOrAlt: true,
+
+        // .lg-item || '.lg-sub-html'
+        appendSubHtmlTo: '.lg-sub-html',
+
+        subHtmlSelectorRelative: false,
+
+        /**
+         * @desc number of preload slides
+         * will exicute only after the current slide is fully loaded.
+         *
+         * @ex you clicked on 4th image and if preload = 1 then 3rd slide and 5th
+         * slide will be loaded in the background after the 4th slide is fully loaded..
+         * if preload is 2 then 2nd 3rd 5th 6th slides will be preloaded.. ... ...
+         *
+         */
+        preload: 1,
+        showAfterLoad: true,
+        selector: '',
+        selectWithin: '',
+        nextHtml: '',
+        prevHtml: '',
+
+        // 0, 1
+        index: false,
+
+        iframeMaxWidth: '100%',
+
+        download: true,
+        counter: true,
+        appendCounterTo: '.lg-toolbar',
+
+        swipeThreshold: 50,
+        enableSwipe: true,
+        enableDrag: true,
+
+        dynamic: false,
+        dynamicEl: [],
+        galleryId: 1
+    };
+
+    function Plugin(element, options) {
+
+        // Current lightGallery element
+        this.el = element;
+
+        // lightGallery settings
+        this.s = _extends({}, defaults, options);
+
+        // When using dynamic mode, ensure dynamicEl is an array
+        if (this.s.dynamic && this.s.dynamicEl !== 'undefined' && this.s.dynamicEl.constructor === Array && !this.s.dynamicEl.length) {
+            throw 'When using dynamic mode, you must also define dynamicEl as an Array.';
+        }
+
+        // lightGallery modules
+        this.modules = {};
+
+        // false when lightgallery complete first slide;
+        this.lGalleryOn = false;
+
+        this.lgBusy = false;
+
+        // Timeout function for hiding controls;
+        this.hideBartimeout = false;
+
+        // To determine browser supports for touch events;
+        this.isTouch = 'ontouchstart' in document.documentElement;
+
+        // Disable hideControlOnEnd if sildeEndAnimation is true
+        if (this.s.slideEndAnimatoin) {
+            this.s.hideControlOnEnd = false;
+        }
+
+        this.items = [];
+
+        // Gallery items
+        if (this.s.dynamic) {
+            this.items = this.s.dynamicEl;
+        } else {
+            if (this.s.selector === 'this') {
+                this.items.push(this.el);
+            } else if (this.s.selector !== '') {
+                if (this.s.selectWithin) {
+                    this.items = document.querySelector(this.s.selectWithin).querySelectorAll(this.s.selector);
+                } else {
+                    this.items = this.el.querySelectorAll(this.s.selector);
+                }
+            } else {
+                this.items = this.el.children;
+            }
+        }
+
+        // .lg-item
+
+        this.___slide = '';
+
+        // .lg-outer
+        this.outer = '';
+
+        this.init();
+
+        return this;
+    }
+
+    Plugin.prototype.init = function () {
+
+        var _this = this;
+
+        // s.preload should not be more than $item.length
+        if (_this.s.preload > _this.items.length) {
+            _this.s.preload = _this.items.length;
+        }
+
+        // if dynamic option is enabled execute immediately
+        var _hash = window.location.hash;
+        if (_hash.indexOf('lg=' + this.s.galleryId) > 0) {
+
+            _this.index = parseInt(_hash.split('&slide=')[1], 10);
+
+            _lgUtils2.default.addClass(document.body, 'lg-from-hash');
+            if (!_lgUtils2.default.hasClass(document.body, 'lg-on')) {
+                _lgUtils2.default.addClass(document.body, 'lg-on');
+                setTimeout(function () {
+                    _this.build(_this.index);
+                });
+            }
+        }
+
+        if (_this.s.dynamic) {
+
+            _lgUtils2.default.trigger(this.el, 'onBeforeOpen');
+
+            _this.index = _this.s.index || 0;
+
+            // prevent accidental double execution
+            if (!_lgUtils2.default.hasClass(document.body, 'lg-on')) {
+                _lgUtils2.default.addClass(document.body, 'lg-on');
+                setTimeout(function () {
+                    _this.build(_this.index);
+                });
+            }
+        } else {
+
+            for (var i = 0; i < _this.items.length; i++) {
+
+                /*jshint loopfunc: true */
+                (function (index) {
+
+                    // Using different namespace for click because click event should not unbind if selector is same object('this')
+                    _lgUtils2.default.on(_this.items[index], 'click.lgcustom', function (e) {
+
+                        e.preventDefault();
+
+                        _lgUtils2.default.trigger(_this.el, 'onBeforeOpen');
+
+                        _this.index = _this.s.index || index;
+
+                        if (!_lgUtils2.default.hasClass(document.body, 'lg-on')) {
+                            _this.build(_this.index);
+                            _lgUtils2.default.addClass(document.body, 'lg-on');
+                        }
+                    });
+                })(i);
+            }
+        }
+    };
+
+    Plugin.prototype.build = function (index) {
+
+        var _this = this;
+
+        _this.structure();
+
+        for (var key in window.lgModules) {
+            _this.modules[key] = new window.lgModules[key](_this.el);
+        }
+
+        // initiate slide function
+        _this.slide(index, false, false);
+
+        if (_this.s.keyPress) {
+            _this.keyPress();
+        }
+
+        if (_this.items.length > 1) {
+
+            _this.arrow();
+
+            setTimeout(function () {
+                _this.enableDrag();
+                _this.enableSwipe();
+            }, 50);
+
+            if (_this.s.mousewheel) {
+                _this.mousewheel();
+            }
+        }
+
+        _this.counter();
+
+        _this.closeGallery();
+
+        _lgUtils2.default.trigger(_this.el, 'onAfterOpen');
+
+        // Hide controllers if mouse doesn't move for some period
+        _lgUtils2.default.on(_this.outer, 'mousemove.lg click.lg touchstart.lg', function () {
+
+            _lgUtils2.default.removeClass(_this.outer, 'lg-hide-items');
+
+            clearTimeout(_this.hideBartimeout);
+
+            // Timeout will be cleared on each slide movement also
+            _this.hideBartimeout = setTimeout(function () {
+                _lgUtils2.default.addClass(_this.outer, 'lg-hide-items');
+            }, _this.s.hideBarsDelay);
+        });
+    };
+
+    Plugin.prototype.structure = function () {
+        var list = '';
+        var controls = '';
+        var i = 0;
+        var subHtmlCont = '';
+        var template;
+        var _this = this;
+
+        document.body.insertAdjacentHTML('beforeend', '<div class="lg-backdrop"></div>');
+        _lgUtils2.default.setVendor(document.querySelector('.lg-backdrop'), 'TransitionDuration', this.s.backdropDuration + 'ms');
+
+        // Create gallery items
+        for (i = 0; i < this.items.length; i++) {
+            list += '<div class="lg-item"></div>';
+        }
+
+        // Create controlls
+        if (this.s.controls && this.items.length > 1) {
+            controls = '<div class="lg-actions">' + '<div class="lg-prev lg-icon">' + this.s.prevHtml + '</div>' + '<div class="lg-next lg-icon">' + this.s.nextHtml + '</div>' + '</div>';
+        }
+
+        if (this.s.appendSubHtmlTo === '.lg-sub-html') {
+            subHtmlCont = '<div class="lg-sub-html"></div>';
+        }
+
+        template = '<div class="lg-outer ' + this.s.addClass + ' ' + this.s.startClass + '">' + '<div class="lg" style="width:' + this.s.width + '; height:' + this.s.height + '">' + '<div class="lg-inner">' + list + '</div>' + '<div class="lg-toolbar group">' + '<span class="lg-close lg-icon"></span>' + '</div>' + controls + subHtmlCont + '</div>' + '</div>';
+
+        document.body.insertAdjacentHTML('beforeend', template);
+        this.outer = document.querySelector('.lg-outer');
+        this.___slide = this.outer.querySelectorAll('.lg-item');
+
+        if (this.s.useLeft) {
+            _lgUtils2.default.addClass(this.outer, 'lg-use-left');
+
+            // Set mode lg-slide if use left is true;
+            this.s.mode = 'lg-slide';
+        } else {
+            _lgUtils2.default.addClass(this.outer, 'lg-use-css3');
+        }
+
+        // For fixed height gallery
+        _this.setTop();
+        _lgUtils2.default.on(window, 'resize.lg orientationchange.lg', function () {
+            setTimeout(function () {
+                _this.setTop();
+            }, 100);
+        });
+
+        // add class lg-current to remove initial transition
+        _lgUtils2.default.addClass(this.___slide[this.index], 'lg-current');
+
+        // add Class for css support and transition mode
+        if (this.doCss()) {
+            _lgUtils2.default.addClass(this.outer, 'lg-css3');
+        } else {
+            _lgUtils2.default.addClass(this.outer, 'lg-css');
+
+            // Set speed 0 because no animation will happen if browser doesn't support css3
+            this.s.speed = 0;
+        }
+
+        _lgUtils2.default.addClass(this.outer, this.s.mode);
+
+        if (this.s.enableDrag && this.items.length > 1) {
+            _lgUtils2.default.addClass(this.outer, 'lg-grab');
+        }
+
+        if (this.s.showAfterLoad) {
+            _lgUtils2.default.addClass(this.outer, 'lg-show-after-load');
+        }
+
+        if (this.doCss()) {
+            var inner = this.outer.querySelector('.lg-inner');
+            _lgUtils2.default.setVendor(inner, 'TransitionTimingFunction', this.s.cssEasing);
+            _lgUtils2.default.setVendor(inner, 'TransitionDuration', this.s.speed + 'ms');
+        }
+
+        setTimeout(function () {
+            _lgUtils2.default.addClass(document.querySelector('.lg-backdrop'), 'in');
+        });
+
+        setTimeout(function () {
+            _lgUtils2.default.addClass(_this.outer, 'lg-visible');
+        }, this.s.backdropDuration);
+
+        if (this.s.download) {
+            this.outer.querySelector('.lg-toolbar').insertAdjacentHTML('beforeend', '<a id="lg-download" target="_blank" download class="lg-download lg-icon"></a>');
+        }
+
+        // Store the current scroll top value to scroll back after closing the gallery..
+        this.prevScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    };
+
+    // For fixed height gallery
+    Plugin.prototype.setTop = function () {
+        if (this.s.height !== '100%') {
+            var wH = window.innerHeight;
+            var top = (wH - parseInt(this.s.height, 10)) / 2;
+            var lGallery = this.outer.querySelector('.lg');
+            if (wH >= parseInt(this.s.height, 10)) {
+                lGallery.style.top = top + 'px';
+            } else {
+                lGallery.style.top = '0px';
+            }
+        }
+    };
+
+    // Find css3 support
+    Plugin.prototype.doCss = function () {
+        // check for css animation support
+        var support = function support() {
+            var transition = ['transition', 'MozTransition', 'WebkitTransition', 'OTransition', 'msTransition', 'KhtmlTransition'];
+            var root = document.documentElement;
+            var i = 0;
+            for (i = 0; i < transition.length; i++) {
+                if (transition[i] in root.style) {
+                    return true;
+                }
+            }
+        };
+
+        if (support()) {
+            return true;
+        }
+
+        return false;
+    };
+
+    /**
+     *  @desc Check the given src is video
+     *  @param {String} src
+     *  @return {Object} video type
+     *  Ex:{ youtube  :  ["//www.youtube.com/watch?v=c0asJgSyxcY", "c0asJgSyxcY"] }
+     */
+    Plugin.prototype.isVideo = function (src, index) {
+
+        if (!src) {
+            throw new Error("Make sure that slide " + index + " has an image/video src");
+        }
+
+        var html;
+        if (this.s.dynamic) {
+            html = this.s.dynamicEl[index].html;
+        } else {
+            html = this.items[index].getAttribute('data-html');
+        }
+
+        if (!src && html) {
+            return {
+                html5: true
+            };
+        }
+
+        var youtube = src.match(/\/\/(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/)?([a-z0-9\-\_\%]+)/i);
+        var vimeo = src.match(/\/\/(?:www\.)?vimeo.com\/([0-9a-z\-_]+)/i);
+        var dailymotion = src.match(/\/\/(?:www\.)?dai.ly\/([0-9a-z\-_]+)/i);
+        var vk = src.match(/\/\/(?:www\.)?(?:vk\.com|vkontakte\.ru)\/(?:video_ext\.php\?)(.*)/i);
+
+        if (youtube) {
+            return {
+                youtube: youtube
+            };
+        } else if (vimeo) {
+            return {
+                vimeo: vimeo
+            };
+        } else if (dailymotion) {
+            return {
+                dailymotion: dailymotion
+            };
+        } else if (vk) {
+            return {
+                vk: vk
+            };
+        }
+    };
+
+    /**
+     *  @desc Create image counter
+     *  Ex: 1/10
+     */
+    Plugin.prototype.counter = function () {
+        if (this.s.counter) {
+            this.outer.querySelector(this.s.appendCounterTo).insertAdjacentHTML('beforeend', '<div id="lg-counter"><span id="lg-counter-current">' + (parseInt(this.index, 10) + 1) + '</span> / <span id="lg-counter-all">' + this.items.length + '</span></div>');
+        }
+    };
+
+    /**
+     *  @desc add sub-html into the slide
+     *  @param {Number} index - index of the slide
+     */
+    Plugin.prototype.addHtml = function (index) {
+        var subHtml = null;
+        var currentEle;
+        if (this.s.dynamic) {
+            subHtml = this.s.dynamicEl[index].subHtml;
+        } else {
+            currentEle = this.items[index];
+            subHtml = currentEle.getAttribute('data-sub-html');
+            if (this.s.getCaptionFromTitleOrAlt && !subHtml) {
+                subHtml = currentEle.getAttribute('title');
+                if (subHtml && currentEle.querySelector('img')) {
+                    subHtml = currentEle.querySelector('img').getAttribute('alt');
+                }
+            }
+        }
+
+        if (typeof subHtml !== 'undefined' && subHtml !== null) {
+
+            // get first letter of subhtml
+            // if first letter starts with . or # get the html form the jQuery object
+            var fL = subHtml.substring(0, 1);
+            if (fL === '.' || fL === '#') {
+                if (this.s.subHtmlSelectorRelative && !this.s.dynamic) {
+                    subHtml = currentEle.querySelector(subHtml).innerHTML;
+                } else {
+                    subHtml = document.querySelector(subHtml).innerHTML;
+                }
+            }
+        } else {
+            subHtml = '';
+        }
+
+        if (this.s.appendSubHtmlTo === '.lg-sub-html') {
+            this.outer.querySelector(this.s.appendSubHtmlTo).innerHTML = subHtml;
+        } else {
+            this.___slide[index].insertAdjacentHTML('beforeend', subHtml);
+        }
+
+        // Add lg-empty-html class if title doesn't exist
+        if (typeof subHtml !== 'undefined' && subHtml !== null) {
+            if (subHtml === '') {
+                _lgUtils2.default.addClass(this.outer.querySelector(this.s.appendSubHtmlTo), 'lg-empty-html');
+            } else {
+                _lgUtils2.default.removeClass(this.outer.querySelector(this.s.appendSubHtmlTo), 'lg-empty-html');
+            }
+        }
+
+        _lgUtils2.default.trigger(this.el, 'onAfterAppendSubHtml', {
+            index: index
+        });
+    };
+
+    /**
+     *  @desc Preload slides
+     *  @param {Number} index - index of the slide
+     */
+    Plugin.prototype.preload = function (index) {
+        var i = 1;
+        var j = 1;
+        for (i = 1; i <= this.s.preload; i++) {
+            if (i >= this.items.length - index) {
+                break;
+            }
+
+            this.loadContent(index + i, false, 0);
+        }
+
+        for (j = 1; j <= this.s.preload; j++) {
+            if (index - j < 0) {
+                break;
+            }
+
+            this.loadContent(index - j, false, 0);
+        }
+    };
+
+    /**
+     *  @desc Load slide content into slide.
+     *  @param {Number} index - index of the slide.
+     *  @param {Boolean} rec - if true call loadcontent() function again.
+     *  @param {Boolean} delay - delay for adding complete class. it is 0 except first time.
+     */
+    Plugin.prototype.loadContent = function (index, rec, delay) {
+
+        var _this = this;
+        var _hasPoster = false;
+        var _img;
+        var _src;
+        var _poster;
+        var _srcset;
+        var _sizes;
+        var _html;
+        var getResponsiveSrc = function getResponsiveSrc(srcItms) {
+            var rsWidth = [];
+            var rsSrc = [];
+            for (var i = 0; i < srcItms.length; i++) {
+                var __src = srcItms[i].split(' ');
+
+                // Manage empty space
+                if (__src[0] === '') {
+                    __src.splice(0, 1);
+                }
+
+                rsSrc.push(__src[0]);
+                rsWidth.push(__src[1]);
+            }
+
+            var wWidth = window.innerWidth;
+            for (var j = 0; j < rsWidth.length; j++) {
+                if (parseInt(rsWidth[j], 10) > wWidth) {
+                    _src = rsSrc[j];
+                    break;
+                }
+            }
+        };
+
+        if (_this.s.dynamic) {
+
+            if (_this.s.dynamicEl[index].poster) {
+                _hasPoster = true;
+                _poster = _this.s.dynamicEl[index].poster;
+            }
+
+            _html = _this.s.dynamicEl[index].html;
+            _src = _this.s.dynamicEl[index].src;
+
+            if (_this.s.dynamicEl[index].responsive) {
+                var srcDyItms = _this.s.dynamicEl[index].responsive.split(',');
+                getResponsiveSrc(srcDyItms);
+            }
+
+            _srcset = _this.s.dynamicEl[index].srcset;
+            _sizes = _this.s.dynamicEl[index].sizes;
+        } else {
+
+            if (_this.items[index].getAttribute('data-poster')) {
+                _hasPoster = true;
+                _poster = _this.items[index].getAttribute('data-poster');
+            }
+
+            _html = _this.items[index].getAttribute('data-html');
+            _src = _this.items[index].getAttribute('href') || _this.items[index].getAttribute('data-src');
+
+            if (_this.items[index].getAttribute('data-responsive')) {
+                var srcItms = _this.items[index].getAttribute('data-responsive').split(',');
+                getResponsiveSrc(srcItms);
+            }
+
+            _srcset = _this.items[index].getAttribute('data-srcset');
+            _sizes = _this.items[index].getAttribute('data-sizes');
+        }
+
+        //if (_src || _srcset || _sizes || _poster) {
+
+        var iframe = false;
+        if (_this.s.dynamic) {
+            if (_this.s.dynamicEl[index].iframe) {
+                iframe = true;
+            }
+        } else {
+            if (_this.items[index].getAttribute('data-iframe') === 'true') {
+                iframe = true;
+            }
+        }
+
+        var _isVideo = _this.isVideo(_src, index);
+        if (!_lgUtils2.default.hasClass(_this.___slide[index], 'lg-loaded')) {
+            if (iframe) {
+                _this.___slide[index].insertAdjacentHTML('afterbegin', '<div class="lg-video-cont" style="max-width:' + _this.s.iframeMaxWidth + '"><div class="lg-video"><iframe class="lg-object" frameborder="0" src="' + _src + '"  allowfullscreen="true"></iframe></div></div>');
+            } else if (_hasPoster) {
+                var videoClass = '';
+                if (_isVideo && _isVideo.youtube) {
+                    videoClass = 'lg-has-youtube';
+                } else if (_isVideo && _isVideo.vimeo) {
+                    videoClass = 'lg-has-vimeo';
+                } else {
+                    videoClass = 'lg-has-html5';
+                }
+
+                _this.___slide[index].insertAdjacentHTML('beforeend', '<div class="lg-video-cont ' + videoClass + ' "><div class="lg-video"><span class="lg-video-play"></span><img class="lg-object lg-has-poster" src="' + _poster + '" /></div></div>');
+            } else if (_isVideo) {
+                _this.___slide[index].insertAdjacentHTML('beforeend', '<div class="lg-video-cont "><div class="lg-video"></div></div>');
+                _lgUtils2.default.trigger(_this.el, 'hasVideo', {
+                    index: index,
+                    src: _src,
+                    html: _html
+                });
+            } else {
+                _this.___slide[index].insertAdjacentHTML('beforeend', '<div class="lg-img-wrap"><img class="lg-object lg-image" src="' + _src + '" /></div>');
+            }
+
+            _lgUtils2.default.trigger(_this.el, 'onAferAppendSlide', {
+                index: index
+            });
+
+            _img = _this.___slide[index].querySelector('.lg-object');
+            if (_sizes) {
+                _img.setAttribute('sizes', _sizes);
+            }
+
+            if (_srcset) {
+                _img.setAttribute('srcset', _srcset);
+                try {
+                    picturefill({
+                        elements: [_img[0]]
+                    });
+                } catch (e) {
+                    console.error('Make sure you have included Picturefill version 2');
+                }
+            }
+
+            if (this.s.appendSubHtmlTo !== '.lg-sub-html') {
+                _this.addHtml(index);
+            }
+
+            _lgUtils2.default.addClass(_this.___slide[index], 'lg-loaded');
+        }
+
+        _lgUtils2.default.on(_this.___slide[index].querySelector('.lg-object'), 'load.lg error.lg', function () {
+
+            // For first time add some delay for displaying the start animation.
+            var _speed = 0;
+
+            // Do not change the delay value because it is required for zoom plugin.
+            // If gallery opened from direct url (hash) speed value should be 0
+            if (delay && !_lgUtils2.default.hasClass(document.body, 'lg-from-hash')) {
+                _speed = delay;
+            }
+
+            setTimeout(function () {
+                _lgUtils2.default.addClass(_this.___slide[index], 'lg-complete');
+
+                _lgUtils2.default.trigger(_this.el, 'onSlideItemLoad', {
+                    index: index,
+                    delay: delay || 0
+                });
+            }, _speed);
+        });
+
+        // @todo check load state for html5 videos
+        if (_isVideo && _isVideo.html5 && !_hasPoster) {
+            _lgUtils2.default.addClass(_this.___slide[index], 'lg-complete');
+        }
+
+        if (rec === true) {
+            if (!_lgUtils2.default.hasClass(_this.___slide[index], 'lg-complete')) {
+                _lgUtils2.default.on(_this.___slide[index].querySelector('.lg-object'), 'load.lg error.lg', function () {
+                    _this.preload(index);
+                });
+            } else {
+                _this.preload(index);
+            }
+        }
+
+        //}
+    };
+
+    /**
+    *   @desc slide function for lightgallery
+        ** Slide() gets call on start
+        ** ** Set lg.on true once slide() function gets called.
+        ** Call loadContent() on slide() function inside setTimeout
+        ** ** On first slide we do not want any animation like slide of fade
+        ** ** So on first slide( if lg.on if false that is first slide) loadContent() should start loading immediately
+        ** ** Else loadContent() should wait for the transition to complete.
+        ** ** So set timeout s.speed + 50
+    <=> ** loadContent() will load slide content in to the particular slide
+        ** ** It has recursion (rec) parameter. if rec === true loadContent() will call preload() function.
+        ** ** preload will execute only when the previous slide is fully loaded (images iframe)
+        ** ** avoid simultaneous image load
+    <=> ** Preload() will check for s.preload value and call loadContent() again accoring to preload value
+        ** loadContent()  <====> Preload();
+    
+    *   @param {Number} index - index of the slide
+    *   @param {Boolean} fromTouch - true if slide function called via touch event or mouse drag
+    *   @param {Boolean} fromThumb - true if slide function called via thumbnail click
+    */
+    Plugin.prototype.slide = function (index, fromTouch, fromThumb) {
+
+        var _prevIndex = 0;
+        for (var i = 0; i < this.___slide.length; i++) {
+            if (_lgUtils2.default.hasClass(this.___slide[i], 'lg-current')) {
+                _prevIndex = i;
+                break;
+            }
+        }
+
+        var _this = this;
+
+        // Prevent if multiple call
+        // Required for hsh plugin
+        if (_this.lGalleryOn && _prevIndex === index) {
+            return;
+        }
+
+        var _length = this.___slide.length;
+        var _time = _this.lGalleryOn ? this.s.speed : 0;
+        var _next = false;
+        var _prev = false;
+
+        if (!_this.lgBusy) {
+
+            if (this.s.download) {
+                var _src;
+                if (_this.s.dynamic) {
+                    _src = _this.s.dynamicEl[index].downloadUrl !== false && (_this.s.dynamicEl[index].downloadUrl || _this.s.dynamicEl[index].src);
+                } else {
+                    _src = _this.items[index].getAttribute('data-download-url') !== 'false' && (_this.items[index].getAttribute('data-download-url') || _this.items[index].getAttribute('href') || _this.items[index].getAttribute('data-src'));
+                }
+
+                if (_src) {
+                    document.getElementById('lg-download').setAttribute('href', _src);
+                    _lgUtils2.default.removeClass(_this.outer, 'lg-hide-download');
+                } else {
+                    _lgUtils2.default.addClass(_this.outer, 'lg-hide-download');
+                }
+            }
+
+            _lgUtils2.default.trigger(_this.el, 'onBeforeSlide', {
+                prevIndex: _prevIndex,
+                index: index,
+                fromTouch: fromTouch,
+                fromThumb: fromThumb
+            });
+
+            _this.lgBusy = true;
+
+            clearTimeout(_this.hideBartimeout);
+
+            // Add title if this.s.appendSubHtmlTo === lg-sub-html
+            if (this.s.appendSubHtmlTo === '.lg-sub-html') {
+
+                // wait for slide animation to complete
+                setTimeout(function () {
+                    _this.addHtml(index);
+                }, _time);
+            }
+
+            this.arrowDisable(index);
+
+            if (!fromTouch) {
+
+                // remove all transitions
+                _lgUtils2.default.addClass(_this.outer, 'lg-no-trans');
+
+                for (var j = 0; j < this.___slide.length; j++) {
+                    _lgUtils2.default.removeClass(this.___slide[j], 'lg-prev-slide');
+                    _lgUtils2.default.removeClass(this.___slide[j], 'lg-next-slide');
+                }
+
+                if (index < _prevIndex) {
+                    _prev = true;
+                    if (index === 0 && _prevIndex === _length - 1 && !fromThumb) {
+                        _prev = false;
+                        _next = true;
+                    }
+                } else if (index > _prevIndex) {
+                    _next = true;
+                    if (index === _length - 1 && _prevIndex === 0 && !fromThumb) {
+                        _prev = true;
+                        _next = false;
+                    }
+                }
+
+                if (_prev) {
+
+                    //prevslide
+                    _lgUtils2.default.addClass(this.___slide[index], 'lg-prev-slide');
+                    _lgUtils2.default.addClass(this.___slide[_prevIndex], 'lg-next-slide');
+                } else if (_next) {
+
+                    // next slide
+                    _lgUtils2.default.addClass(this.___slide[index], 'lg-next-slide');
+                    _lgUtils2.default.addClass(this.___slide[_prevIndex], 'lg-prev-slide');
+                }
+
+                // give 50 ms for browser to add/remove class
+                setTimeout(function () {
+                    _lgUtils2.default.removeClass(_this.outer.querySelector('.lg-current'), 'lg-current');
+
+                    //_this.$slide.eq(_prevIndex).removeClass('lg-current');
+                    _lgUtils2.default.addClass(_this.___slide[index], 'lg-current');
+
+                    // reset all transitions
+                    _lgUtils2.default.removeClass(_this.outer, 'lg-no-trans');
+                }, 50);
+            } else {
+
+                var touchPrev = index - 1;
+                var touchNext = index + 1;
+
+                if (index === 0 && _prevIndex === _length - 1) {
+
+                    // next slide
+                    touchNext = 0;
+                    touchPrev = _length - 1;
+                } else if (index === _length - 1 && _prevIndex === 0) {
+
+                    // prev slide
+                    touchNext = 0;
+                    touchPrev = _length - 1;
+                }
+
+                _lgUtils2.default.removeClass(_this.outer.querySelector('.lg-prev-slide'), 'lg-prev-slide');
+                _lgUtils2.default.removeClass(_this.outer.querySelector('.lg-current'), 'lg-current');
+                _lgUtils2.default.removeClass(_this.outer.querySelector('.lg-next-slide'), 'lg-next-slide');
+                _lgUtils2.default.addClass(_this.___slide[touchPrev], 'lg-prev-slide');
+                _lgUtils2.default.addClass(_this.___slide[touchNext], 'lg-next-slide');
+                _lgUtils2.default.addClass(_this.___slide[index], 'lg-current');
+            }
+
+            if (_this.lGalleryOn) {
+                setTimeout(function () {
+                    _this.loadContent(index, true, 0);
+                }, this.s.speed + 50);
+
+                setTimeout(function () {
+                    _this.lgBusy = false;
+                    _lgUtils2.default.trigger(_this.el, 'onAfterSlide', {
+                        prevIndex: _prevIndex,
+                        index: index,
+                        fromTouch: fromTouch,
+                        fromThumb: fromThumb
+                    });
+                }, this.s.speed);
+            } else {
+                _this.loadContent(index, true, _this.s.backdropDuration);
+
+                _this.lgBusy = false;
+                _lgUtils2.default.trigger(_this.el, 'onAfterSlide', {
+                    prevIndex: _prevIndex,
+                    index: index,
+                    fromTouch: fromTouch,
+                    fromThumb: fromThumb
+                });
+            }
+
+            _this.lGalleryOn = true;
+
+            if (this.s.counter) {
+                if (document.getElementById('lg-counter-current')) {
+                    document.getElementById('lg-counter-current').innerHTML = index + 1;
+                }
+            }
+        }
+    };
+
+    /**
+     *  @desc Go to next slide
+     *  @param {Boolean} fromTouch - true if slide function called via touch event
+     */
+    Plugin.prototype.goToNextSlide = function (fromTouch) {
+        var _this = this;
+        if (!_this.lgBusy) {
+            if (_this.index + 1 < _this.___slide.length) {
+                _this.index++;
+                _lgUtils2.default.trigger(_this.el, 'onBeforeNextSlide', {
+                    index: _this.index
+                });
+                _this.slide(_this.index, fromTouch, false);
+            } else {
+                if (_this.s.loop) {
+                    _this.index = 0;
+                    _lgUtils2.default.trigger(_this.el, 'onBeforeNextSlide', {
+                        index: _this.index
+                    });
+                    _this.slide(_this.index, fromTouch, false);
+                } else if (_this.s.slideEndAnimatoin) {
+                    _lgUtils2.default.addClass(_this.outer, 'lg-right-end');
+                    setTimeout(function () {
+                        _lgUtils2.default.removeClass(_this.outer, 'lg-right-end');
+                    }, 400);
+                }
+            }
+        }
+    };
+
+    /**
+     *  @desc Go to previous slide
+     *  @param {Boolean} fromTouch - true if slide function called via touch event
+     */
+    Plugin.prototype.goToPrevSlide = function (fromTouch) {
+        var _this = this;
+        if (!_this.lgBusy) {
+            if (_this.index > 0) {
+                _this.index--;
+                _lgUtils2.default.trigger(_this.el, 'onBeforePrevSlide', {
+                    index: _this.index,
+                    fromTouch: fromTouch
+                });
+                _this.slide(_this.index, fromTouch, false);
+            } else {
+                if (_this.s.loop) {
+                    _this.index = _this.items.length - 1;
+                    _lgUtils2.default.trigger(_this.el, 'onBeforePrevSlide', {
+                        index: _this.index,
+                        fromTouch: fromTouch
+                    });
+                    _this.slide(_this.index, fromTouch, false);
+                } else if (_this.s.slideEndAnimatoin) {
+                    _lgUtils2.default.addClass(_this.outer, 'lg-left-end');
+                    setTimeout(function () {
+                        _lgUtils2.default.removeClass(_this.outer, 'lg-left-end');
+                    }, 400);
+                }
+            }
+        }
+    };
+
+    Plugin.prototype.keyPress = function () {
+        var _this = this;
+        if (this.items.length > 1) {
+            _lgUtils2.default.on(window, 'keyup.lg', function (e) {
+                if (_this.items.length > 1) {
+                    if (e.keyCode === 37) {
+                        e.preventDefault();
+                        _this.goToPrevSlide();
+                    }
+
+                    if (e.keyCode === 39) {
+                        e.preventDefault();
+                        _this.goToNextSlide();
+                    }
+                }
+            });
+        }
+
+        _lgUtils2.default.on(window, 'keydown.lg', function (e) {
+            if (_this.s.escKey === true && e.keyCode === 27) {
+                e.preventDefault();
+                if (!_lgUtils2.default.hasClass(_this.outer, 'lg-thumb-open')) {
+                    _this.destroy();
+                } else {
+                    _lgUtils2.default.removeClass(_this.outer, 'lg-thumb-open');
+                }
+            }
+        });
+    };
+
+    Plugin.prototype.arrow = function () {
+        var _this = this;
+        _lgUtils2.default.on(this.outer.querySelector('.lg-prev'), 'click.lg', function () {
+            _this.goToPrevSlide();
+        });
+
+        _lgUtils2.default.on(this.outer.querySelector('.lg-next'), 'click.lg', function () {
+            _this.goToNextSlide();
+        });
+    };
+
+    Plugin.prototype.arrowDisable = function (index) {
+
+        // Disable arrows if s.hideControlOnEnd is true
+        if (!this.s.loop && this.s.hideControlOnEnd) {
+            var next = this.outer.querySelector('.lg-next');
+            var prev = this.outer.querySelector('.lg-prev');
+            if (index + 1 < this.___slide.length) {
+                next.removeAttribute('disabled');
+                _lgUtils2.default.removeClass(next, 'disabled');
+            } else {
+                next.setAttribute('disabled', 'disabled');
+                _lgUtils2.default.addClass(next, 'disabled');
+            }
+
+            if (index > 0) {
+                prev.removeAttribute('disabled');
+                _lgUtils2.default.removeClass(prev, 'disabled');
+            } else {
+                next.setAttribute('disabled', 'disabled');
+                _lgUtils2.default.addClass(next, 'disabled');
+            }
+        }
+    };
+
+    Plugin.prototype.setTranslate = function (el, xValue, yValue) {
+        // jQuery supports Automatic CSS prefixing since jQuery 1.8.0
+        if (this.s.useLeft) {
+            el.style.left = xValue;
+        } else {
+            _lgUtils2.default.setVendor(el, 'Transform', 'translate3d(' + xValue + 'px, ' + yValue + 'px, 0px)');
+        }
+    };
+
+    Plugin.prototype.touchMove = function (startCoords, endCoords) {
+
+        var distance = endCoords - startCoords;
+
+        if (Math.abs(distance) > 15) {
+            // reset opacity and transition duration
+            _lgUtils2.default.addClass(this.outer, 'lg-dragging');
+
+            // move current slide
+            this.setTranslate(this.___slide[this.index], distance, 0);
+
+            // move next and prev slide with current slide
+            this.setTranslate(document.querySelector('.lg-prev-slide'), -this.___slide[this.index].clientWidth + distance, 0);
+            this.setTranslate(document.querySelector('.lg-next-slide'), this.___slide[this.index].clientWidth + distance, 0);
+        }
+    };
+
+    Plugin.prototype.touchEnd = function (distance) {
+        var _this = this;
+
+        // keep slide animation for any mode while dragg/swipe
+        if (_this.s.mode !== 'lg-slide') {
+            _lgUtils2.default.addClass(_this.outer, 'lg-slide');
+        }
+
+        for (var i = 0; i < this.___slide.length; i++) {
+            if (!_lgUtils2.default.hasClass(this.___slide[i], 'lg-current') && !_lgUtils2.default.hasClass(this.___slide[i], 'lg-prev-slide') && !_lgUtils2.default.hasClass(this.___slide[i], 'lg-next-slide')) {
+                this.___slide[i].style.opacity = '0';
+            }
+        }
+
+        // set transition duration
+        setTimeout(function () {
+            _lgUtils2.default.removeClass(_this.outer, 'lg-dragging');
+            if (distance < 0 && Math.abs(distance) > _this.s.swipeThreshold) {
+                _this.goToNextSlide(true);
+            } else if (distance > 0 && Math.abs(distance) > _this.s.swipeThreshold) {
+                _this.goToPrevSlide(true);
+            } else if (Math.abs(distance) < 5) {
+
+                // Trigger click if distance is less than 5 pix
+                _lgUtils2.default.trigger(_this.el, 'onSlideClick');
+            }
+
+            for (var i = 0; i < _this.___slide.length; i++) {
+                _this.___slide[i].removeAttribute('style');
+            }
+        });
+
+        // remove slide class once drag/swipe is completed if mode is not slide
+        setTimeout(function () {
+            if (!_lgUtils2.default.hasClass(_this.outer, 'lg-dragging') && _this.s.mode !== 'lg-slide') {
+                _lgUtils2.default.removeClass(_this.outer, 'lg-slide');
+            }
+        }, _this.s.speed + 100);
+    };
+
+    Plugin.prototype.enableSwipe = function () {
+        var _this = this;
+        var startCoords = 0;
+        var endCoords = 0;
+        var isMoved = false;
+
+        if (_this.s.enableSwipe && _this.isTouch && _this.doCss()) {
+
+            for (var i = 0; i < _this.___slide.length; i++) {
+                /*jshint loopfunc: true */
+                _lgUtils2.default.on(_this.___slide[i], 'touchstart.lg', function (e) {
+                    if (!_lgUtils2.default.hasClass(_this.outer, 'lg-zoomed') && !_this.lgBusy) {
+                        e.preventDefault();
+                        _this.manageSwipeClass();
+                        startCoords = e.targetTouches[0].pageX;
+                    }
+                });
+            }
+
+            for (var j = 0; j < _this.___slide.length; j++) {
+                /*jshint loopfunc: true */
+                _lgUtils2.default.on(_this.___slide[j], 'touchmove.lg', function (e) {
+                    if (!_lgUtils2.default.hasClass(_this.outer, 'lg-zoomed')) {
+                        e.preventDefault();
+                        endCoords = e.targetTouches[0].pageX;
+                        _this.touchMove(startCoords, endCoords);
+                        isMoved = true;
+                    }
+                });
+            }
+
+            for (var k = 0; k < _this.___slide.length; k++) {
+                /*jshint loopfunc: true */
+                _lgUtils2.default.on(_this.___slide[k], 'touchend.lg', function () {
+                    if (!_lgUtils2.default.hasClass(_this.outer, 'lg-zoomed')) {
+                        if (isMoved) {
+                            isMoved = false;
+                            _this.touchEnd(endCoords - startCoords);
+                        } else {
+                            _lgUtils2.default.trigger(_this.el, 'onSlideClick');
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    Plugin.prototype.enableDrag = function () {
+        var _this = this;
+        var startCoords = 0;
+        var endCoords = 0;
+        var isDraging = false;
+        var isMoved = false;
+        if (_this.s.enableDrag && !_this.isTouch && _this.doCss()) {
+            for (var i = 0; i < _this.___slide.length; i++) {
+                /*jshint loopfunc: true */
+                _lgUtils2.default.on(_this.___slide[i], 'mousedown.lg', function (e) {
+                    // execute only on .lg-object
+                    if (!_lgUtils2.default.hasClass(_this.outer, 'lg-zoomed')) {
+                        if (_lgUtils2.default.hasClass(e.target, 'lg-object') || _lgUtils2.default.hasClass(e.target, 'lg-video-play')) {
+                            e.preventDefault();
+
+                            if (!_this.lgBusy) {
+                                _this.manageSwipeClass();
+                                startCoords = e.pageX;
+                                isDraging = true;
+
+                                // ** Fix for webkit cursor issue https://code.google.com/p/chromium/issues/detail?id=26723
+                                _this.outer.scrollLeft += 1;
+                                _this.outer.scrollLeft -= 1;
+
+                                // *
+
+                                _lgUtils2.default.removeClass(_this.outer, 'lg-grab');
+                                _lgUtils2.default.addClass(_this.outer, 'lg-grabbing');
+
+                                _lgUtils2.default.trigger(_this.el, 'onDragstart');
+                            }
+                        }
+                    }
+                });
+            }
+
+            _lgUtils2.default.on(window, 'mousemove.lg', function (e) {
+                if (isDraging) {
+                    isMoved = true;
+                    endCoords = e.pageX;
+                    _this.touchMove(startCoords, endCoords);
+                    _lgUtils2.default.trigger(_this.el, 'onDragmove');
+                }
+            });
+
+            _lgUtils2.default.on(window, 'mouseup.lg', function (e) {
+                if (isMoved) {
+                    isMoved = false;
+                    _this.touchEnd(endCoords - startCoords);
+                    _lgUtils2.default.trigger(_this.el, 'onDragend');
+                } else if (_lgUtils2.default.hasClass(e.target, 'lg-object') || _lgUtils2.default.hasClass(e.target, 'lg-video-play')) {
+                    _lgUtils2.default.trigger(_this.el, 'onSlideClick');
+                }
+
+                // Prevent execution on click
+                if (isDraging) {
+                    isDraging = false;
+                    _lgUtils2.default.removeClass(_this.outer, 'lg-grabbing');
+                    _lgUtils2.default.addClass(_this.outer, 'lg-grab');
+                }
+            });
+        }
+    };
+
+    Plugin.prototype.manageSwipeClass = function () {
+        var touchNext = this.index + 1;
+        var touchPrev = this.index - 1;
+        var length = this.___slide.length;
+        if (this.s.loop) {
+            if (this.index === 0) {
+                touchPrev = length - 1;
+            } else if (this.index === length - 1) {
+                touchNext = 0;
+            }
+        }
+
+        for (var i = 0; i < this.___slide.length; i++) {
+            _lgUtils2.default.removeClass(this.___slide[i], 'lg-next-slide');
+            _lgUtils2.default.removeClass(this.___slide[i], 'lg-prev-slide');
+        }
+
+        if (touchPrev > -1) {
+            _lgUtils2.default.addClass(this.___slide[touchPrev], 'lg-prev-slide');
+        }
+
+        _lgUtils2.default.addClass(this.___slide[touchNext], 'lg-next-slide');
+    };
+
+    Plugin.prototype.mousewheel = function () {
+        var _this = this;
+        _lgUtils2.default.on(_this.outer, 'mousewheel.lg', function (e) {
+
+            if (!e.deltaY) {
+                return;
+            }
+
+            if (e.deltaY > 0) {
+                _this.goToPrevSlide();
+            } else {
+                _this.goToNextSlide();
+            }
+
+            e.preventDefault();
+        });
+    };
+
+    Plugin.prototype.closeGallery = function () {
+
+        var _this = this;
+        var mousedown = false;
+        _lgUtils2.default.on(this.outer.querySelector('.lg-close'), 'click.lg', function () {
+            _this.destroy();
+        });
+
+        if (_this.s.closable) {
+
+            // If you drag the slide and release outside gallery gets close on chrome
+            // for preventing this check mousedown and mouseup happened on .lg-item or lg-outer
+            _lgUtils2.default.on(_this.outer, 'mousedown.lg', function (e) {
+
+                if (_lgUtils2.default.hasClass(e.target, 'lg-outer') || _lgUtils2.default.hasClass(e.target, 'lg-item') || _lgUtils2.default.hasClass(e.target, 'lg-img-wrap')) {
+                    mousedown = true;
+                } else {
+                    mousedown = false;
+                }
+            });
+
+            _lgUtils2.default.on(_this.outer, 'mouseup.lg', function (e) {
+
+                if (_lgUtils2.default.hasClass(e.target, 'lg-outer') || _lgUtils2.default.hasClass(e.target, 'lg-item') || _lgUtils2.default.hasClass(e.target, 'lg-img-wrap') && mousedown) {
+                    if (!_lgUtils2.default.hasClass(_this.outer, 'lg-dragging')) {
+                        _this.destroy();
+                    }
+                }
+            });
+        }
+    };
+
+    Plugin.prototype.destroy = function (d) {
+
+        var _this = this;
+
+        if (!d) {
+            _lgUtils2.default.trigger(_this.el, 'onBeforeClose');
+        }
+
+        document.body.scrollTop = _this.prevScrollTop;
+        document.documentElement.scrollTop = _this.prevScrollTop;
+
+        /**
+         * if d is false or undefined destroy will only close the gallery
+         * plugins instance remains with the element
+         *
+         * if d is true destroy will completely remove the plugin
+         */
+
+        if (d) {
+            if (!_this.s.dynamic) {
+                // only when not using dynamic mode is $items a jquery collection
+
+                for (var i = 0; i < this.items.length; i++) {
+                    _lgUtils2.default.off(this.items[i], '.lg');
+                    _lgUtils2.default.off(this.items[i], '.lgcustom');
+                }
+            }
+
+            var lguid = _this.el.getAttribute('lg-uid');
+            delete window.lgData[lguid];
+            _this.el.removeAttribute('lg-uid');
+        }
+
+        // Unbind all events added by lightGallery
+        _lgUtils2.default.off(this.el, '.lgtm');
+
+        // Distroy all lightGallery modules
+        for (var key in window.lgModules) {
+            if (_this.modules[key]) {
+                _this.modules[key].destroy();
+            }
+        }
+
+        this.lGalleryOn = false;
+
+        clearTimeout(_this.hideBartimeout);
+        this.hideBartimeout = false;
+        _lgUtils2.default.off(window, '.lg');
+        _lgUtils2.default.removeClass(document.body, 'lg-on');
+        _lgUtils2.default.removeClass(document.body, 'lg-from-hash');
+
+        if (_this.outer) {
+            _lgUtils2.default.removeClass(_this.outer, 'lg-visible');
+        }
+
+        _lgUtils2.default.removeClass(document.querySelector('.lg-backdrop'), 'in');
+        setTimeout(function () {
+            try {
+                if (_this.outer) {
+                    _this.outer.parentNode.removeChild(_this.outer);
+                }
+
+                if (document.querySelector('.lg-backdrop')) {
+                    document.querySelector('.lg-backdrop').parentNode.removeChild(document.querySelector('.lg-backdrop'));
+                }
+
+                if (!d) {
+                    _lgUtils2.default.trigger(_this.el, 'onCloseAfter');
+                }
+            } catch (err) {}
+        }, _this.s.backdropDuration + 50);
+    };
+
+    window.lightGallery = function (el, options) {
+        if (!el) {
+            return;
+        }
+
+        try {
+            if (!el.getAttribute('lg-uid')) {
+                var uid = 'lg' + window.lgData.uid++;
+                window.lgData[uid] = new Plugin(el, options);
+                el.setAttribute('lg-uid', uid);
+            } else {
+                try {
+                    window.lgData[el.getAttribute('lg-uid')].init();
+                } catch (err) {
+                    console.error('lightGallery has not initiated properly');
+                }
+            }
+        } catch (err) {
+            console.error('lightGallery has not initiated properly');
+        }
+    };
+});
 
 /***/ }),
 
@@ -13098,7 +15093,10 @@ var render = function() {
                     {
                       staticClass: "cat-block-link",
                       attrs: {
-                        to: { name: "category", params: { slug: item.slug } }
+                        to: {
+                          name: "category",
+                          params: { slug: item.slug ? item.slug : "#" }
+                        }
                       }
                     },
                     [
@@ -13152,6 +15150,65 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33d4eec8\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "product-slider" }, [
+    _c(
+      "div",
+      { attrs: { id: "product-slider" } },
+      _vm._l(_vm.images, function(item, index) {
+        return _c(
+          "div",
+          {
+            key: "products-slide-" + index,
+            attrs: { "data-src": "/images/products/" + item.image }
+          },
+          [
+            _c("div", {
+              staticClass: "product-slider_item",
+              style: {
+                backgroundImage: "url(/images/products/" + item.image + ")"
+              }
+            })
+          ]
+        )
+      })
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "product-slider_bottom" }, [
+      _c(
+        "div",
+        { attrs: { id: "product-slider_bottom" } },
+        _vm._l(_vm.images, function(item, index) {
+          return _c("div", {
+            key: "products-slide-image" + index,
+            staticClass: "bottom-slider",
+            style: {
+              backgroundImage: "url(/images/products/" + item.image + ")"
+            }
+          })
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-33d4eec8", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-37db10b6\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Pages/OneCategory.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13174,7 +15231,69 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "cat-wrapper" }, [
-      _c("div", { staticClass: "cat-side" }),
+      _c("div", { staticClass: "cat-side" }, [
+        _c(
+          "div",
+          { staticClass: "cat-filter" },
+          [
+            _c("h2", { staticClass: "cat-filter_title" }, [
+              _vm._v(_vm._s(_vm.$t("chooseFilter")))
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.data.filter, function(item, index) {
+              return _c("div", { staticClass: "block" }, [
+                _c("label", { attrs: { for: "catfilter" + item.id } }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.checkedFilter,
+                        expression: "checkedFilter"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "catfilter" + item.id,
+                      id: "catfilter" + item.id
+                    },
+                    domProps: {
+                      value: item.id,
+                      checked: Array.isArray(_vm.checkedFilter)
+                        ? _vm._i(_vm.checkedFilter, item.id) > -1
+                        : _vm.checkedFilter
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.checkedFilter,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = item.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.checkedFilter = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.checkedFilter = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.checkedFilter = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(item.name))])
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -13355,6 +15474,49 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "header-right" }, [
+        _c(
+          "div",
+          {
+            staticClass: "header-wish",
+            class: { active: _vm.favoritsLength > 0 }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticStyle: { "enable-background": "new -50 -50 510 510" },
+                attrs: {
+                  version: "1.1",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                  x: "0px",
+                  y: "0px",
+                  width: "30px",
+                  height: "30px",
+                  viewBox: "-50 -50 610 610",
+                  "xml:space": "preserve"
+                }
+              },
+              [
+                _c("g", [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55\n                        C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z"
+                    }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm.favoritsLength > 0
+              ? _c("div", { staticClass: "count" }, [
+                  _vm._v(_vm._s(_vm.favoritsLength))
+                ])
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "header-menu", on: { click: _vm.show } }, [
           _c("span", [_vm._v(_vm._s(_vm.$t("menu.menu")))]),
           _vm._v(" "),
@@ -13397,9 +15559,18 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("transition", { attrs: { name: "faderouterfront" } }, [
+        _vm.showmenu
+          ? _c("div", { staticClass: "header-layout", on: { click: _vm.hide } })
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c(
         "transition",
-        { attrs: { name: "fadeup", mode: "out-in" } },
+        {
+          attrs: { mode: "out-in", css: false },
+          on: { leave: _vm.menuLeave, enter: _vm.menuEnter }
+        },
         [
           _vm.showmenu
             ? _c("app-menu", {
@@ -13754,6 +15925,173 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-99016c7e\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "product" },
+      [
+        _c("breadcrumbs", [
+          _c(
+            "li",
+            [
+              _c("router-link", { attrs: { to: "/category" } }, [
+                _vm._v(_vm._s(_vm.$t("menu.catalog")))
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "category",
+                      params: { slug: _vm.data.cat[0].slug }
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.data.cat[0].name))]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("li", [_c("span", [_vm._v(_vm._s(_vm.data.product.name))])])
+        ]),
+        _vm._v(" "),
+        _c("h1", { staticClass: "product-title" }, [
+          _vm._v(_vm._s(_vm.data.product.name))
+        ]),
+        _vm._v(" "),
+        _c("slider", { attrs: { images: _vm.data.images } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "product-description" }, [
+          _c("h4", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("description")))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text" }, [
+            _vm._v(_vm._s(_vm.data.product.description))
+          ]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "title" }, [_vm._v(_vm._s(_vm.$t("price")))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-price" }, [
+            _c("b", [_vm._v(_vm._s(_vm.data.product.price))]),
+            _vm._v(" "),
+            _c("span", [_vm._v("лей/единица")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-wish" }, [
+            _c("button", { on: { click: _vm.setFavorit } }, [
+              _vm.inFav
+                ? _c("div", [
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: {
+                          "enable-background": "new -50 -50 510 510",
+                          fill: "#ff99cc"
+                        },
+                        attrs: {
+                          version: "1.1",
+                          xmlns: "http://www.w3.org/2000/svg",
+                          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                          x: "0px",
+                          y: "0px",
+                          width: "38px",
+                          height: "38px",
+                          viewBox: "-50 -50 610 610",
+                          "xml:space": "preserve"
+                        }
+                      },
+                      [
+                        _c("g", [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55\n                                    C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z"
+                            }
+                          })
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.$t("added_to_wish")))])
+                  ])
+                : _c("div", [
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: {
+                          "enable-background": "new -50 -50 510 510"
+                        },
+                        attrs: {
+                          version: "1.1",
+                          xmlns: "http://www.w3.org/2000/svg",
+                          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                          x: "0px",
+                          y: "0px",
+                          width: "38px",
+                          height: "38px",
+                          viewBox: "-50 -50 610 610",
+                          "xml:space": "preserve"
+                        }
+                      },
+                      [
+                        _c("g", [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55\n                                    C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z"
+                            }
+                          })
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.$t("add_to_wish")))])
+                  ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.data.product.extra_desription !== null
+          ? _c("div", {
+              staticClass: "product-extra",
+              domProps: {
+                innerHTML: _vm._s(_vm.data.product.extra_description)
+              }
+            })
+          : _vm._e()
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-99016c7e", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9d4c50d0\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Base/Footercontacts.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13858,7 +16196,7 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/" } }, [
+            _c("router-link", { staticClass: "first", attrs: { to: "/" } }, [
               _vm._v(_vm._s(_vm.$t("menu.main")))
             ])
           ],
@@ -13867,9 +16205,105 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          {
+            on: {
+              mouseenter: function($event) {
+                _vm.showUl($event)
+              },
+              mouseleave: function($event) {
+                _vm.hideUl($event)
+              }
+            }
+          },
           [
-            _c("router-link", { attrs: { to: "/category" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.catalog")))
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: "/category" } },
+              [_vm._v(_vm._s(_vm.$t("menu.catalog")))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "inner" }, [
+              _c("div", { staticClass: "inner-wrapper" }, [
+                _c(
+                  "ul",
+                  { staticClass: "inner-ul" },
+                  _vm._l(_vm.categories, function(item, index) {
+                    return item.parent_category === 0
+                      ? _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: "category",
+                                    params: { slug: item.slug }
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  })
+                )
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              mouseenter: function($event) {
+                _vm.showUl($event)
+              },
+              mouseleave: function($event) {
+                _vm.hideUl($event)
+              }
+            }
+          },
+          [
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: { name: "service" } } },
+              [_vm._v(_vm._s(_vm.$t("menu.service")))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "inner" }, [
+              _c("div", { staticClass: "inner-wrapper" }, [
+                _c(
+                  "ul",
+                  { staticClass: "inner-ul" },
+                  _vm._l(_vm.categories, function(item, index) {
+                    return item.parent_category === 1
+                      ? _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: "services",
+                                    params: { slug: item.slug }
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  })
+                )
+              ])
             ])
           ],
           1
@@ -13878,9 +16312,11 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/bar" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.shop")))
-            ])
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: "/test" } },
+              [_vm._v(_vm._s(_vm.$t("menu.works")))]
+            )
           ],
           1
         ),
@@ -13888,9 +16324,11 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/test" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.works")))
-            ])
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: "/about" } },
+              [_vm._v(_vm._s(_vm.$t("menu.about")))]
+            )
           ],
           1
         ),
@@ -13898,9 +16336,11 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/about" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.about")))
-            ])
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: "/contacts" } },
+              [_vm._v(_vm._s(_vm.$t("menu.contacts")))]
+            )
           ],
           1
         ),
@@ -13908,19 +16348,11 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/contacts" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.contacts")))
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "/partners" } }, [
-              _vm._v(_vm._s(_vm.$t("menu.partners")))
-            ])
+            _c(
+              "router-link",
+              { staticClass: "first", attrs: { to: "/partners" } },
+              [_vm._v(_vm._s(_vm.$t("menu.partners")))]
+            )
           ],
           1
         )
@@ -14046,6 +16478,44 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-9ed35476", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a6a0e888\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/Breadcrumbs.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "ul",
+    { staticClass: "breadcrumbs", class: _vm.itemClass },
+    [
+      _c(
+        "li",
+        [
+          _c("router-link", { attrs: { to: { name: "home" } } }, [
+            _vm._v(_vm._s(_vm.$t("menu.main")))
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a6a0e888", module.exports)
   }
 }
 
@@ -18657,6 +21127,60 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("793ca2f6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductSlider.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductSlider.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("31b5ca6f", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./ProductSlider.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./ProductSlider.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-37db10b6\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Pages/OneCategory.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18890,6 +21414,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7ffae439\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Partners_main.vue", function() {
      var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7ffae439\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Partners_main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("26427d6a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductDefault.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductDefault.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -30755,7 +33306,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Pages_PageNotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_Pages_PageNotFound_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue__ = __webpack_require__("./resources/assets/js/components/Pages/OneCategory.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__store__ = __webpack_require__("./resources/assets/js/store.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Pages_ProductDefault_vue__ = __webpack_require__("./resources/assets/js/components/Pages/ProductDefault.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Pages_ProductDefault_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_Pages_ProductDefault_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__store__ = __webpack_require__("./resources/assets/js/store.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
@@ -30774,6 +33327,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_head___default.a);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_i18n__["a" /* default */]);
+
+__webpack_require__("./node_modules/lightgallery.js/lib/js/lightgallery.js");
 
 
 Vue.component('pagination', __WEBPACK_IMPORTED_MODULE_4_vue_pagination_2__["Pagination"]);
@@ -30820,20 +33375,17 @@ Vue.config.productionTip = false;
 
 
 
-var Home1 = { template: '<div><a href="/foo">bar</a>home</div>' };
-var Foo1 = { template: '<div><router-link to="test">test</router-link></a>Foo</div>' };
-var Bar1 = { template: '<div>Bar</div>' };
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
     base: locale,
-    routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_9__components_Pages_Main_vue___default.a }, { path: '/category', component: __WEBPACK_IMPORTED_MODULE_10__components_Pages_Categories_vue___default.a }, { path: '/category/:slug', component: __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue___default.a, props: true, name: 'category' }, { path: '/product/:slug', component: __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue___default.a, props: true, name: 'product' }, { path: '/test', component: Home1 }, { path: '/{any}/*', component: __WEBPACK_IMPORTED_MODULE_11__components_Pages_PageNotFound_vue___default.a }]
+    routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_9__components_Pages_Main_vue___default.a, name: 'home' }, { path: '/category', component: __WEBPACK_IMPORTED_MODULE_10__components_Pages_Categories_vue___default.a }, { path: '/category/:slug', component: __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue___default.a, props: true, name: 'category' }, { path: '/service', component: __WEBPACK_IMPORTED_MODULE_10__components_Pages_Categories_vue___default.a, props: true, name: 'service' }, { path: '/service/:slug', component: __WEBPACK_IMPORTED_MODULE_12__components_Pages_OneCategory_vue___default.a, props: true, name: 'services' }, { path: '/product/:slug', component: __WEBPACK_IMPORTED_MODULE_13__components_Pages_ProductDefault_vue___default.a, props: true, name: 'product' }, { path: '/{any}/*', component: __WEBPACK_IMPORTED_MODULE_11__components_Pages_PageNotFound_vue___default.a }]
 });
 
 var app = new Vue({
     router: router,
     i18n: i18n,
-    store: __WEBPACK_IMPORTED_MODULE_13__store__["a" /* default */],
+    store: __WEBPACK_IMPORTED_MODULE_14__store__["a" /* default */],
     components: {
         appHeader: __WEBPACK_IMPORTED_MODULE_5__components_Base_Header_vue___default.a,
         appFooter: __WEBPACK_IMPORTED_MODULE_6__components_Base_Footer_vue___default.a,
@@ -30852,6 +33404,7 @@ router.beforeEach(function (to, from, next) {
 });
 router.afterEach(function (to, from) {
     router.app.$loading.finish();
+    Velocity(document.body, "scroll", { offset: "0", mobileHA: false });
     setTimeout(function () {
         router.app.$refs.dots.makeDots();
     }, 700);
@@ -31217,6 +33770,55 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Elements/Breadcrumbs.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/Breadcrumbs.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a6a0e888\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/Breadcrumbs.vue")
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Elements\\Breadcrumbs.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a6a0e888", Component.options)
+  } else {
+    hotAPI.reload("data-v-a6a0e888", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Elements/Dots.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31471,6 +34073,60 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-42072311", Component.options)
   } else {
     hotAPI.reload("data-v-42072311", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Elements/ProductSlider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33d4eec8\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=1&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33d4eec8\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/ProductSlider.vue")
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-33d4eec8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Elements\\ProductSlider.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33d4eec8", Component.options)
+  } else {
+    hotAPI.reload("data-v-33d4eec8", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -31846,6 +34502,59 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Pages/ProductDefault.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-99016c7e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-99016c7e\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Pages/ProductDefault.vue")
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-99016c7e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Pages\\ProductDefault.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-99016c7e", Component.options)
+  } else {
+    hotAPI.reload("data-v-99016c7e", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/mixins.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -31892,12 +34601,16 @@ var WE = function wordend(num, words) {
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
 var state = {
-    locale: 'en'
+    locale: 'en',
+    favorits: localStorage.getItem('favorits') ? JSON.parse(localStorage.getItem('favorits')) : []
 };
 
 var getters = {
     getUser: function getUser(state) {
         return state.user;
+    },
+    favoritsCount: function favoritsCount(state) {
+        return state.favorits;
     }
 };
 
@@ -31905,6 +34618,9 @@ var mutations = {
     changeLocale: function changeLocale(state, payload) {
         state.locale = payload;
         console.log(state, payload);
+    },
+    changeFavorits: function changeFavorits(state, payload) {
+        state.favorits = payload;
     }
 };
 

@@ -8,7 +8,7 @@
             <loading ref="loading"></loading>
             <app-header ref="header"></app-header>
             <transition name="faderouterfront" mode="out-in">
-                <router-view class="app-content"></router-view>
+                <router-view :key="$route.path" class="app-content"></router-view>
             </transition>
             <app-footer ref="footer"></app-footer>
             <app-dots ref="dots"></app-dots>

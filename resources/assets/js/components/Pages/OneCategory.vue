@@ -6,7 +6,21 @@
             </el-title>
         </div>
         <div class="cat-wrapper">
-            <div class="cat-side"></div>
+            <div class="cat-side">
+                <div class="cat-filter">
+                    <h2 class="cat-filter_title">{{ $t('chooseFilter') }}</h2>
+                    <div class="block" v-for="(item,index) in data.filter">
+                        <label :for="'catfilter'+item.id">
+                            <input type="checkbox"
+                                   :name="'catfilter'+item.id"
+                                   :value="item.id"
+                                   v-model="checkedFilter"
+                                   :id="'catfilter'+item.id">
+                            <span>{{ item.name }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
             <div class="cat-block">
                 <transition-group tag="div"
                                   name="list-complete"
@@ -37,11 +51,17 @@
         data(){
             return {
                 data:{},
+                checkedFilter:[],
             }
         },
         components:{
             elTitle:require('./../Elements/Title.vue'),
             elProduct:require('../Elements/ProductShort.vue')
+        },
+        watch:{
+            checkedFilter(val){
+                this.getData();
+            }
         },
         methods:{
             test(e){
@@ -55,10 +75,11 @@
                     slug:this.$route.params.slug,
                     locale:config.locale,
                     page:page,
+                    filter:this.checkedFilter,
                 };
                 this.$http.post('/list-products',data)
                     .then(response=>{
-//                        console.log(response.data)
+                        console.log(response.data)
                         this.data = response.data;
                     }), response => { };
             }

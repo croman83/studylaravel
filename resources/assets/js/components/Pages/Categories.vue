@@ -4,7 +4,7 @@
             <div class="cat-block" v-for="(item,index) in categories">
                 <el-ramka>
                     <div class="cat-block-in" :style="{backgroundImage:'url(/images/categories/'+item.image+')'}">
-                        <router-link :to="{name:'category',params:{slug:item.slug}}" class="cat-block-link">
+                        <router-link :to="{name:'category',params:{slug:item.slug ? item.slug : '#'}}" class="cat-block-link">
                             <h4 class="cat-block-title" v-text="item.name"></h4>
                         </router-link>
                     </div>
@@ -32,7 +32,7 @@
         },
         methods:{
             getData(){
-                var data = {lang:'test lang'};
+                var data = {lang:'test lang',category:0};
                 this.$http.post('get-categories',data,{headers:{'X-CSRF-TOKEN': this.token}})
                     .then(response=>{
                         this.categories = response.data;
