@@ -45,6 +45,7 @@
                     v-on:enter="menuEnter">
             <app-menu v-if="showmenu"
                       @closemenu="hide"
+                      ref="sitemenu"
                       v-click-out-side="hide"></app-menu>
         </transition>
     </header>

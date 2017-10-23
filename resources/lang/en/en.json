@@ -18,5 +18,8 @@
   "description":"Description",
   "price":"Price",
   "add_to_wish":"Add to wishlist",
-  "added_to_wish":"Added to wishlist"
+  "added_to_wish":"Added to wishlist",
+  "chooseFilter":"Choose tag",
+  "no_products":"Sorry we have not product in this category",
+  "categories":"Categories"
 }

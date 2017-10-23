@@ -210,7 +210,7 @@
                 padding:5px 20px;
                 font-size:17px;
                 font-weight:400;
-                color:@color-pink;
+                color:darken(@color-pink,10%);
                 &:hover{
                     background-color: @color-pink;
                     color:#fff;

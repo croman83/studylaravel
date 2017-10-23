@@ -89,6 +89,7 @@ class ApiController extends Controller
         $data['filter'] = $filter;
         $data['products'] = $product;
         $data['name'] = $this->c_id['name_'.$loc];
+        $data['name_id'] = $this->c_id['parent_category'];
         $data['locale'] = $loc;
         $data['product_total'] = $product_total;
         return  $data;

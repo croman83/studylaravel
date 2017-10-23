@@ -10,7 +10,7 @@
 	box-sizing: inherit;
 }
 html, body  {
-	min-height: 100%;
+	min-height: ~'calc(100vh + 1px)';
 	width: 100%;
 	background-color: @color-bg;
 	color:@color-base;
@@ -74,7 +74,36 @@ body,  select, input, textarea  {
 	});
 }
 
-
+.checkbox-input{
+	position: relative;
+	font-family: @font-gabriela;
+	font-size:16px;
+	line-height: 1.2;
+	margin-right:15px;
+	cursor: pointer;
+	.flex(row,nowrap,flex-start,flex-start);
+	span{
+		margin-top:3px;
+	}
+	svg{
+		display: block;
+		margin-bottom: 5px;
+		margin-right:5px;
+		.svg1{
+			fill:transparent;
+		}
+		.svg2{
+			fill:black;
+		}
+	}
+	input{
+		&:checked{
+			& ~ svg .svg1{
+				fill:@color-pink;
+			}
+		}
+	}
+}
 .scr-no{
 	overflow: hidden;
 }

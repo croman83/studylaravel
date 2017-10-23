@@ -221,7 +221,7 @@ html body {
 }
 html,
 body {
-  min-height: 100%;
+  min-height: calc(100vh + 1px);
   width: 100%;
   background-color: white;
   color: black;
@@ -269,6 +269,44 @@ textarea {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+.checkbox-input {
+  position: relative;
+  font-family: 'Gabriela', serif;
+  font-size: 16px;
+  line-height: 1.2;
+  margin-right: 15px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.checkbox-input span {
+  margin-top: 3px;
+}
+.checkbox-input svg {
+  display: block;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+.checkbox-input svg .svg1 {
+  fill: transparent;
+}
+.checkbox-input svg .svg2 {
+  fill: black;
+}
+.checkbox-input input:checked ~ svg .svg1 {
+  fill: #ff99cc;
 }
 .scr-no {
   overflow: hidden;

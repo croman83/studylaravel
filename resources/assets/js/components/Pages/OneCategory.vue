@@ -8,20 +8,38 @@
         <div class="cat-wrapper">
             <div class="cat-side">
                 <div class="cat-filter">
-                    <h2 class="cat-filter_title">{{ $t('chooseFilter') }}</h2>
+                    <div class="cat-filter_category">
+                        <h2 class="cat-filter_title">{{ $t('categories') }}</h2>
+                        <div class="block"
+                             v-for="item in categories"
+                             v-if="item.parent_category === data.name_id">
+                            <router-link :to="{name:'category' , params:{slug:item.slug}}">{{ item.name }}</router-link>
+                        </div>
+                    </div>
+                    <h2 class="cat-filter_title" v-if="data.filter.length">{{ $t('chooseFilter') }}</h2>
                     <div class="block" v-for="(item,index) in data.filter">
-                        <label :for="'catfilter'+item.id">
+                        <label :for="'catfilter'+item.id" class="checkbox-input">
                             <input type="checkbox"
                                    :name="'catfilter'+item.id"
                                    :value="item.id"
+                                   hidden
                                    v-model="checkedFilter"
                                    :id="'catfilter'+item.id">
+                            <svg version="1.1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <polygon class="svg1" points="226.4,283.284 134.616,192.636 74.096,259.316 233.48,416.708 512,73.084 444.792,13.812 "/>
+                                <polygon class="svg2" points="274.04,149.996 274.04,109.996 0,109.996 0,498.188 345.88,498.188 345.88,409.204
+                                    305.88,409.204 305.88,458.188 40,458.188 40,149.996 "/>
+                            </svg>
                             <span>{{ item.name }}</span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="cat-block">
+                <div class="cat-block_noproducts"
+                     v-cloak
+                     key="no_product1">{{ $t('no_products') }}</div>
                 <transition-group tag="div"
                                   name="list-complete"
                                   mode="out-in"
@@ -47,16 +65,23 @@
 </template>
 <script>
     import {Pagination, PaginationEvent} from 'vue-pagination-2';
+    import Menu from './../Base/Menu.vue';
     export default {
         data(){
             return {
-                data:{},
+                data:{
+                    filter:[],
+                    products:[],
+                },
                 checkedFilter:[],
+                no_product:false,
+                categories:JSON.parse(config.categories)
             }
         },
         components:{
             elTitle:require('./../Elements/Title.vue'),
-            elProduct:require('../Elements/ProductShort.vue')
+            elProduct:require('../Elements/ProductShort.vue'),
+            elCheck:require('./../Elements/Checkbox.vue'),
         },
         watch:{
             checkedFilter(val){
@@ -64,9 +89,7 @@
             }
         },
         methods:{
-            test(e){
-                console.log('test: ' + e)
-            },
+
             animateScroll(){
                 Velocity(document.body, "scroll", {offset: "0", mobileHA: false});
             },
@@ -79,8 +102,17 @@
                 };
                 this.$http.post('/list-products',data)
                     .then(response=>{
-                        console.log(response.data)
                         this.data = response.data;
+                        var el = document.querySelector('.cat-block_noproducts');
+                        if(response.data.products.length > 0){
+                            setTimeout(function () {
+                                el.style.display = 'none';
+                            },300)
+                        }else{
+                            setTimeout(function () {
+                                el.style.display = 'block';
+                            },300)
+                        }
                     }), response => { };
             }
         },
@@ -95,6 +127,8 @@
     }
 </script>
 <style lang="less" scoped>
+    @import '../../../less/styles/variables';
+    @import '../../../less/styles/lesshat';
     .cat{
         margin-bottom:50px;
         &-title{
@@ -116,15 +150,43 @@
             margin:0 auto;
         }
         &-side{
-            width:25%;
-            background-color: antiquewhite;
-            min-height:75vh;
+            width:20%;
+            min-height:50vh;
+            padding:0 15px;
         }
         &-block{
-            width:70%;
+            width:75%;
             &_wrapper{
                 display:flex;
                 flex-flow:row wrap;
+            }
+            &_noproducts{
+                font-family:@font-gabriela;
+                font-size:18px;
+                display:none;
+                margin-bottom:100px;
+            }
+        }
+        &-filter{
+            &_title{
+                font-family: @font-gabriela;
+                font-weight:normal;
+                font-size:20px;
+                margin-bottom:2em;
+            }
+            .block{
+                margin-bottom:5px;
+                padding-left:10px;
+            }
+            &_category{
+                margin-bottom:50px;
+                a{
+                    font-family: @font-gabriela;
+                    font-size:16px;
+                    line-height: 1.2;
+                    color:black;
+                    margin-bottom:5px;
+                }
             }
         }
     }

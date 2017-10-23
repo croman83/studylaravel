@@ -1806,6 +1806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -2032,6 +2033,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['itemClass']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/Checkbox.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['name', 'value', 'id'],
+    methods: {
+        onInput: function onInput(event) {
+            //                alert(event.target.value);
+            console.log(event.target.value);
+        }
+    }
 });
 
 /***/ }),
@@ -2646,6 +2675,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_pagination_2__ = __webpack_require__("./node_modules/vue-pagination-2/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_pagination_2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_pagination_2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Base_Menu_vue__ = __webpack_require__("./resources/assets/js/components/Base/Menu.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Base_Menu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Base_Menu_vue__);
 //
 //
 //
@@ -2693,19 +2724,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            data: {},
-            checkedFilter: []
+            data: {
+                filter: [],
+                products: []
+            },
+            checkedFilter: [],
+            no_product: false,
+            categories: JSON.parse(config.categories)
         };
     },
 
     components: {
         elTitle: __webpack_require__("./resources/assets/js/components/Elements/Title.vue"),
-        elProduct: __webpack_require__("./resources/assets/js/components/Elements/ProductShort.vue")
+        elProduct: __webpack_require__("./resources/assets/js/components/Elements/ProductShort.vue"),
+        elCheck: __webpack_require__("./resources/assets/js/components/Elements/Checkbox.vue")
     },
     watch: {
         checkedFilter: function checkedFilter(val) {
@@ -2713,9 +2769,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        test: function test(e) {
-            console.log('test: ' + e);
-        },
         animateScroll: function animateScroll() {
             Velocity(document.body, "scroll", { offset: "0", mobileHA: false });
         },
@@ -2731,8 +2784,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 filter: this.checkedFilter
             };
             this.$http.post('/list-products', data).then(function (response) {
-                console.log(response.data);
                 _this.data = response.data;
+                var el = document.querySelector('.cat-block_noproducts');
+                if (response.data.products.length > 0) {
+                    setTimeout(function () {
+                        el.style.display = 'none';
+                    }, 300);
+                } else {
+                    setTimeout(function () {
+                        el.style.display = 'block';
+                    }, 300);
+                }
             }), function (response) {};
         }
     },
@@ -2966,7 +3028,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.cat[data-v-37db10b6] {\n  margin-bottom: 50px;\n}\n.cat-title[data-v-37db10b6] {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  text-align: center;\n}\n.cat-title_head[data-v-37db10b6] {\n  margin: 0;\n  line-height: 1.2;\n  font-weight: 400;\n  font-family: 'Gabriela', serif;\n  font-size: 40px;\n}\n.cat-wrapper[data-v-37db10b6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  width: 85%;\n  margin: 0 auto;\n}\n.cat-side[data-v-37db10b6] {\n  width: 25%;\n  background-color: antiquewhite;\n  min-height: 75vh;\n}\n.cat-block[data-v-37db10b6] {\n  width: 70%;\n}\n.cat-block_wrapper[data-v-37db10b6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n}\n", ""]);
+exports.push([module.i, "\n.cat[data-v-37db10b6] {\n  margin-bottom: 50px;\n}\n.cat-title[data-v-37db10b6] {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  text-align: center;\n}\n.cat-title_head[data-v-37db10b6] {\n  margin: 0;\n  line-height: 1.2;\n  font-weight: 400;\n  font-family: 'Gabriela', serif;\n  font-size: 40px;\n}\n.cat-wrapper[data-v-37db10b6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  width: 85%;\n  margin: 0 auto;\n}\n.cat-side[data-v-37db10b6] {\n  width: 20%;\n  min-height: 50vh;\n  padding: 0 15px;\n}\n.cat-block[data-v-37db10b6] {\n  width: 75%;\n}\n.cat-block_wrapper[data-v-37db10b6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n}\n.cat-block_noproducts[data-v-37db10b6] {\n  font-family: 'Gabriela', serif;\n  font-size: 18px;\n  display: none;\n  margin-bottom: 100px;\n}\n.cat-filter_title[data-v-37db10b6] {\n  font-family: 'Gabriela', serif;\n  font-weight: normal;\n  font-size: 20px;\n  margin-bottom: 2em;\n}\n.cat-filter .block[data-v-37db10b6] {\n  margin-bottom: 5px;\n  padding-left: 10px;\n}\n.cat-filter_category[data-v-37db10b6] {\n  margin-bottom: 50px;\n}\n.cat-filter_category a[data-v-37db10b6] {\n  font-family: 'Gabriela', serif;\n  font-size: 16px;\n  line-height: 1.2;\n  color: black;\n  margin-bottom: 5px;\n}\n", ""]);
 
 // exports
 
@@ -3101,7 +3163,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.product[data-v-99016c7e] {\n  margin-left: auto;\n  margin-right: auto;\n  display: grid;\n  grid-template-columns: 1fr 1.5fr;\n  grid-template-rows: auto;\n  -ms-flex-line-pack: start;\n      align-content: flex-start;\n}\n@media (min-width: 2px) and (max-width: 1269px) {\n.product[data-v-99016c7e] {\n    width: 90%;\n    padding-left: 15px;\n    padding-right: 15px;\n    min-width: 270px;\n}\n}\n@media (min-width: 1270px) and (max-width: 8999999px) {\n.product[data-v-99016c7e] {\n    width: 80%;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n}\n.product-title[data-v-99016c7e] {\n  font-family: 'Gabriela', serif;\n  font-size: 35px;\n  grid-column: 2;\n  grid-row: 2;\n  line-height: 1.5;\n  font-weight: normal;\n}\n.product-description[data-v-99016c7e] {\n  grid-column: 2;\n  grid-row: 3;\n  margin-bottom: 50px;\n}\n.product-description .title[data-v-99016c7e] {\n  font-size: 24px;\n  font-weight: 300;\n  line-height: 1.1;\n  display: inline-block;\n  position: relative;\n  margin-bottom: 1em;\n}\n.product-description .title[data-v-99016c7e]:after {\n  content: '';\n  border-bottom: 1px solid #ff99cc;\n  width: 100%;\n  height: 0;\n  bottom: -5px;\n  left: 0.5em;\n  display: block;\n  position: absolute;\n}\n.product-description .text[data-v-99016c7e] {\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 300;\n  margin-bottom: 30px;\n}\n.product-price[data-v-99016c7e] {\n  margin: 15px 0 25px 0;\n  font-family: 'Gabriela', serif;\n  font-weight: normal;\n}\n.product-price b[data-v-99016c7e] {\n  font-size: 30px;\n}\n.product-price span[data-v-99016c7e] {\n  font-size: 20px;\n}\n.product-wish[data-v-99016c7e] {\n  margin: 50px 0;\n}\n.product-wish button[data-v-99016c7e] {\n  background-color: #fff;\n  border: 1px solid #ff99cc;\n  outline: none;\n  padding: 5px 20px;\n  font-size: 17px;\n  font-weight: 400;\n  color: #ff99cc;\n}\n.product-wish button[data-v-99016c7e]:hover {\n  background-color: #ff99cc;\n  color: #fff;\n}\n.product-wish button:hover svg[data-v-99016c7e] {\n  stroke: #fff;\n}\n.product-wish button > div[data-v-99016c7e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.product-wish button svg[data-v-99016c7e] {\n  fill: white;\n  stroke: #ff99cc;\n  stroke-width: 25px;\n  display: block;\n  margin-right: 30px;\n  width: 30px;\n  height: 30px;\n}\n.product-extra[data-v-99016c7e] {\n  grid-column: 1 / span 2;\n  grid-row: 6;\n  margin-bottom: 50px;\n}\n", ""]);
+exports.push([module.i, "\n.product[data-v-99016c7e] {\n  margin-left: auto;\n  margin-right: auto;\n  display: grid;\n  grid-template-columns: 1fr 1.5fr;\n  grid-template-rows: auto;\n  -ms-flex-line-pack: start;\n      align-content: flex-start;\n}\n@media (min-width: 2px) and (max-width: 1269px) {\n.product[data-v-99016c7e] {\n    width: 90%;\n    padding-left: 15px;\n    padding-right: 15px;\n    min-width: 270px;\n}\n}\n@media (min-width: 1270px) and (max-width: 8999999px) {\n.product[data-v-99016c7e] {\n    width: 80%;\n    padding-left: 15px;\n    padding-right: 15px;\n}\n}\n.product-title[data-v-99016c7e] {\n  font-family: 'Gabriela', serif;\n  font-size: 35px;\n  grid-column: 2;\n  grid-row: 2;\n  line-height: 1.5;\n  font-weight: normal;\n}\n.product-description[data-v-99016c7e] {\n  grid-column: 2;\n  grid-row: 3;\n  margin-bottom: 50px;\n}\n.product-description .title[data-v-99016c7e] {\n  font-size: 24px;\n  font-weight: 300;\n  line-height: 1.1;\n  display: inline-block;\n  position: relative;\n  margin-bottom: 1em;\n}\n.product-description .title[data-v-99016c7e]:after {\n  content: '';\n  border-bottom: 1px solid #ff99cc;\n  width: 100%;\n  height: 0;\n  bottom: -5px;\n  left: 0.5em;\n  display: block;\n  position: absolute;\n}\n.product-description .text[data-v-99016c7e] {\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 300;\n  margin-bottom: 30px;\n}\n.product-price[data-v-99016c7e] {\n  margin: 15px 0 25px 0;\n  font-family: 'Gabriela', serif;\n  font-weight: normal;\n}\n.product-price b[data-v-99016c7e] {\n  font-size: 30px;\n}\n.product-price span[data-v-99016c7e] {\n  font-size: 20px;\n}\n.product-wish[data-v-99016c7e] {\n  margin: 50px 0;\n}\n.product-wish button[data-v-99016c7e] {\n  background-color: #fff;\n  border: 1px solid #ff99cc;\n  outline: none;\n  padding: 5px 20px;\n  font-size: 17px;\n  font-weight: 400;\n  color: #ff66b3;\n}\n.product-wish button[data-v-99016c7e]:hover {\n  background-color: #ff99cc;\n  color: #fff;\n}\n.product-wish button:hover svg[data-v-99016c7e] {\n  stroke: #fff;\n}\n.product-wish button > div[data-v-99016c7e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.product-wish button svg[data-v-99016c7e] {\n  fill: white;\n  stroke: #ff99cc;\n  stroke-width: 25px;\n  display: block;\n  margin-right: 30px;\n  width: 30px;\n  height: 30px;\n}\n.product-extra[data-v-99016c7e] {\n  grid-column: 1 / span 2;\n  grid-row: 6;\n  margin-bottom: 50px;\n}\n", ""]);
 
 // exports
 
@@ -13412,7 +13474,7 @@ exports = module.exports = {
 
 "use strict";
 /*!
- * vue-i18n v7.3.1 
+ * vue-i18n v7.3.2 
  * (c) 2017 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -14910,7 +14972,7 @@ VueI18n.availabilities = {
   numberFormat: canUseNumberFormat
 };
 VueI18n.install = install;
-VueI18n.version = '7.3.1';
+VueI18n.version = '7.3.2';
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
@@ -15236,58 +15298,138 @@ var render = function() {
           "div",
           { staticClass: "cat-filter" },
           [
-            _c("h2", { staticClass: "cat-filter_title" }, [
-              _vm._v(_vm._s(_vm.$t("chooseFilter")))
-            ]),
+            _c(
+              "div",
+              { staticClass: "cat-filter_category" },
+              [
+                _c("h2", { staticClass: "cat-filter_title" }, [
+                  _vm._v(_vm._s(_vm.$t("categories")))
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.categories, function(item) {
+                  return item.parent_category === _vm.data.name_id
+                    ? _c(
+                        "div",
+                        { staticClass: "block" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "category",
+                                  params: { slug: item.slug }
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(item.name))]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.data.filter.length
+              ? _c("h2", { staticClass: "cat-filter_title" }, [
+                  _vm._v(_vm._s(_vm.$t("chooseFilter")))
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm._l(_vm.data.filter, function(item, index) {
               return _c("div", { staticClass: "block" }, [
-                _c("label", { attrs: { for: "catfilter" + item.id } }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.checkedFilter,
-                        expression: "checkedFilter"
-                      }
-                    ],
-                    attrs: {
-                      type: "checkbox",
-                      name: "catfilter" + item.id,
-                      id: "catfilter" + item.id
-                    },
-                    domProps: {
-                      value: item.id,
-                      checked: Array.isArray(_vm.checkedFilter)
-                        ? _vm._i(_vm.checkedFilter, item.id) > -1
-                        : _vm.checkedFilter
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.checkedFilter,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = item.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.checkedFilter = $$a.concat([$$v]))
+                _c(
+                  "label",
+                  {
+                    staticClass: "checkbox-input",
+                    attrs: { for: "catfilter" + item.id }
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.checkedFilter,
+                          expression: "checkedFilter"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "catfilter" + item.id,
+                        hidden: "",
+                        id: "catfilter" + item.id
+                      },
+                      domProps: {
+                        value: item.id,
+                        checked: Array.isArray(_vm.checkedFilter)
+                          ? _vm._i(_vm.checkedFilter, item.id) > -1
+                          : _vm.checkedFilter
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.checkedFilter,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = item.id,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.checkedFilter = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.checkedFilter = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
                           } else {
-                            $$i > -1 &&
-                              (_vm.checkedFilter = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
+                            _vm.checkedFilter = $$c
                           }
-                        } else {
-                          _vm.checkedFilter = $$c
                         }
                       }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(item.name))])
-                ])
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: { "enable-background": "new 0 0 512 512" },
+                        attrs: {
+                          version: "1.1",
+                          width: "20px",
+                          height: "20px",
+                          xmlns: "http://www.w3.org/2000/svg",
+                          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                          x: "0px",
+                          y: "0px",
+                          viewBox: "0 0 512 512",
+                          "xml:space": "preserve"
+                        }
+                      },
+                      [
+                        _c("polygon", {
+                          staticClass: "svg1",
+                          attrs: {
+                            points:
+                              "226.4,283.284 134.616,192.636 74.096,259.316 233.48,416.708 512,73.084 444.792,13.812 "
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("polygon", {
+                          staticClass: "svg2",
+                          attrs: {
+                            points:
+                              "274.04,149.996 274.04,109.996 0,109.996 0,498.188 345.88,498.188 345.88,409.204\n                                305.88,409.204 305.88,458.188 40,458.188 40,149.996 "
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(item.name))])
+                  ]
+                )
               ])
             })
           ],
@@ -15299,6 +15441,12 @@ var render = function() {
         "div",
         { staticClass: "cat-block" },
         [
+          _c(
+            "div",
+            { key: "no_product1", staticClass: "cat-block_noproducts" },
+            [_vm._v(_vm._s(_vm.$t("no_products")))]
+          ),
+          _vm._v(" "),
           _c(
             "transition-group",
             {
@@ -15582,6 +15730,7 @@ var render = function() {
                     expression: "hide"
                   }
                 ],
+                ref: "sitemenu",
                 on: { closemenu: _vm.hide }
               })
             : _vm._e()
@@ -16537,6 +16686,40 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-af32d166", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-ea7975f2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/Checkbox.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "label",
+    { attrs: { for: _vm.id } },
+    [
+      _c("input", {
+        attrs: { type: "checkbox", id: _vm.id, name: _vm.name },
+        domProps: { value: _vm.value },
+        on: { change: _vm.onInput }
+      }),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ea7975f2", module.exports)
   }
 }
 
@@ -33808,6 +33991,55 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-a6a0e888", Component.options)
   } else {
     hotAPI.reload("data-v-a6a0e888", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Elements/Checkbox.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/Elements/Checkbox.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-ea7975f2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/Elements/Checkbox.vue")
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Elements\\Checkbox.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ea7975f2", Component.options)
+  } else {
+    hotAPI.reload("data-v-ea7975f2", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
