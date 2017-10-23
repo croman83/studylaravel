@@ -62,6 +62,7 @@ import Categories from './components/Pages/Categories.vue'
 import PageNotFound from './components/Pages/PageNotFound.vue'
 import OneCategory from './components/Pages/OneCategory.vue'
 import ProductDefault from './components/Pages/ProductDefault.vue'
+import Services from './components/Pages/Services.vue'
 
 
 
@@ -77,7 +78,7 @@ const router = new VueRouter({
         { path: `/`, component: Main , name:'home' },
         { path: '/category', component: Categories },
         { path: '/category/:slug', component: OneCategory, props:true , name:'category' },
-        { path: '/service', component: Categories, props:true , name:'service' },
+        { path: '/service', component: Services, props:true , name:'service' },
         { path: '/service/:slug', component: OneCategory, props:true , name:'services' },
         { path: '/product/:slug', component: ProductDefault, props:true , name:'product' },
         { path: '/{any}/*', component: PageNotFound },

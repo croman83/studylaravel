@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>{{ $t('categories') }}</h1>
         <div class="cat-wrapper">
             <div class="cat-block" v-for="(item,index) in categories">
                 <el-ramka>
@@ -78,7 +79,7 @@
         &-wrapper{
             .container;
             .flex(row,wrap,flex-start,flex-start);
-            margin-top:50px;
+            margin-top:25px;
             margin-bottom:50px;
         }
         &-block{
@@ -110,6 +111,15 @@
                 z-index:2;
             }
         }
+    }
+    h1{
+        .container;
+        font-family:'Gabriela',serif;
+        font-size:25px;
+        font-weight:normal;
+        margin-bottom:0;
+        margin-top:35px;
+        line-height:1.2;
     }
 
 

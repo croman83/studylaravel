@@ -13,6 +13,7 @@ use View;
 use App\Product;
 use App\Category;
 use App\Filter;
+use App\Service;
 
 class ApiController extends Controller
 {
@@ -77,8 +78,8 @@ class ApiController extends Controller
         $i = 0;
         foreach ($pr as $item){
             $base = DB::table('productimages')->
-                where('product_id',$item->id)->
-                select('image')->
+            where('product_id',$item->id)->
+            select('image')->
             get();
             $product[$i]['images'] = $base;
             $product[$i]['info'] = $item;
@@ -103,12 +104,12 @@ class ApiController extends Controller
         $product = Product::where('slug',$input['slug'])
             ->select(
                 'name_'.$lang.' as name',
-                    'price',
-                    'description_'.$lang.' as description',
-                    'extra_description_'.$lang.' as extra_description',
-                    'slug',
-                    'favorit',
-                    'id')
+                'price',
+                'description_'.$lang.' as description',
+                'extra_description_'.$lang.' as extra_description',
+                'slug',
+                'favorit',
+                'id')
             ->first();
 
         $cat = Product::find($product['id'])
@@ -123,8 +124,21 @@ class ApiController extends Controller
 
         return ['product'=>$product,'images'=>$img,'cat'=>$cat,'session'=>session()];
     }
-    public function favorit(Request $request)
+    public function getServices(Request $request)
     {
         $input = $request->all();
+        $lang = $input['lang'];
+        $services = Service::where('status',1)->select(
+            'name_'.$lang.' as name',
+            'id',
+            'short_description_'.$lang.' as short_description',
+            'description_'.$lang.' as description',
+            'slug',
+            'image'
+            )->orderBy('sort', 'asc')->get();
+
+        $data['services'] = $services;
+
+        return $data;
     }
 }

@@ -3,6 +3,7 @@
 // POST routes
 Route::post('/list-products' ,'ApiController@getCategoryProducts');
 Route::post('/product-details' ,'ApiController@getProductDetails');
+Route::post('/get-services' ,'ApiController@getServices');
 
 //
 

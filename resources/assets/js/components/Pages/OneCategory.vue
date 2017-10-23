@@ -186,6 +186,28 @@
                     line-height: 1.2;
                     color:black;
                     margin-bottom:5px;
+                    position: relative;
+                    overflow: hidden;
+                    padding:0 3px;
+                    z-index:2;
+                    &:after{
+                        content:'';
+                        width:100%;
+                        height: 100%;
+                        background-color:@color-pink;
+                        .translateX(-100%);
+                        transition:all 0.3s;
+                        display:block;
+                        position: absolute;
+                        bottom:0%;
+                        left:0;
+                        z-index:-1;
+                    }
+                    &:hover{
+                        &:after{
+                            .translateX(0%);
+                        }
+                    }
                 }
             }
         }
