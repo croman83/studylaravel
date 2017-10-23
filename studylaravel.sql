@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 23, 2017 at 02:06 AM
+-- Generation Time: Oct 23, 2017 at 10:40 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -50,7 +50,9 @@ INSERT INTO `categories` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `image`
 (3, 'Оформление', 'Decorarea', 'Decor', 'oformlenie', 'oformlenie.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
 (5, 'Элементы декора', 'Elemente de decor', 'Elements of decor', 'elemets', 'elem.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
 (14, 'Свадьбы', 'Nunti', 'Weddings', 'weddings', 'category_wedding.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00'),
-(15, 'Дни рождения', 'Zi de nastere', 'Birthday', 'birthday', 'category_birthday.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00');
+(15, 'Дни рождения', 'Zi de nastere', 'Birthday', 'birthday', 'category_birthday.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00'),
+(16, 'Оформление2', 'Decorarea', 'Decor', 'oformlenie2', 'oformlenie.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
+(17, 'Декор2', 'Decor', 'Decor', 'decor2', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,6 +218,40 @@ INSERT INTO `products` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `descript
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name_ru` varchar(255) NOT NULL,
+  `name_en` varchar(255) NOT NULL,
+  `name_ro` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `short_description_ru` text NOT NULL,
+  `short_description_en` text NOT NULL,
+  `short_description_ro` text NOT NULL,
+  `description_ru` longtext NOT NULL,
+  `description_en` longtext NOT NULL,
+  `description_ro` longtext NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `image` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) UNSIGNED ZEROFILL NOT NULL DEFAULT '0',
+  `sort` int(1) UNSIGNED ZEROFILL NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `name_ru`, `name_en`, `name_ro`, `slug`, `short_description_ru`, `short_description_en`, `short_description_ro`, `description_ru`, `description_en`, `description_ro`, `created_at`, `updated_at`, `image`, `status`, `sort`) VALUES
+(1, 'Свадьбы', 'Weddings', 'Nunti', 'weddings', 'short description1', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:21:40', '2017-10-23 18:21:41', '1.jpg', 1, 0),
+(3, 'Дни рождения', 'Birdthdays', 'Zi de nastere', 'birdthday', 'short description3', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '2.jpg', 1, 10),
+(5, 'Корпоративы', 'Corporate events', 'Corporative', 'corporate', 'short description5', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '3.jpg', 1, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -289,6 +325,13 @@ ALTER TABLE `products`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -303,7 +346,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `filters`
 --
@@ -330,6 +373,11 @@ ALTER TABLE `productimages`
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -338,4 +386,3 @@ ALTER TABLE `users`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-studylaravel
