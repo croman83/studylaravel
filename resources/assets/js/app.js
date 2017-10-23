@@ -2,6 +2,7 @@
 window.Vue = require('vue');
 require('./bootstrap');
 
+window.Velocity = require('velocity-animate');
 
 import Vuex from 'vuex';
 Vue.use(Vuex);
@@ -15,6 +16,12 @@ Vue.use(VueHead);
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
+
+
+require('lightgallery.js');
+
+import {Pagination, PaginationEvent} from 'vue-pagination-2';
+Vue.component('pagination', Pagination);
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 var VueResource = require('vue-resource');
@@ -54,15 +61,12 @@ import Main from './components/Pages/Main.vue'
 import Categories from './components/Pages/Categories.vue'
 import PageNotFound from './components/Pages/PageNotFound.vue'
 import OneCategory from './components/Pages/OneCategory.vue'
+import ProductDefault from './components/Pages/ProductDefault.vue'
 
 
 
 import store from './store';
 
-
-const Home1 = { template: '<div><a href="/foo">bar</a>home</div>' }
-const Foo1 = { template: '<div><router-link to="test">test</router-link></a>Foo</div>' }
-const Bar1 = { template: '<div>Bar</div>' }
 
 
 
@@ -70,10 +74,12 @@ const router = new VueRouter({
     mode: 'history',
     base: locale,
     routes: [
-        { path: `/`, component: Main },
+        { path: `/`, component: Main , name:'home' },
         { path: '/category', component: Categories },
         { path: '/category/:slug', component: OneCategory, props:true , name:'category' },
-        { path: '/test', component: Home1 },
+        { path: '/service', component: Categories, props:true , name:'service' },
+        { path: '/service/:slug', component: OneCategory, props:true , name:'services' },
+        { path: '/product/:slug', component: ProductDefault, props:true , name:'product' },
         { path: '/{any}/*', component: PageNotFound },
     ]
 });
@@ -101,6 +107,7 @@ router.beforeEach((to, from, next) => {
 });
 router.afterEach((to, from) => {
     router.app.$loading.finish();
+    Velocity(document.body,"scroll", { offset: "0", mobileHA: false });
     setTimeout(function () {
         router.app.$refs.dots.makeDots();
     },700)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2017 at 02:15 AM
+-- Generation Time: Oct 23, 2017 at 02:06 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -36,6 +36,7 @@ CREATE TABLE `categories` (
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `parent_category` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,10 +45,65 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Декор', 'Decor', 'Decor', 'decor', 'decor.jpg', 1, '2017-10-15 18:27:57', NULL),
-(3, 'Оформление', 'Decorarea', 'Decor', 'oformlenie', 'oformlenie.jpg', 1, '2017-10-15 19:27:57', NULL),
-(5, 'Элементы декора', 'Elemente de decor', 'Elements of decor', 'elemets', 'elem.jpg', 1, '2017-10-15 19:27:57', NULL);
+INSERT INTO `categories` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `image`, `status`, `parent_category`, `created_at`, `updated_at`) VALUES
+(1, 'Декор', 'Decor', 'Decor', 'decor', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL),
+(3, 'Оформление', 'Decorarea', 'Decor', 'oformlenie', 'oformlenie.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
+(5, 'Элементы декора', 'Elemente de decor', 'Elements of decor', 'elemets', 'elem.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
+(14, 'Свадьбы', 'Nunti', 'Weddings', 'weddings', 'category_wedding.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00'),
+(15, 'Дни рождения', 'Zi de nastere', 'Birthday', 'birthday', 'category_birthday.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filters`
+--
+
+CREATE TABLE `filters` (
+  `id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name_ru` text,
+  `name_ro` text,
+  `name_en` text,
+  `category_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `filters`
+--
+
+INSERT INTO `filters` (`id`, `created_at`, `updated_at`, `name_ru`, `name_ro`, `name_en`, `category_id`) VALUES
+(1, '2017-10-21 21:00:00', '2017-10-21 21:00:00', 'Свадьба', 'Nunta', 'Wedding', 1),
+(2, '2017-10-21 21:00:00', '2017-10-21 21:00:00', 'Куматрия', 'Cumatria', 'Cumatring', 1),
+(3, '2017-10-21 21:00:00', '2017-10-21 21:00:00', 'День рождения', 'Zi de nastere', 'Birthday', 1),
+(4, '2017-10-21 21:00:00', '2017-10-21 21:00:00', 'Корпоратив', 'Corporativ', 'Corporate event', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filter_product`
+--
+
+CREATE TABLE `filter_product` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `filter_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `filter_product`
+--
+
+INSERT INTO `filter_product` (`id`, `filter_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(2, 2, 2, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(3, 2, 4, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(4, 3, 4, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(5, 1, 3, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(6, 4, 5, '2017-10-21 21:00:00', '2017-10-21 21:00:00'),
+(7, 4, 6, '2017-10-21 21:00:00', '2017-10-21 21:00:00');
 
 -- --------------------------------------------------------
 
@@ -85,35 +141,77 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `productimages`
+--
+
+CREATE TABLE `productimages` (
+  `id` int(11) NOT NULL,
+  `image` text,
+  `product_id` int(255) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  `image_thumb` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `productimages`
+--
+
+INSERT INTO `productimages` (`id`, `image`, `product_id`, `created_at`, `updated_at`, `image_thumb`) VALUES
+(1, '2.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(2, '2.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(3, '3.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(4, '4.jpg', 4, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(5, '1.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(6, '3.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(7, '2.jpg', 3, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(8, '1.jpg', 3, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(9, '4.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(10, '2.jpg', 5, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(11, '3.jpg', 6, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(12, '4.jpg', 7, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name_ru` mediumtext COLLATE utf8mb4_unicode_ci,
-  `name_ro` mediumtext COLLATE utf8mb4_unicode_ci,
-  `name_en` mediumtext COLLATE utf8mb4_unicode_ci,
+  `name_ru` text COLLATE utf8mb4_unicode_ci,
+  `name_ro` text COLLATE utf8mb4_unicode_ci,
+  `name_en` text COLLATE utf8mb4_unicode_ci,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description_ru` text COLLATE utf8mb4_unicode_ci,
   `description_ro` text COLLATE utf8mb4_unicode_ci,
   `description_en` text COLLATE utf8mb4_unicode_ci,
-  `images` text COLLATE utf8mb4_unicode_ci,
   `price` double(8,2) DEFAULT NULL,
-  `similar_products` json DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `extra_description_en` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL
+  `extra_description_ro` text COLLATE utf8mb4_unicode_ci,
+  `extra_description_ru` text COLLATE utf8mb4_unicode_ci,
+  `category_id` int(11) DEFAULT NULL,
+  `favorit` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `description_ru`, `description_ro`, `description_en`, `images`, `price`, `similar_products`, `status`, `created_at`, `updated_at`, `category_id`) VALUES
-(2, 'product1_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1),
-(3, 'product2_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 3),
-(4, 'product3_ru', 'product1_ro', 'product1_en', 'product1_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', '\"[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]\"', 10.00, NULL, 1, '2017-10-15 21:53:50', '2017-10-15 21:53:51', 1);
+INSERT INTO `products` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `description_ru`, `description_ro`, `description_en`, `price`, `status`, `extra_description_en`, `created_at`, `updated_at`, `extra_description_ro`, `extra_description_ru`, `category_id`, `favorit`) VALUES
+(2, 'Бомбоньерки из красивой ткани', 'product1_ro', 'Balloon for decor', 'product2_slug', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(3, 'product2_ru', 'product1_ro', 'product1_en', 'product3_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 3, NULL),
+(4, 'Букет невесты', 'product1_ro', 'product1_en', 'product4_slug', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'desc1_ro', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 10.00, 1, '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', '2017-10-15 21:53:50', '2017-10-15 21:53:51', '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', 1, 1),
+(5, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(6, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(7, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(8, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(9, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(10, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(11, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,7 +225,7 @@ CREATE TABLE `users` (
   `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en',
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -151,6 +249,21 @@ ALTER TABLE `categories`
   ADD KEY `categories_slug_index` (`slug`);
 
 --
+-- Indexes for table `filters`
+--
+ALTER TABLE `filters`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `filter_product`
+--
+ALTER TABLE `filter_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `filter_id` (`filter_id`),
+  ADD KEY `product_id` (`product_id`) USING BTREE;
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -161,6 +274,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `productimages`
+--
+ALTER TABLE `productimages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -184,17 +303,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `filters`
+--
+ALTER TABLE `filters`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `filter_product`
+--
+ALTER TABLE `filter_product`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `productimages`
+--
+ALTER TABLE `productimages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --

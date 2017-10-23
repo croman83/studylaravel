@@ -2,6 +2,7 @@
 
 // POST routes
 Route::post('/list-products' ,'ApiController@getCategoryProducts');
+Route::post('/product-details' ,'ApiController@getProductDetails');
 
 //
 
@@ -38,7 +39,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
 
 // client routes
-    Route::get('/{vue?}', function () {
-        return view('welcome');
-    })->where('vue', '[\/\w\.-]*');
+    Route::get('/{vue?}','ViewController@index')->where('vue', '[\/\w\.-]*');
 });

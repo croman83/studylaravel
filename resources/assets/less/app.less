@@ -3,13 +3,17 @@
 @import "styles/helpers.less";
 @import "styles/variables.less";
 @import (inline) "styles/animate.css";
+@import (inline) "../../../node_modules/lightgallery.js/dist/css/lightgallery.min.css";
+@import (inline) "../../../node_modules/lightgallery.js/dist/css/lg-transitions.css";
 
 
-
-.app-content{
-  min-height:50vh;
-  width:100%;
-}
+//#lg-download{
+//  display: none;
+//}
+//.app-content{
+//  min-height:50vh;
+//  width:100%;
+//}
 .header{
   .container;
   .flex(row,nowrap,space-between,center);
@@ -60,13 +64,23 @@
       display: block;
     }
   }
+  &-layout{
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width:100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index:10;
+  }
   &-fix{
     position: absolute;
     width:100%;
     min-height: 60px;
     top:0;
     left:0;
-    box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.15);
+    transform:translateY(-100%);
+    //box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.15);
     padding:20px;
     z-index:10;
     background-color: #fff;
@@ -85,13 +99,15 @@
       }
     }
     &_down{
-      ul{
+      &>ul{
         .reset-around;
         list-style: none;
         margin-top:35px;
         margin-bottom:15px;
-        .flex(row,nowrap,space-around,stretch);
-        a{
+        padding:0 20px;
+        .flex(row,nowrap,space-between,stretch);
+        position: relative;
+        a.first{
           font-size:15px;
           font-weight:300;
           text-transform: uppercase;
@@ -106,6 +122,85 @@
           }
         }
       }
+      .inner{
+        position: absolute;
+        left:0;
+        margin:0 -20px;
+        top:100%;
+        background-color: #fff;
+        width:~'calc(100% + 40px)';
+        padding:20px 40px;
+        display: none;
+        &-wrapper{
+          border:1px solid black;
+          padding:15px;
+          position: relative;
+          &:before{
+            content:'';
+            width:5px;
+            height:70%;
+            position: absolute;
+            background-color: #fff;
+            top:10px;
+            left:-1px;
+          }
+          &:after{
+            content:'';
+            .size(10px);
+            background-color: @color-pink;
+            bottom:0;
+            right:0;
+            position: absolute;
+          }
+        }
+        &-ul{
+          .reset-around;
+          list-style: none;
+          a{
+            color:black;
+            font-size:18px;
+            font-family: @font-gabriela;
+            margin-bottom:8px;
+            line-height: 1.2;
+            position: relative;
+            padding:0 3px;
+            &:hover{
+              background-color: @color-pink;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-wish{
+    margin-right:15px;
+    cursor: default;
+    position: relative;
+    &.active{
+      svg{
+        fill:@color-pink;
+      }
+    }
+    svg{
+      fill:#fff;
+      stroke:@color-pink;
+      stroke-width: 20px;
+      cursor: pointer;
+      display: block;
+    }
+    .count{
+      position: absolute;
+      .size(18px);
+      background-color: #fff;
+      border:1px solid @color-pink;
+      border-radius:50%;
+      font-size:11px;
+      font-family: @font-gabriela;
+      top:-3px;
+      right:-8px;
+      color:@color-pink;
+      .flex(row,nowrap,center,center);
+      pointer-events: none;
     }
   }
 }
@@ -169,6 +264,86 @@
       position: absolute;
       top:0;
       right:0;
+    }
+  }
+}
+.VuePagination{
+  &__pagination{
+    .flex(row,nowrap,center,center);
+    .reset-around;
+    list-style: none;
+    .page{
+      &-link{
+        display: block;
+        border:1px solid black;
+        .size(30px);
+        cursor: pointer;
+        .flex(row,nowrap,center,center);
+        font-size:15px;
+        font-weight:300;
+        margin:5px;
+        color:black;
+        &:hover{
+          background-color: @color-pink;
+          border-color:@color-pink;
+          color:white;
+        }
+      }
+      &-item{
+        &.active{
+          .page-link{
+            color:white;
+            background-color: @color-pink;
+            border-color:@color-pink;
+          }
+        }
+        &.disabled{
+          .page-link{
+            cursor: default;
+            color:gainsboro;
+            border-color:gainsboro;
+            &:hover{
+              color:gainsboro;
+              border-color:gainsboro;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.breadcrumbs{
+  .reset-around;
+  list-style:none;
+  .flex(row,wrap,flex-start,center);
+  margin-top:50px;
+  margin-bottom:25px;
+  a{
+    color:black;
+    font-size:14px;
+    font-weight:300;
+    &:hover{
+      color:@color-pink;
+    }
+  }
+  span{
+    color:@color-pink;
+    cursor: default;
+  }
+  li{
+    .flex(row,nowrap,flex-start,center);
+    &:after{
+      content:'';
+      .size(5px);
+      background-color: @color-pink;
+      margin:0 8px;
+      display: block;
+    }
+    &:last-child{
+      &:after{
+        display: none;
+      }
     }
   }
 }

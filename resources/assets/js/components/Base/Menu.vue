@@ -21,25 +21,47 @@
         <div class="header-fix_down">
             <ul>
                 <li>
-                    <router-link to="/">{{ $t('menu.main') }}</router-link>
+                    <router-link class="first" to="/">{{ $t('menu.main') }}</router-link>
+                </li>
+                <li @mouseenter="showUl($event)"
+                    @mouseleave="hideUl($event)"
+                    >
+                    <router-link class="first" to="/category">{{ $t('menu.catalog') }}</router-link>
+                    <div class="inner">
+                        <div class="inner-wrapper">
+                            <ul class="inner-ul">
+                                <li v-for="(item,index) in categories"
+                                    v-if="item.parent_category === 0">
+                                    <router-link :to="{name:'category',params:{slug:item.slug}}">{{ item.name }}</router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li @mouseenter="showUl($event)"
+                    @mouseleave="hideUl($event)">
+                    <router-link class="first" :to="{name:'service'}">{{ $t('menu.service') }}</router-link>
+                    <div class="inner">
+                        <div class="inner-wrapper">
+                            <ul class="inner-ul">
+                                <li v-for="(item,index) in categories" v-if="item.parent_category === 1">
+                                    <router-link :to="{name:'services',params:{slug:item.slug}}">{{ item.name }}</router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <router-link to="/category">{{ $t('menu.catalog') }}</router-link>
+                    <router-link class="first" to="/test">{{ $t('menu.works') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/bar">{{ $t('menu.shop') }}</router-link>
+                    <router-link class="first" to="/about">{{ $t('menu.about') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/test">{{ $t('menu.works') }}</router-link>
+                    <router-link class="first" to="/contacts">{{ $t('menu.contacts') }}</router-link>
                 </li>
                 <li>
-                    <router-link to="/about">{{ $t('menu.about') }}</router-link>
-                </li>
-                <li>
-                    <router-link to="/contacts">{{ $t('menu.contacts') }}</router-link>
-                </li>
-                <li>
-                    <router-link to="/partners">{{ $t('menu.partners') }}</router-link>
+                    <router-link class="first" to="/partners">{{ $t('menu.partners') }}</router-link>
                 </li>
             </ul>
         </div>
@@ -48,9 +70,35 @@
 <script>
     import Lang from './Lang';
     export default {
+        data(){
+          return {
+              categories:JSON.parse(config.categories)
+          }
+        },
         methods:{
             closemenu(){
                 this.$emit('closemenu');
+            },
+            showUl(event){
+                var e = event || window.event;
+                var el = e.currentTarget;
+                var ul = el.querySelector('.inner');
+                if(ul){
+                    Velocity(ul,'slideDown',{
+                        duration:200,
+                    });
+
+                }
+            },
+            hideUl(event){
+                var e = event || window.event;
+                var el = e.currentTarget;
+                var ul = el.querySelector('.inner');
+                if(ul){
+                    Velocity(ul,'slideUp',{
+                        duration:200,
+                    });
+                }
             }
         },
         components:{

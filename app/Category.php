@@ -5,7 +5,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Category extends Model
 
 {
     use Sluggable;
@@ -17,5 +17,12 @@ class Categories extends Model
                 'source' => 'name_en'
             ]
         ];
+    }
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+    public function filters(){
+        return $this->hasMany('App\Filter');
     }
 }
