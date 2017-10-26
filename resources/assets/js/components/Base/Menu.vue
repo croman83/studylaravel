@@ -72,7 +72,8 @@
     export default {
         data(){
           return {
-              categories:JSON.parse(config.categories)
+            categories:JSON.parse(config.categories),
+            trigger:false,
           }
         },
         methods:{
@@ -80,25 +81,40 @@
                 this.$emit('closemenu');
             },
             showUl(event){
-                var e = event || window.event;
-                var el = e.currentTarget;
-                var ul = el.querySelector('.inner');
-                if(ul){
+                if(!this.trigger){
+                  this.trigger = true;
+                  var e = event || window.event;
+                  var el = e.currentTarget;
+                  var ul = el.querySelector('.inner');
+                  if(ul){
+                    var _self = this;
                     Velocity(ul,'slideDown',{
-                        duration:200,
-                    });
+                      duration:200,
+                    }).then(elements=>{
+                      _self.trigger = false;
+                    })
 
+                  }
                 }
             },
             hideUl(event){
-                var e = event || window.event;
-                var el = e.currentTarget;
-                var ul = el.querySelector('.inner');
-                if(ul){
+                if(!this.trigger){
+                  this.trigger = true;
+                  var e = event || window.event;
+                  var el = e.currentTarget;
+                  var ul = el.querySelector('.inner');
+                  if(ul){
+                    var _self = this;
                     Velocity(ul,'slideUp',{
-                        duration:200,
+                      duration:200,
+                    }).then(elements=>{
+                      _self.trigger = false;
                     });
+                  }
                 }
+            },
+            closeAll(){
+
             }
         },
         components:{
