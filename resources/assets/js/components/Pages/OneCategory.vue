@@ -52,11 +52,11 @@
                 </transition-group>
                 <div class="cat-pagination">
                     <pagination for="category"
-                                :chunk="10"
+                                :chunk="12"
                                 class="pagination-block"
                                 :records="parseInt(data.product_total)"
                                 :count-text="'Showing {from} to {to} of {count} records| | '"
-                                :per-page="5"></pagination>
+                                :per-page="12"></pagination>
                 </div>
             </div>
         </div>

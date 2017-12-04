@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 const state = {
     locale:'en',
-    menuCollapse:true,
+    menuCollapse:false,
+    langs:['ru','en','ro']
 }
 
 const getters = {

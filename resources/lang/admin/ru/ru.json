@@ -1,4 +1,31 @@
 {
-  "header":"Это я",
-  "dashboard":"Главная"
+  "header": "This is header",
+  "menu": {
+    "dashboard": "Главная",
+    "settings": "Настройки",
+    "translate": "Перевод",
+    "catalog":"Каталог",
+    "services":"Услуги",
+    "category":"Категории",
+    "tags":"Тэги",
+    "products":"Товары"
+  },
+  "title": {
+    "translator": "Translator!"
+  },
+  "notification": {
+    "success": "This is success"
+  },
+  "change_category":"Изменение категории",
+  "category_title":"Название категории",
+  "category_status":"Статус",
+  "category_image":"Изображение категории",
+  "save":"Сохранить",
+  "addcategory":"Добавить категорию",
+  "name_category":"Название категории",
+  "change_product":"Изменить товар",
+  "product":{
+    "name":"Название товара",
+    "images":"Изображения товара"
+  }
 }

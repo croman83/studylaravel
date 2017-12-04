@@ -3,12 +3,28 @@
   "menu": {
     "dashboard": "Dashboard",
     "settings": "Settings",
-    "translate": "Translate"
+    "translate": "Translate",
+    "catalog":"Catalog",
+    "services":"Services",
+    "category":"Categories",
+    "tags":"Tags",
+    "products":"Products"
   },
   "title": {
     "translator": "Translator!"
   },
   "notification": {
     "success": "This is success"
+  },
+  "change_category":"Edit category",
+  "category_title":"Category name",
+  "category_status":"Status",
+  "category_image":"Category image",
+  "save":"Save",
+  "addcategory":"Add category",
+  "name_category":"Category name",
+  "change_product":"Change product",
+  "product":{
+    "name":"Product name"
   }
 }

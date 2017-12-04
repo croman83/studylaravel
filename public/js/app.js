@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -13572,7 +13572,7 @@ exports = module.exports = {
 
 "use strict";
 /*!
- * vue-i18n v7.3.2 
+ * vue-i18n v7.3.1 
  * (c) 2017 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -15070,7 +15070,7 @@ VueI18n.availabilities = {
   numberFormat: canUseNumberFormat
 };
 VueI18n.install = install;
-VueI18n.version = '7.3.2';
+VueI18n.version = '7.3.1';
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
@@ -15574,10 +15574,10 @@ var render = function() {
                 staticClass: "pagination-block",
                 attrs: {
                   for: "category",
-                  chunk: 10,
+                  chunk: 12,
                   records: parseInt(_vm.data.product_total),
                   "count-text": "Showing {from} to {to} of {count} records| | ",
-                  "per-page": 5
+                  "per-page": 12
                 }
               })
             ],
@@ -15832,7 +15832,7 @@ var render = function() {
           _c("router-link", { attrs: { to: "/" } }, [
             _c("img", { attrs: { src: "/img/logo.png", alt: "" } }),
             _vm._v(" "),
-            _c("span", [_vm._v("CuDrag")])
+            _c("span", [_vm._v("CuDrag.md")])
           ])
         ],
         1
@@ -18365,7 +18365,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(1);
+    var client = __webpack_require__(0);
 
     return new PromiseObj(function (resolve) {
 
@@ -35186,19 +35186,19 @@ var actions = {
 /***/ }),
 
 /***/ 0:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/app.js");
 __webpack_require__("./resources/assets/less/app.less");
 module.exports = __webpack_require__("./resources/assets/less/admin.less");
 
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-/* (ignored) */
 
 /***/ })
 

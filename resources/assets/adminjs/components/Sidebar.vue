@@ -11,14 +11,15 @@
             <el-submenu index="2">
                 <template slot="title">
                     <i class="el-icon-menu"></i>
-                    <span slot="title">Group</span>
+                    <span slot="title">{{ $t('menu.catalog') }}</span>
                 </template>
                 <el-menu-item-group>
-                    <span slot="title">Group One</span>
-                    <el-menu-item index="2-1">item one</el-menu-item>
-                    <el-menu-item index="2-2">item two</el-menu-item>
+                    <span slot="title">{{ $t('menu.catalog') }}</span>
+                    <el-menu-item index="/categories">{{ $t('menu.category') }}</el-menu-item>
+                    <el-menu-item index="/tags">{{ $t('menu.tags') }}</el-menu-item>
+                    <el-menu-item index="/products">{{ $t('menu.products') }}</el-menu-item>
                 </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
+                <el-menu-item-group :title="$t('menu.services')">
                     <el-menu-item index="2-3">item three</el-menu-item>
                 </el-menu-item-group>
                 <el-submenu index="2-4">

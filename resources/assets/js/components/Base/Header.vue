@@ -3,7 +3,7 @@
         <div class="header-logo">
             <router-link to="/">
                 <img src="/img/logo.png" alt="">
-                <span>CuDrag</span>
+                <span>CuDrag.md</span>
             </router-link>
         </div>
         <div class="header-right">

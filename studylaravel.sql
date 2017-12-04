@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 23, 2017 at 10:40 PM
+-- Generation Time: Dec 03, 2017 at 11:11 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -46,13 +46,17 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `image`, `status`, `parent_category`, `created_at`, `updated_at`) VALUES
-(1, 'Декор', 'Decor', 'Decor', 'decor', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL),
+(1, 'Декор_russian', 'Decor_roman', 'Decor_english', 'decor', 'YrWdpULL32XEurE.jpg', 1, 0, '2017-10-15 18:27:57', '2017-11-08 08:52:00'),
 (3, 'Оформление', 'Decorarea', 'Decor', 'oformlenie', 'oformlenie.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
 (5, 'Элементы декора', 'Elemente de decor', 'Elements of decor', 'elemets', 'elem.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
 (14, 'Свадьбы', 'Nunti', 'Weddings', 'weddings', 'category_wedding.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00'),
 (15, 'Дни рождения', 'Zi de nastere', 'Birthday', 'birthday', 'category_birthday.jpg', 1, 1, '2017-10-20 21:00:00', '2017-10-26 21:00:00'),
-(16, 'Оформление2', 'Decorarea', 'Decor', 'oformlenie2', 'oformlenie.jpg', 1, 0, '2017-10-15 19:27:57', NULL),
-(17, 'Декор2', 'Decor', 'Decor', 'decor2', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL);
+(18, 'Декор2', 'Decor', 'Decor', 'decor21', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL),
+(19, 'Декор2', 'Decor', 'Decor', 'decor22', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL),
+(20, 'Декор2', 'Decor', 'Decor', 'decor23', 'decor.jpg', 1, 0, '2017-10-15 18:27:57', NULL),
+(22, 'new-category_ru', 'new-category_ro', 'new-category_en', 'new-category-en', '0vVY9G6H6agBLHd.jpg', 0, 0, '2017-11-08 09:31:33', '2017-11-08 09:31:33'),
+(24, 'adfbg', 'asdf', 'asdf', 'asdf', 'PwPHZlAUn6iuv0B.jpg', 1, 0, '2017-11-08 09:34:02', '2017-11-08 09:34:02'),
+(25, 'adsgv', 'asd', 'asdvfg', 'asdvfg', 'iz9zt0K6za0ktD3.jpg', 1, 0, '2017-11-08 09:35:48', '2017-11-08 09:35:48');
 
 -- --------------------------------------------------------
 
@@ -171,7 +175,9 @@ INSERT INTO `productimages` (`id`, `image`, `product_id`, `created_at`, `updated
 (9, '4.jpg', 2, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
 (10, '2.jpg', 5, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
 (11, '3.jpg', 6, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
-(12, '4.jpg', 7, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL);
+(12, '4.jpg', 7, '2017-10-17 17:55:45', '2017-10-17 17:55:48', NULL),
+(14, 'bAUNO6AekwNWfo2.jpg', 2, '2017-11-08 17:03:22', '2017-11-08 17:03:22', 'bAUNO6AekwNWfo2.jpg'),
+(15, 'RlNeP88iKxFb09j.jpg', 2, '2017-11-08 17:10:38', '2017-11-08 17:10:38', 'RlNeP88iKxFb09j.jpg');
 
 -- --------------------------------------------------------
 
@@ -207,13 +213,19 @@ INSERT INTO `products` (`id`, `name_ru`, `name_ro`, `name_en`, `slug`, `descript
 (2, 'Бомбоньерки из красивой ткани', 'product1_ro', 'Balloon for decor', 'product2_slug', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
 (3, 'product2_ru', 'product1_ro', 'product1_en', 'product3_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 3, NULL),
 (4, 'Букет невесты', 'product1_ro', 'product1_en', 'product4_slug', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'desc1_ro', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 10.00, 1, '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', '2017-10-15 21:53:50', '2017-10-15 21:53:51', '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', '<div>\r\n        <h2>Абзац 1.10.33 \"de Finibus Bonorum et Malorum\", написанный Цицероном в 45 году н.э.</h2>\r\n        <p>\"<b>At vero eos et accusamus</b> et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"</p>\r\n    </div>', 1, 1),
-(5, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(6, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(7, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(8, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(9, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(10, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
-(11, 'product3_ru', 'product1_ro', 'product1_en', 'product4_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL);
+(5, 'product3_ru', 'product1_ro', 'product1_en', 'product41_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(6, 'product3_ru', 'product1_ro', 'product1_en', 'product411_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(7, 'product3_ru', 'product1_ro', 'product1_en', 'product42_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(8, 'product3_ru', 'product1_ro', 'product1_en', 'product44_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(9, 'product3_ru', 'product1_ro', 'product1_en', 'product45_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(10, 'product3_ru', 'product1_ro', 'product1_en', 'product455_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(11, 'product3_ru', 'product1_ro', 'product1_en', 'product46_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(12, 'product3_ru', 'product1_ro', 'product1_en', 'product461_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(13, 'product3_ru', 'product1_ro', 'product1_en', 'product462_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(14, 'product3_ru', 'product1_ro', 'product1_en', 'product463_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(15, 'product3_ru', 'product1_ro', 'product1_en', 'product464_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(16, 'product3_ru', 'product1_ro', 'product1_en', 'product4643_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL),
+(17, 'product3_ru', 'product1_ro', 'product1_en', 'product46434_slug', 'desc1_ru', 'desc1_ro', 'desc1_ev', 10.00, 1, NULL, '2017-10-15 21:53:50', '2017-10-15 21:53:51', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -245,9 +257,9 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `name_ru`, `name_en`, `name_ro`, `slug`, `short_description_ru`, `short_description_en`, `short_description_ro`, `description_ru`, `description_en`, `description_ro`, `created_at`, `updated_at`, `image`, `status`, `sort`) VALUES
-(1, 'Свадьбы', 'Weddings', 'Nunti', 'weddings', 'short description1', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:21:40', '2017-10-23 18:21:41', '1.jpg', 1, 0),
-(3, 'Дни рождения', 'Birdthdays', 'Zi de nastere', 'birdthday', 'short description3', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '2.jpg', 1, 10),
-(5, 'Корпоративы', 'Corporate events', 'Corporative', 'corporate', 'short description5', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '3.jpg', 1, 0);
+(1, 'Свадьбы', 'Weddings', 'Nunti', 'weddings', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:21:40', '2017-10-23 18:21:41', '1.jpg', 1, 0),
+(3, 'Дни рождения', 'Birdthdays', 'Zi de nastere', 'birdthday', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '2.jpg', 1, 10),
+(5, 'Корпоративы', 'Corporate events', 'Corporative', 'corporate', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', '', '', '2017-10-23 18:22:32', '2017-10-23 18:22:33', '3.jpg', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +283,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `locale`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Roman', 'en', 'casian.roma@gmail.com', '$2y$10$oxPqLTp2OjUDU372rA7.1ehguUKK.2U3fHbMcpAi/DmuJBt6PNnXi', NULL, '2017-10-15 13:09:23', '2017-10-15 20:03:57');
+(1, 'Roman', 'ru', 'casian.roma@gmail.com', '$2y$10$oxPqLTp2OjUDU372rA7.1ehguUKK.2U3fHbMcpAi/DmuJBt6PNnXi', 'KnZ17MdZhFjgi3aZogW2aql9TShNJ5asnfumS8K1uye3aPnzXkffzHLHcP09', '2017-10-15 13:09:23', '2017-11-08 16:14:02');
 
 --
 -- Indexes for dumped tables
@@ -346,7 +358,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `filters`
 --
@@ -366,17 +378,17 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `productimages`
 --
 ALTER TABLE `productimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --

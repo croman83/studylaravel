@@ -36,7 +36,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
 // admin routes
     Route::post('admin/translate/save', 'HomeController@translateSave');
+    Route::post('admin/get-categories', 'HomeController@getCategories');
+    Route::post('admin/delete-category', 'HomeController@deleteCategory');
+    Route::post('admin/categories/foto', 'HomeController@categoryEditFoto');
+    Route::post('admin/categories/add/foto', 'HomeController@categoryAddPhoto');
+    Route::post('admin/categories/{slug}', 'HomeController@categoryInfo');
+    Route::post('admin/get-products', 'HomeController@productsList');
+    Route::post('admin/products/foto', 'HomeController@productFotoAdd');
+    Route::post('admin/products/{slug}', 'HomeController@products');
+
+
     Route::get('/admin/{vue?}','HomeController@index' )->where('vue', '[\/\w\.-]*')->name('admin');
+
+
 
 
 // client routes

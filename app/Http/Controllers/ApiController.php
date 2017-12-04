@@ -39,6 +39,10 @@ class ApiController extends Controller
         }
         $temp2->collapse()->all();
         if(count($f_array)){
+            $pr_total = Category::find($this->c_id['id'])
+                ->products()
+                ->whereIn('id',$temp2)
+                ->get();
             $pr = Category::find($this->c_id['id'])
                 ->products()
                 ->whereIn('id',$temp2)
@@ -48,9 +52,12 @@ class ApiController extends Controller
                     'description_'.$loc.' as description',
                     'slug',
                     'id')->
-                orderBy('created_at','asc')->skip( $input['page'] * 5 - 5 )->take(5)->
+                orderBy('created_at','asc')->skip( $input['page'] * 12 - 12 )->take(12)->
                 get();
         }else{
+            $pr_total = DB::table('products')
+                ->where('category_id',$this->c_id->id)
+                ->get();
             $pr = DB::table('products')->
             where('category_id',$this->c_id->id)->
             select(
@@ -59,12 +66,12 @@ class ApiController extends Controller
                 'description_'.$loc.' as description',
                 'slug',
                 'id')->
-            orderBy('created_at','asc')->skip( $input['page'] * 5 - 5 )->take(5)->
+            orderBy('created_at','asc')->skip( $input['page'] * 12 - 12 )->take(12)->
             get();
         }
 
 
-        $product_total = count($pr);
+        $product_total = count($pr_total);
 
         $filter = Category::find($this->c_id['id'])
             ->filters()

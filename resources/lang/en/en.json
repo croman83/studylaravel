@@ -23,5 +23,10 @@
   "no_products":"Sorry we have not product in this category",
   "categories":"Categories",
   "our_services":"Our services",
-  "read_more":"Read more"
+  "read_more":"Read more",
+  "category":"Category",
+  "change_product":"Change product",
+  "product":{
+    "name":"Product name"
+  }
 }
