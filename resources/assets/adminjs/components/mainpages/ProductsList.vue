@@ -1,6 +1,11 @@
 <template>
     <el-card>
         <h1>{{ $t('menu.products') }}</h1>
+        <el-button class="categories-add"
+                   icon="fa-plus-square-o"
+                   @click="addProduct"
+                   type="primary"
+                   plain>Добавить</el-button>
         <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="id" label="id" sortable width="180">
             </el-table-column>
@@ -55,6 +60,9 @@
             }
         },
         methods:{
+            addProduct(){
+
+            },
             handleEdit(index, row) {
                 this.$router.push({ name: 'product', params: { slug: row.slug }})
             },

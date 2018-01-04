@@ -17,7 +17,7 @@
             <slider :images="data.images"></slider>
             <div class="product-description">
                 <h4 class="title">{{ $t('description') }}</h4>
-                <div class="text">{{ data.product.description }}</div>
+                <div class="text" v-html="data.product.description"></div>
                 <h4 class="title">{{ $t('price') }}</h4>
                 <div class="product-price">
                     <b>{{ data.product.price }}</b>

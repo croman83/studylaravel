@@ -5,7 +5,7 @@
                  :data-src="'/images/products/'+item.image"
                  :key="'products-slide-'+index">
                 <div class="product-slider_item"
-                     :style="{backgroundImage:'url(/images/products/'+item.image+')'}"></div>
+                     :style="{backgroundImage:'url(/images/products/thumb/thumb_'+item.image+')'}"></div>
             </div>
         </div>
         <div class="product-slider_bottom">
@@ -13,7 +13,7 @@
                 <div v-for="(item,index) in images"
                      :key="'products-slide-image'+index"
                      class="bottom-slider"
-                     :style="{backgroundImage:'url(/images/products/'+item.image+')'}"
+                     :style="{backgroundImage:'url(/images/products/thumb/thumb_'+item.image+')'}"
                 ></div>
             </div>
         </div>

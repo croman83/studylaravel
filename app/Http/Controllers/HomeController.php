@@ -8,6 +8,7 @@ use Auth;
 use Session;
 use App\Category;
 use App\Product;
+use App\Filter;
 use Input;
 use File;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -172,6 +173,36 @@ class HomeController extends Controller
             $data['images'] = Product::find($data['product']->id)->images()->get();
             return $data;
         }
+        else if($input['type'] === 'deleteImage'){
+
+            $product = Product::find($input['id'])->images();
+            $product->where('image_thumb',$input['file']['name'])->delete();
+            File::Delete(public_path('/images/products/'.$input['file']['name']));
+
+
+            File::Delete(public_path('/images/products/thumb/thumb_'.$input['file']['name']));
+
+        }
+        else if($input['type'] === 'edit'){
+            $product = Product::find($input['info']['id'])->first();
+            $product->name_ru = $input['info']['name_ru'];
+            $product->name_en = $input['info']['name_en'];
+            $product->name_ro = $input['info']['name_ro'];
+            $product->description_ro = $input['info']['description_ro'];
+            $product->description_en = $input['info']['description_en'];
+            $product->description_ru = $input['info']['description_ru'];
+            $product->extra_description_ro = $input['info']['extra_description_ro'];
+            $product->extra_description_en = $input['info']['extra_description_en'];
+            $product->extra_description_ru = $input['info']['extra_description_ru'];
+            $product->price = $input['info']['price'];
+            if($input['status']){
+                $product->status = 1;
+            }else{
+                $product->status = 0;
+            }
+
+            $product->save();
+        }
     }
 
     public function productFotoAdd(Request $request)
@@ -196,7 +227,7 @@ class HomeController extends Controller
                 $product_image['product_id'] = $input['id'];
                 $product_image->save();
                 $image->save(public_path('/images/products/'.$image_name.'.'.$ext));
-                $image_thumb->save(public_path('/images/products/thumb/'.$image_name.'_thumb.'.$ext));
+                $image_thumb->save(public_path('/images/products/thumb/thumb_'.$image_name.'.'.$ext));
             }
         }
 

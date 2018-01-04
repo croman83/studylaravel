@@ -7,7 +7,7 @@
             <h1>{{ $t('change_product') }}</h1>
             <el-tabs tab-position="top" class="category-tab">
                 <el-tab-pane :label="lang" v-for="lang in langs" :key="lang">
-                    <el-row type="flex" align="middle">
+                    <el-row type="flex" align="middle" class="category-tab_row">
                         <el-col :span="4">
                             <label for="">{{ $t('product.name') }}</label>
                         </el-col>
@@ -15,8 +15,38 @@
                             <el-input placeholder="Please input" v-model="data.product['name_'+lang]"></el-input>
                         </el-col>
                     </el-row>
+                    <el-row type="flex" align="top" class="category-tab_row">
+                        <el-col :span="4">
+                            <label for="">{{ $t('product.description') }}</label>
+                        </el-col>
+                        <el-col :span="20">
+                            <!--<el-input placeholder="Please input" v-model="data.product['description_'+lang]"></el-input>-->
+                            <ckeditor
+                                    :config="config"
+                                    v-model="data.product['description_'+lang]"></ckeditor>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex" align="top" class="category-tab_row">
+                        <el-col :span="4">
+                            <label for="">{{ $t('product.extra_description') }}</label>
+                        </el-col>
+                        <el-col :span="20">
+                            <!--<el-input placeholder="Please input" v-model="data.product['description_'+lang]"></el-input>-->
+                            <ckeditor
+                                    :config="config"
+                                    v-model="data.product['extra_description_'+lang]"></ckeditor>
+                        </el-col>
+                    </el-row>
                 </el-tab-pane>
             </el-tabs>
+            <el-row class="product-price" type="flex" align="middle" >
+                <el-col :span="4">
+                    <label for="">{{ $t('product.price') }}</label>
+                </el-col>
+                <el-col :span="8">
+                    <el-input placeholder="Please input" v-model.number="data.product['price']" type="number"></el-input>
+                </el-col>
+            </el-row>
             <el-row class="product-images">
                 <el-col :span="4">
                     <label for="">{{ $t('product.images') }}</label>
@@ -29,6 +59,7 @@
                             :data="{id:data.product.id,type:'add'}"
                             :file-list="productImages"
                             :on-preview="handlePictureCardPreview"
+                            :on-success="handleReload"
                             :on-remove="handleRemove">
                         <i class="el-icon-plus"></i>
                     </el-upload>
@@ -49,7 +80,7 @@
             <el-row>
                 <el-button type="primary"
                            plain
-                           @click="editCategory"
+                           @click="editProduct"
                            icon="el-icon-edit">{{ $t('save') }}</el-button>
             </el-row>
         </el-card>
@@ -57,6 +88,7 @@
 </template>
 <script>
     import store from './../../store';
+    import Ckeditor from 'vue-ckeditor2'
     export default{
         data(){
             return {
@@ -71,9 +103,11 @@
                 status:false,
                 loading:false,
                 dialogImageUrl: '',
-                dialogVisible: false
+                dialogVisible: false,
+                config:store.state.editorConfig
             }
         },
+        components:{Ckeditor},
         computed:{
             productImages(){
                 var el = this.data.images;
@@ -81,7 +115,7 @@
                 el.forEach(item=>{
                     ret.push({
                         name:item.image,
-                        url:'/images/products/'+item.image,
+                        url:'/images/products/thumb/thumb_'+item.image,
                     })
                 });
                 return ret;
@@ -97,25 +131,56 @@
             }
         },
         methods:{
+            handleReload(){
+                // hack to get filenames
+//              window.location.reload()
+            },
             handleRemove(file, fileList) {
                 console.log(file, fileList);
-            },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
-            },
-            editCategory(){
                 var data = {
                     lang: store.state.locale,
-                    type:'edit'
+                    type:'deleteImage',
+                    file:file,
+                    slug:this.data.product.slug,
+                    id:this.data.product.id,
                 }
+                console.log(data);
                 this.loading = true;
                 this.$http.post('',data)
                     .then(response=>{
                         console.log(response.data);
                         this.$message({
                             type:'success',
-                            message:'Категория сохранена'
+                            message:'Изображение удалено'
+                        });
+                        this.loading = false;
+
+                    }), response => {
+                    this.$message({
+                        type:'error',
+                        message:'Ошибка сервера'
+                    });
+                    this.loading = false;
+                };
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+            editProduct(){
+                var data = {
+                    lang: store.state.locale,
+                    type:'edit',
+                    status:this.status,
+                    info:this.data.product,
+                    slug:this.data.product.slug,
+                }
+                this.loading = true;
+                this.$http.post('',data)
+                    .then(response=>{
+                        this.$message({
+                            type:'success',
+                            message:'Продукт сохранен'
                         });
                         this.loading = false;
 
@@ -135,8 +200,13 @@
                 }
                 this.$http.post('',data)
                     .then(response=>{
-                        console.log(response.data);
                         this.data = response.data;
+                        if(response.data.product.status){
+                            this.status = true;
+                        }else{
+                            this.status = false;
+                        }
+
                     }), response => { };
             },
             goBack(){
@@ -157,10 +227,16 @@
         &-back{
             margin-bottom:25px;
         }
+        &-price{
+            margin-bottom:25px;
+        }
     }
     .category{
         &-tab{
             margin-bottom:25px;
+            &_row{
+                margin-bottom:25px;
+            }
         }
         &-status{
             margin-bottom:25px;

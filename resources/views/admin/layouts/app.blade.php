@@ -16,34 +16,6 @@
 </head>
 <body>
     <div id="admin">
-        {{--<ul >--}}
-            {{--<!-- Authentication Links -->--}}
-            {{--@guest--}}
-            {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
-            {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
-            {{--@else--}}
-                {{--<li class="dropdown">--}}
-                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
-                        {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
-                    {{--</a>--}}
-
-                    {{--<ul class="dropdown-menu" role="menu">--}}
-                        {{--<li>--}}
-                            {{--<a href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                                {{--Logout--}}
-                            {{--</a>--}}
-
-                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                {{--{{ csrf_field() }}--}}
-                            {{--</form>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
-                {{--@endguest--}}
-        {{--</ul>--}}
-
         @yield('content')
     </div>
 
@@ -57,9 +29,10 @@
     @endphp
     <script>window.config = {!! json_encode($config); !!};</script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-
+    <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 
     <script src="{{ mix('js/admin.js') }}"></script>
+
         <script id="__bs_script__">//<![CDATA[
             document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.6'><\/script>".replace("HOST", location.hostname));
             //]]></script>

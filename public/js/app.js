@@ -15334,7 +15334,8 @@ var render = function() {
             _c("div", {
               staticClass: "product-slider_item",
               style: {
-                backgroundImage: "url(/images/products/" + item.image + ")"
+                backgroundImage:
+                  "url(/images/products/thumb/thumb_" + item.image + ")"
               }
             })
           ]
@@ -15351,7 +15352,8 @@ var render = function() {
             key: "products-slide-image" + index,
             staticClass: "bottom-slider",
             style: {
-              backgroundImage: "url(/images/products/" + item.image + ")"
+              backgroundImage:
+                "url(/images/products/thumb/thumb_" + item.image + ")"
             }
           })
         })
@@ -16347,9 +16349,10 @@ var render = function() {
             _vm._v(_vm._s(_vm.$t("description")))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "text" }, [
-            _vm._v(_vm._s(_vm.data.product.description))
-          ]),
+          _c("div", {
+            staticClass: "text",
+            domProps: { innerHTML: _vm._s(_vm.data.product.description) }
+          }),
           _vm._v(" "),
           _c("h4", { staticClass: "title" }, [_vm._v(_vm._s(_vm.$t("price")))]),
           _vm._v(" "),

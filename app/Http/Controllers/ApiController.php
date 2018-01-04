@@ -60,6 +60,7 @@ class ApiController extends Controller
                 ->get();
             $pr = DB::table('products')->
             where('category_id',$this->c_id->id)->
+            where('status',1)->
             select(
                 'name_'.$loc.' as name',
                 'price',

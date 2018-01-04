@@ -25,6 +25,8 @@
   "name_category":"Category name",
   "change_product":"Change product",
   "product":{
-    "name":"Product name"
+    "name":"Product name",
+    "images":"Изображения товара",
+    "description":"Описание товара"
   }
 }

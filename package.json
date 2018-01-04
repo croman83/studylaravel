@@ -30,6 +30,7 @@
     "lightgallery.js": "^1.0.1",
     "tiny-slider": "^2.2.3",
     "velocity-animate": "^1.5.0",
+    "vue-ckeditor2": "^1.20.0",
     "vue-click-outside": "^1.0.6",
     "vue-head": "^2.0.11",
     "vue-i18n": "^7.3.1",
