@@ -8,7 +8,8 @@
     "services":"Услуги",
     "category":"Категории",
     "tags":"Тэги",
-    "products":"Товары"
+    "products":"Товары",
+    "pages":"Страницы"
   },
   "title": {
     "translator": "Translator!"

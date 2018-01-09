@@ -25,7 +25,7 @@ const state = {
             { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
             { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
         ],
-        height:300,
+        height:120,
     }
 }
 

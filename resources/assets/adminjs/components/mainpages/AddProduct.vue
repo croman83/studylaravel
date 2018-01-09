@@ -4,7 +4,7 @@
             <div class="product-back">
                 <el-button type="info" plain icon="fa-arrow-circle-o-left" @click="goBack">Back</el-button>
             </div>
-            <h1>{{ $t('change_product') }}</h1>
+            <h1>{{ $t('new_product') }}</h1>
             <el-tabs tab-position="top" class="category-tab">
                 <el-tab-pane :label="lang" v-for="lang in langs" :key="lang">
                     <el-row type="flex" align="middle" class="category-tab_row">
@@ -47,33 +47,12 @@
                     <el-input placeholder="Please input" v-model.number="data.product['price']" type="number"></el-input>
                 </el-col>
             </el-row>
-            <el-row class="product-images">
-                <el-col :span="4">
-                    <label for="">{{ $t('product.images') }}</label>
-                </el-col>
-                <el-col :span="8">
-                    <el-upload
-                            action="foto"
-                            list-type="picture-card"
-                            :headers="{'X-CSRF-TOKEN':token}"
-                            :data="{id:data.product.id,type:'add'}"
-                            :file-list="productImages"
-                            :on-preview="handlePictureCardPreview"
-                            :on-success="handleReload"
-                            :on-remove="handleRemove">
-                        <i class="el-icon-plus"></i>
-                    </el-upload>
-                    <el-dialog :visible.sync="dialogVisible" size="tiny">
-                        <img width="100%" :src="dialogImageUrl" alt="">
-                    </el-dialog>
-                </el-col>
-            </el-row>
             <el-row class="product-category" type="flex" align="middle">
                 <el-col :span="4">
                     <label for="">{{ $t('product.choose_cat') }}</label>
                 </el-col>
                 <el-col :span="8">
-                    <el-select v-model="data.product.category_id" placeholder="Select" @change="getTags">
+                    <el-select v-model="data.categoryId" placeholder="Select" @change="getTags">
                         <el-option
                                 v-for="item in categoryList"
                                 :key="item.id"
@@ -109,7 +88,7 @@
             <el-row>
                 <el-button type="primary"
                            plain
-                           @click="editProduct"
+                           @click="saveProduct"
                            icon="el-icon-edit">{{ $t('save') }}</el-button>
             </el-row>
         </el-card>
@@ -124,35 +103,35 @@
                 data:{
                     product:{
                         id:'',
-                        category_id:0,
+                        name_ru:'1',
+                        name_en:'2',
+                        name_ro:'3',
+                        description_ru:'4',
+                        description_en:'5',
+                        description_ro:'6',
+                        extra_description_ru:'7',
+                        extra_description_en:'8',
+                        extra_description_ro:'9',
+                        price:0,
                     },
                     images:[],
+                    status:0,
+                    categoryId:1,
                 },
                 token:document.head.querySelector('meta[name="csrf-token"]').content,
                 langs:store.state.langs,
                 status:false,
                 loading:false,
-                dialogImageUrl: '',
-                dialogVisible: false,
                 config:store.state.editorConfig,
                 categoryList:[],
                 choosenTags:[],
                 tags:[],
+
             }
         },
         components:{Ckeditor},
         computed:{
-            productImages(){
-                var el = this.data.images;
-                var ret = [];
-                el.forEach(item=>{
-                    ret.push({
-                        name:item.image,
-                        url:'/images/products/thumb/thumb_'+item.image,
-                    })
-                });
-                return ret;
-            }
+
         },
         watch:{
             status(val){
@@ -165,60 +144,28 @@
         },
         methods:{
             getTags(){
-                console.log('tag')
+                this.choosenTags = [];
+                this.getData();
             },
-            handleReload(){
-                // hack to get filenames
-//              window.location.reload()
-            },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
+            saveProduct(){
                 var data = {
                     lang: store.state.locale,
-                    type:'deleteImage',
-                    file:file,
-                    slug:this.data.product.slug,
-                    id:this.data.product.id,
-                }
-                console.log(data);
-                this.loading = true;
-                this.$http.post('',data)
-                    .then(response=>{
-                        console.log(response.data);
-                        this.$message({
-                            type:'success',
-                            message:'Изображение удалено'
-                        });
-                        this.loading = false;
-
-                    }), response => {
-                    this.$message({
-                        type:'error',
-                        message:'Ошибка сервера'
-                    });
-                    this.loading = false;
-                };
-            },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
-            },
-            editProduct(){
-                var data = {
-                    lang: store.state.locale,
-                    type:'edit',
-                    status:this.status,
+                    type:'add',
+                    status:this.data.status,
                     info:this.data.product,
-                    slug:this.data.product.slug,
+                    slug:'addnew',
+                    category:this.data.categoryId,
+                    tag:this.choosenTags
                 }
                 this.loading = true;
                 this.$http.post('',data)
                     .then(response=>{
                         this.$message({
                             type:'success',
-                            message:'Продукт сохранен'
+                            message:'Продукт создан'
                         });
                         this.loading = false;
+                        this.goBack();
 
                     }), response => {
                     this.$message({
@@ -227,29 +174,20 @@
                     });
                     this.loading = false;
                 };
-            },
-            getData(){
-                var data = {
-                    lang: store.state.locale,
-                    slug:this.$route.params.slug,
-                    type:'get'
-                }
-                this.$http.post('',data)
-                    .then(response=>{
-                        console.log(response.data)
-                        this.data = response.data;
-                        this.categoryList = response.data.cat;
-                        this.tags = response.data.tags;
-                        if(response.data.product.status){
-                            this.status = true;
-                        }else{
-                            this.status = false;
-                        }
-
-                    }), response => { };
             },
             goBack(){
                 this.$router.push({name: 'products-list'})
+            },
+            getData(){
+                var data = {
+                    lang:config.locale,
+                    category:this.data.categoryId
+                };
+                this.$http.post('get-datacat',data,{headers:{'X-CSRF-TOKEN': this.token}})
+                    .then(response=>{
+                        this.categoryList = response.data.categories;
+                        this.tags = response.data.tags;
+                    }), response => { };
             },
 
         },

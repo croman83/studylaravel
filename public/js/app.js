@@ -1669,7 +1669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             url: {
-                fb: '#fb',
+                fb: 'https://www.facebook.com/cudrag.accesorii.md/',
                 inst: '#inst'
             }
         };
@@ -1973,9 +1973,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1999,7 +1996,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (ul) {
           var _self = this;
           Velocity(ul, 'slideDown', {
-            duration: 200
+            duration: 1
           }).then(function (elements) {
             _self.trigger = false;
           });
@@ -2015,7 +2012,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (ul) {
           var _self = this;
           Velocity(ul, 'slideUp', {
-            duration: 200
+            duration: 1
           }).then(function (elements) {
             _self.trigger = false;
           });
@@ -3201,7 +3198,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.np[data-v-64703793] {\n  text-align: center;\n}\n.np-title[data-v-64703793] {\n  margin: 0;\n  font-weight: 100;\n  font-size: 30px;\n  text-transform: uppercase;\n  line-height: 1.2;\n}\n.np-wrap[data-v-64703793] {\n  text-align: left;\n  margin: 50px auto;\n}\n.np-wrap .block[data-v-64703793] {\n  width: 25%;\n  padding: 15px;\n  cursor: pointer;\n}\n.np-wrap .block:hover .block-in[data-v-64703793] {\n  -webkit-filter: blur(2px);\n          filter: blur(2px);\n}\n.np-wrap .block:hover .block-title[data-v-64703793] {\n  -webkit-box-shadow: 0 0 20px 20px #fff;\n          box-shadow: 0 0 20px 20px #fff;\n}\n.np-wrap .block-in[data-v-64703793] {\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  height: 320px;\n  position: relative;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n.np-wrap .block-title[data-v-64703793] {\n  font-size: 30px;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n  margin: 0;\n  font-weight: 300;\n  background-color: #fff;\n  position: absolute;\n  bottom: 25%;\n  right: 0;\n  text-align: center;\n  line-height: 1.2;\n  z-index: 2;\n}\n.np-ram[data-v-64703793] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  height: 385px;\n  z-index: 1;\n}\n.np-ram[data-v-64703793]:after {\n  content: '';\n  width: calc(100% - 45px);\n  height: calc(100% - 45px);\n  background-color: #fff;\n  top: 20px;\n  left: 20px;\n  position: absolute;\n  z-index: -2;\n}\n.np-ram[data-v-64703793]:before {\n  content: '';\n  width: calc(100% - 55px);\n  height: calc(100% - 55px);\n  border: 1px solid black;\n  top: 45px;\n  left: 45px;\n  position: absolute;\n  z-index: -2;\n}\n", ""]);
+exports.push([module.i, "\n.np[data-v-64703793] {\n  text-align: center;\n}\n.np-title[data-v-64703793] {\n  margin: 0;\n  font-weight: 100;\n  font-size: 30px;\n  text-transform: uppercase;\n  line-height: 1.2;\n}\n.np-wrap[data-v-64703793] {\n  text-align: left;\n  margin: 50px auto;\n}\n.np-wrap .block[data-v-64703793] {\n  width: 25%;\n  padding: 15px;\n  cursor: pointer;\n}\n.np-wrap .block:hover .block-in[data-v-64703793] {\n  -webkit-filter: saturate(0);\n          filter: saturate(0);\n}\n.np-wrap .block:hover .block-title[data-v-64703793] {\n  /*box-shadow: 0 0 20px 20px #fff;*/\n  /*width:100%;*/\n}\n.np-wrap .block-in[data-v-64703793] {\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  height: 320px;\n  position: relative;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n.np-wrap .block-title[data-v-64703793] {\n  font-size: 30px;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n  margin: 0;\n  font-weight: 300;\n  background-color: #fff;\n  position: absolute;\n  bottom: 25%;\n  right: 0;\n  text-align: center;\n  line-height: 1.2;\n  z-index: 2;\n}\n.np-ram[data-v-64703793] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  height: 385px;\n  z-index: 1;\n}\n.np-ram[data-v-64703793]:after {\n  content: '';\n  width: calc(100% - 45px);\n  height: calc(100% - 45px);\n  background-color: #fff;\n  top: 20px;\n  left: 20px;\n  position: absolute;\n  z-index: -2;\n}\n.np-ram[data-v-64703793]:before {\n  content: '';\n  width: calc(100% - 55px);\n  height: calc(100% - 55px);\n  border: 1px solid black;\n  top: 45px;\n  left: 45px;\n  position: absolute;\n  z-index: -2;\n}\n", ""]);
 
 // exports
 
@@ -15939,20 +15936,24 @@ var render = function() {
           on: { leave: _vm.menuLeave, enter: _vm.menuEnter }
         },
         [
-          _vm.showmenu
-            ? _c("app-menu", {
-                directives: [
-                  {
-                    name: "click-out-side",
-                    rawName: "v-click-out-side",
-                    value: _vm.hide,
-                    expression: "hide"
-                  }
-                ],
-                ref: "sitemenu",
-                on: { closemenu: _vm.hide }
-              })
-            : _vm._e()
+          _c("app-menu", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showmenu,
+                expression: "showmenu"
+              },
+              {
+                name: "click-out-side",
+                rawName: "v-click-out-side",
+                value: _vm.hide,
+                expression: "hide"
+              }
+            ],
+            ref: "sitemenu",
+            on: { closemenu: _vm.hide }
+          })
         ],
         1
       )
@@ -16483,11 +16484,13 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("ul", [
-          _c("li", [_vm._v("Chisinau, Stefan cel Mare 13")]),
+          _c("li", [_vm._v("Stefan cel Mare 64, Chisinau, R.Moldova")]),
           _vm._v(" "),
-          _c("li", [_vm._v("069000000")])
+          _c("li", [_vm._v("(+373) 69 00 33 55")])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "footer-map" } })
     ])
   }
 ]
@@ -16574,16 +16577,6 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
-          {
-            on: {
-              mouseenter: function($event) {
-                _vm.showUl($event)
-              },
-              mouseleave: function($event) {
-                _vm.hideUl($event)
-              }
-            }
-          },
           [
             _c(
               "router-link",
@@ -16627,16 +16620,6 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
-          {
-            on: {
-              mouseenter: function($event) {
-                _vm.showUl($event)
-              },
-              mouseleave: function($event) {
-                _vm.hideUl($event)
-              }
-            }
-          },
           [
             _c(
               "router-link",
@@ -16757,7 +16740,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("section", { staticClass: "footer-down" }, [
-      _c("a", { attrs: { href: _vm.url.fb } }, [
+      _c("a", { attrs: { href: _vm.url.fb, target: "_blank" } }, [
         _c(
           "svg",
           {

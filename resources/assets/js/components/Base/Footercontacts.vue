@@ -3,11 +3,11 @@
         <address class="footer-address">
             <img src="/img/logo.png" alt="" class="footer-address_logo">
             <ul>
-                <li>Chisinau, Stefan cel Mare 13</li>
-                <li>069000000</li>
+                <li>Stefan cel Mare 64, Chisinau, R.Moldova</li>
+                <li>(+373) 69 00 33 55</li>
             </ul>
         </address>
-        <!--<div id="footer-map"></div>-->
+        <div id="footer-map"></div>
     </div>
 </template>
 <script>

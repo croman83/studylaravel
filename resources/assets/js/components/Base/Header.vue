@@ -43,7 +43,7 @@
                     :css="false"
                     v-on:leave="menuLeave"
                     v-on:enter="menuEnter">
-            <app-menu v-if="showmenu"
+            <app-menu v-show="showmenu"
                       @closemenu="hide"
                       ref="sitemenu"
                       v-click-out-side="hide"></app-menu>

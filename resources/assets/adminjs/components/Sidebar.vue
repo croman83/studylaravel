@@ -27,6 +27,16 @@
                     <el-menu-item index="2-4-1">item one</el-menu-item>
                 </el-submenu>
             </el-submenu>
+            <el-submenu index="3">
+                <template slot="title">
+                    <i class="el-icon-fa-files-o"></i>
+                    <span slot="title">{{ $t('menu.pages') }}</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="/1">{{ $t('menu.main') }}</el-menu-item>
+                    <el-menu-item index="/2">{{ $t('menu.contacts') }}</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
             <el-menu-item index="/translate">
                 <i class="el-icon-fa-globe"></i>
                 <span slot="title">{{ $t('menu.translate') }}</span>

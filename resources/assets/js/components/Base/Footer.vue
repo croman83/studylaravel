@@ -5,7 +5,7 @@
             <footer-contacts></footer-contacts>
         </section>
         <section class="footer-down">
-            <a :href="url.fb">
+            <a :href="url.fb" target="_blank">
                 <svg width="30px" height="30px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve">
                     <g>
@@ -43,7 +43,7 @@
         data(){
             return {
                 url:{
-                    fb:'#fb',
+                    fb:'https://www.facebook.com/cudrag.accesorii.md/',
                     inst:'#inst'
                 }
             }

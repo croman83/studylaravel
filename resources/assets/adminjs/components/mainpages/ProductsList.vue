@@ -1,11 +1,13 @@
 <template>
     <el-card>
-        <h1>{{ $t('menu.products') }}</h1>
-        <el-button class="categories-add"
-                   icon="fa-plus-square-o"
-                   @click="addProduct"
-                   type="primary"
-                   plain>Добавить</el-button>
+        <el-row align="middle" type="flex" class="product-list">
+            <h1>{{ $t('menu.products') }}</h1>
+            <el-button class="categories-add"
+                       icon="fa-plus-square-o"
+                       @click="addProduct"
+                       type="primary"
+                       plain>Добавить</el-button>
+        </el-row>
         <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="id" label="id" sortable width="180">
             </el-table-column>
@@ -61,7 +63,9 @@
         },
         methods:{
             addProduct(){
-
+                this.$router.push({
+                    name:'addproduct'
+                })
             },
             handleEdit(index, row) {
                 this.$router.push({ name: 'product', params: { slug: row.slug }})
@@ -73,7 +77,18 @@
                     type: 'warning'
                 }).then(() => {
                     console.log(row)
-//                    this.deleteCat(row.id);
+                    var data = {
+                        id : row.id,
+                        type: 'deleteProduct',
+                        slug:row.slug,
+                        lang:'ru'
+                    }
+                    this.loading = true;
+                    this.$http.post('products/delete',data,{headers:{'X-CSRF-TOKEN': this.token}})
+                        .then(response=>{
+                            this.loading = false;
+                            this.getData();
+                        }), response => {this.loading = false;  };
                 }).catch(() => {
 
                 });
@@ -98,3 +113,16 @@
         }
     }
 </script>
+<style lang="less" scoped>
+    .product{
+        &-list{
+            margin-bottom:25px;
+            button{
+                margin:0 25px;
+            }
+            h1{
+                margin-bottom:0;
+            }
+        }
+    }
+</style>

@@ -70,10 +70,11 @@
                 cursor: pointer;
                 &:hover{
                     .block-in{
-                        filter:blur(2px);
+                        filter:saturate(0);
                     }
                     .block-title{
-                        box-shadow: 0 0 20px 20px #fff;
+                        /*box-shadow: 0 0 20px 20px #fff;*/
+                        /*width:100%;*/
                     }
                 }
                 &-in{

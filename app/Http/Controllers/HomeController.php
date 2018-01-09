@@ -9,6 +9,7 @@ use Session;
 use App\Category;
 use App\Product;
 use App\Filter;
+use Illuminate\Support\Facades\DB;
 use Input;
 use File;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -171,6 +172,9 @@ class HomeController extends Controller
             $data['product'] = Product::where('slug',$slug)->first();
             $data['cat'] = Category::all()->toArray();
             $data['images'] = Product::find($data['product']->id)->images()->get();
+
+                $filters = DB::table('filter_product')->where('product_id',$data['product']->id)->toArray();
+                $data['tags'] = $filters;
             return $data;
         }
         else if($input['type'] === 'deleteImage'){
@@ -184,7 +188,30 @@ class HomeController extends Controller
 
         }
         else if($input['type'] === 'edit'){
-            $product = Product::find($input['info']['id'])->first();
+            $product = Product::find($input['info']['id']);
+            $product->name_ru = $input['info']['name_ru'];
+            $product->name_en = $input['info']['name_en'];
+            $product->name_ro = $input['info']['name_ro'];
+            $product->description_ro = $input['info']['description_ro'];
+            $product->description_en = $input['info']['description_en'];
+            $product->description_ru = $input['info']['description_ru'];
+            $product->extra_description_ro = $input['info']['extra_description_ro'];
+            $product->extra_description_en = $input['info']['extra_description_en'];
+            $product->extra_description_ru = $input['info']['extra_description_ru'];
+            $product->category_id = $input['info']['category_id'];
+            $product->price = $input['info']['price'];
+            if($input['status']){
+                $product->status = 1;
+            }else{
+                $product->status = 0;
+            }
+
+            $product->save();
+        }
+        else if($input['type'] === 'add'){
+
+            $product = new Product;
+
             $product->name_ru = $input['info']['name_ru'];
             $product->name_en = $input['info']['name_en'];
             $product->name_ro = $input['info']['name_ro'];
@@ -195,13 +222,42 @@ class HomeController extends Controller
             $product->extra_description_en = $input['info']['extra_description_en'];
             $product->extra_description_ru = $input['info']['extra_description_ru'];
             $product->price = $input['info']['price'];
+            $product->category_id = $input['category'];
             if($input['status']){
                 $product->status = 1;
             }else{
                 $product->status = 0;
             }
-
             $product->save();
+            foreach ($input['tag'] as $item){
+                DB::table('filter_product')->insert([
+                    ['filter_id' => $item,'product_id' => $product->id],
+                ]);
+            }
+            unset($item);
+        }
+        else if($input['type'] === 'deleteProduct'){
+            $product = Product::find($input['id']);
+            $images = $product->images();
+//            return $images->get();
+            if($images->count()){
+                foreach ($images->get() as $item){
+                    $file = 'images/products/'.$item->image;
+                    $file_thumb = 'images/products/thumb/thumb_'.$item->image;
+                    if(File::isFile($file)){
+                        \File::delete($file);
+                        \File::delete($file_thumb);
+                    }
+                }
+                unset($item);
+            }
+//            $images->each(function ($item, $key ){
+//                $allimages[$key] = $item;
+//            });
+//            return 'false';
+            $images->delete();
+            $product->delete();
+
         }
     }
 
@@ -230,6 +286,16 @@ class HomeController extends Controller
                 $image_thumb->save(public_path('/images/products/thumb/thumb_'.$image_name.'.'.$ext));
             }
         }
+
+    }
+    public function addProductGet(Request $request)
+    {
+        $input = $request->all();
+        $categories = Category::where('status',1)->get();
+        $data['categories'] = $categories;
+        $filters = Category::find($input['category'])->filters()->select('id','name_'.$input['lang'].' as name','category_id')->get();
+        $data['tags'] = $filters;
+        return $data;
 
     }
 

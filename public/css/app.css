@@ -4916,6 +4916,9 @@ a:focus {
           align-items: stretch;
   position: relative;
 }
+.header-fix_down > ul > li:hover > .inner {
+  display: block;
+}
 .header-fix_down > ul a.first {
   font-size: 15px;
   font-weight: 300;
@@ -5215,4 +5218,7 @@ a:focus {
 }
 .breadcrumbs li:last-child:after {
   display: none;
+}
+#app .app-content {
+  min-height: calc(100vh - 73px);
 }

@@ -107,6 +107,13 @@
         padding:0 20px;
         .flex(row,nowrap,space-between,stretch);
         position: relative;
+        &>li{
+          &:hover{
+            &>.inner{
+              display: block;
+            }
+          }
+        }
         a.first{
           font-size:15px;
           font-weight:300;
@@ -121,6 +128,7 @@
             color:#fff;
           }
         }
+
       }
       .inner{
         position: absolute;
@@ -346,4 +354,7 @@
       }
     }
   }
+}
+#app .app-content{
+  min-height: ~'calc(100vh - 73px)';
 }

@@ -23,9 +23,7 @@
                 <li>
                     <router-link class="first" to="/">{{ $t('menu.main') }}</router-link>
                 </li>
-                <li @mouseenter="showUl($event)"
-                    @mouseleave="hideUl($event)"
-                    >
+                <li>
                     <router-link class="first" to="/category">{{ $t('menu.catalog') }}</router-link>
                     <div class="inner">
                         <div class="inner-wrapper">
@@ -38,8 +36,7 @@
                         </div>
                     </div>
                 </li>
-                <li @mouseenter="showUl($event)"
-                    @mouseleave="hideUl($event)">
+                <li>
                     <router-link class="first" :to="{name:'service'}">{{ $t('menu.service') }}</router-link>
                     <div class="inner">
                         <div class="inner-wrapper">
@@ -89,7 +86,7 @@
                   if(ul){
                     var _self = this;
                     Velocity(ul,'slideDown',{
-                      duration:200,
+                      duration:1,
                     }).then(elements=>{
                       _self.trigger = false;
                     })
@@ -106,7 +103,7 @@
                   if(ul){
                     var _self = this;
                     Velocity(ul,'slideUp',{
-                      duration:200,
+                      duration:1,
                     }).then(elements=>{
                       _self.trigger = false;
                     });

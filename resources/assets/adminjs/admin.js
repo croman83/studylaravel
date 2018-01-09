@@ -62,6 +62,7 @@ import Category from './components/mainpages/OneCategory.vue'
 import AddCategory from './components/mainpages/AddCategory.vue'
 import ProductsList from './components/mainpages/ProductsList.vue'
 import Product from './components/mainpages/Product.vue'
+import AddProduct from './components/mainpages/AddProduct.vue'
 
 
 
@@ -80,6 +81,7 @@ const router = new VueRouter({
         { path: '/categories/add', component: AddCategory,name:'addcategory' },
         { path: '/categories/:slug', component: Category, props:true , name:'category' },
         { path: '/products', component: ProductsList, props:true , name:'products-list' },
+        { path: '/products/add', component: AddProduct,name:'addproduct' },
         { path: '/products/:slug', component: Product, props:true , name:'product' },
         { path: '/*', component: PageNotFound },
     ]

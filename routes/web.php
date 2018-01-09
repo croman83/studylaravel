@@ -42,6 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::post('admin/categories/add/foto', 'HomeController@categoryAddPhoto');
     Route::post('admin/categories/{slug}', 'HomeController@categoryInfo');
     Route::post('admin/get-products', 'HomeController@productsList');
+    Route::post('admin/products/get-datacat', 'HomeController@addProductGet');
     Route::post('admin/products/foto', 'HomeController@productFotoAdd');
     Route::post('admin/products/{slug}', 'HomeController@products');
 
